@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
+import { useI18n } from "@/lib/i18n";
 import {
   reverseGeocode,
   searchAddresses,
@@ -13,36 +14,39 @@ import {
   type Coordinates,
 } from "@/lib/geocoding";
 
+function MapLoading() {
+  const { t } = useI18n();
+  return <div className="address-map-loading">{t("mapLoading")}</div>;
+}
+
 const MapView = dynamic(() => import("./MapView"), {
   ssr: false,
-  loading: () => (
-    <div className="address-map-loading">جاري تحميل الخريطة...</div>
-  ),
+  loading: () => <MapLoading />,
 });
 
 const savedAddresses = [
   {
     id: "home",
-    label: "المنزل",
-    details: "حي النخيل، شارع السلطان محمد",
     location: { lat: 31.2001, lng: 29.9187 },
     icon: "/icons/house.svg",
   },
   {
     id: "work",
-    label: "العمل",
-    details: "كرموز، شارع الوردانية",
     location: { lat: 31.2155, lng: 29.9553 },
     icon: "/icons/workbag.svg",
   },
   {
     id: "family",
-    label: "منزل العائلة",
-    details: "وسط البلد، جليم",
     location: { lat: 31.1975, lng: 29.9042 },
     icon: "/icons/storelocation.svg",
   },
 ];
+
+const savedAddressMessages = {
+  home: { label: "homeAddress", details: "homeAddressDetails" },
+  work: { label: "workAddress", details: "workAddressDetails" },
+  family: { label: "familyAddress", details: "familyAddressDetails" },
+} as const;
 
 function Icon({ name }: { name: "arrow" | "radio" | "check" }) {
   if (name === "arrow")
@@ -79,6 +83,7 @@ function Icon({ name }: { name: "arrow" | "radio" | "check" }) {
 
 export default function LocationPicker() {
   const router = useRouter();
+  const { locale, t, href } = useI18n();
   const [location, setLocation] = useState<Coordinates>({
     lat: 31.2001,
     lng: 29.9187,
@@ -106,7 +111,7 @@ export default function LocationPicker() {
       setError("");
 
       try {
-        const result = await reverseGeocode(location, controller.signal);
+        const result = await reverseGeocode(location, controller.signal, locale);
         setAddress(result);
       } catch (err) {
         if (err instanceof Error && err.name !== "AbortError") {
@@ -124,14 +129,14 @@ export default function LocationPicker() {
       window.clearTimeout(timer);
       controller.abort();
     };
-  }, [location]);
+  }, [locale, location]);
 
   async function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const value = query.trim();
 
     if (!value) {
-      setError("اكتب اسم المكان أو العنوان أولًا");
+      setError(t("searchEmpty"));
       return;
     }
 
@@ -140,13 +145,13 @@ export default function LocationPicker() {
     setResults([]);
 
     try {
-      const matches = await searchAddresses(value);
+      const matches = await searchAddresses(value, undefined, locale);
       setResults(matches);
       if (matches.length === 0) {
-        setError("ملقيناش نتائج. جرّب اسم شارع أو منطقة تانية.");
+        setError(t("searchNoResults"));
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "حصل خطأ أثناء البحث");
+      setError(err instanceof Error ? err.message : t("searchFailed"));
     } finally {
       setSearchLoading(false);
     }
@@ -162,7 +167,7 @@ export default function LocationPicker() {
       !Number.isFinite(nextLocation.lat) ||
       !Number.isFinite(nextLocation.lng)
     ) {
-      setError("إحداثيات المكان غير صالحة");
+      setError(t("invalidCoordinates"));
       return;
     }
 
@@ -180,7 +185,7 @@ export default function LocationPicker() {
 
   function locateMe() {
     if (!navigator.geolocation) {
-      setError("المتصفح لا يدعم تحديد الموقع");
+      setError(t("geolocationUnsupported"));
       return;
     }
 
@@ -198,10 +203,10 @@ export default function LocationPicker() {
       (geoError) => {
         const message =
           geoError.code === geoError.PERMISSION_DENIED
-            ? "اسمح للموقع بالوصول لموقعك من إعدادات المتصفح."
+            ? t("geolocationDenied")
             : geoError.code === geoError.TIMEOUT
-              ? "تحديد الموقع استغرق وقتًا طويلًا. حاول مرة أخرى."
-              : "تعذر تحديد موقعك الحالي.";
+              ? t("geolocationTimeout")
+              : t("geolocationFailed");
         setError(message);
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 },
@@ -215,7 +220,8 @@ export default function LocationPicker() {
     skipReverseGeocode.current = locationChanged;
     setLocation(saved.location);
     setZoom(16);
-    setAddress(saved.details);
+    const copy = savedAddressMessages[saved.id as keyof typeof savedAddressMessages];
+    setAddress(t(copy.details));
     setAddressLoading(false);
     setSelectedSavedAddress(saved.id);
     setQuery("");
@@ -228,12 +234,12 @@ export default function LocationPicker() {
     setAddress("");
     setQuery("");
     setResults([]);
-    setError("اضغط على الخريطة لتحديد موقع العنوان الجديد");
+    setError(t("chooseOnMap"));
   }
 
   function confirmAddress() {
     if (!address || addressLoading || isContinuing) {
-      setError("انتظر حتى يتم تحديد عنوان الموقع");
+      setError(t("confirmAddressError"));
       return;
     }
 
@@ -254,7 +260,7 @@ export default function LocationPicker() {
     }
 
     setIsContinuing(true);
-    router.push("/payment");
+    router.push(href("/payment"));
   }
 
   return (
@@ -262,7 +268,7 @@ export default function LocationPicker() {
       <div className="address-shell">
         <section
           className="address-map-section"
-          aria-label="اختر موقع التوصيل على الخريطة"
+          aria-label={t("mapAria")}
         >
           <div className="address-map-canvas">
             <MapView
@@ -283,8 +289,8 @@ export default function LocationPicker() {
               className="address-locate"
               type="button"
               onClick={locateMe}
-              aria-label="استخدم موقعي الحالي"
-              title="استخدم موقعي الحالي"
+              aria-label={t("locateMe")}
+              title={t("locateMe")}
             >
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <circle
@@ -314,10 +320,10 @@ export default function LocationPicker() {
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="ابحث عن موقع"
-                aria-label="ابحث عن موقع"
+                placeholder={t("searchPlace")}
+                aria-label={t("searchPlace")}
               />
-              <button type="submit" disabled={searchLoading} aria-label="بحث">
+              <button type="submit" disabled={searchLoading} aria-label={t("search")}>
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle
                     cx="10.8"
@@ -338,8 +344,8 @@ export default function LocationPicker() {
 
             <Link
               className="address-back"
-              href="/delivery"
-              aria-label="العودة لطريقة الاستلام"
+              href={href("/delivery")}
+              aria-label={t("backToDelivery")}
             >
               <Icon name="arrow" />
             </Link>
@@ -362,7 +368,7 @@ export default function LocationPicker() {
               className={`address-map-feedback${error ? " is-error" : ""}`}
               role={error ? "alert" : "status"}
             >
-              {error || "جاري البحث عن الموقع..."}
+              {error || t("searchLoading")}
             </p>
           )}
         </section>
@@ -370,22 +376,23 @@ export default function LocationPicker() {
         <section className="address-sheet" aria-labelledby="address-title">
           <div className="address-store-badge">
             <span>
-              خط العرض: <bdi dir="ltr">{location.lat.toFixed(6)}</bdi>
+              {t("latitude")}: <bdi dir="ltr">{location.lat.toFixed(6)}</bdi>
             </span>
             <span>
-              خط الطول: <bdi dir="ltr">{location.lng.toFixed(6)}</bdi>
+              {t("longitude")}: <bdi dir="ltr">{location.lng.toFixed(6)}</bdi>
             </span>
           </div>
 
           <div className="address-sheet-content">
-            <h1 id="address-title">اختار عنوان التوصيل</h1>
+            <h1 id="address-title">{t("addressTitle")}</h1>
             <div
               className="address-list"
               role="radiogroup"
-              aria-label="العناوين المحفوظة"
+              aria-label={t("savedAddresses")}
             >
               {savedAddresses.map((saved) => {
                 const selected = selectedSavedAddress === saved.id;
+                const addressCopy = savedAddressMessages[saved.id as keyof typeof savedAddressMessages];
                 return (
                   <button
                     className={`address-card${selected ? " is-selected" : ""}`}
@@ -402,8 +409,8 @@ export default function LocationPicker() {
                       {selected && <span />}
                     </span>
                     <span className="address-card-copy">
-                      <strong>{saved.label}</strong>
-                      <span>{saved.details}</span>
+                      <strong>{t(addressCopy.label)}</strong>
+                      <span>{t(addressCopy.details)}</span>
                     </span>
                     <span className="address-card-icon">
                       <Image src={saved.icon} alt="" width={28} height={28} />
@@ -418,8 +425,8 @@ export default function LocationPicker() {
               aria-live="polite"
             >
               {addressLoading
-                ? "جاري تحديد العنوان..."
-                : address || "اضغط على الخريطة لتحديد عنوان جديد"}
+                ? t("mapAddressLoading")
+                : address || t("mapAddressPrompt")}
             </p>
 
             <button
@@ -428,7 +435,7 @@ export default function LocationPicker() {
               onClick={startNewAddress}
             >
               <span aria-hidden="true">＋</span>
-              أضف عنوان جديد
+              {t("addAddress")}
             </button>
 
             <button
@@ -437,7 +444,7 @@ export default function LocationPicker() {
               onClick={confirmAddress}
               disabled={addressLoading || !address || isContinuing}
             >
-              {isContinuing ? "جارٍ الانتقال للدفع..." : "تأكيد العنوان"}
+              {isContinuing ? t("continueToPayment") : t("confirmAddress")}
             </button>
           </div>
 

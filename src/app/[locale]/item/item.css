@@ -40,8 +40,16 @@
     background-color 0.2s ease,
     scale 0.2s ease;
 }
+.round-icon-button svg {
+  margin-left: 3px;
+  margin-top: 4px;
+}
 .round-icon-button:active {
   scale: 0.92;
+}
+.favorite-button svg{
+  margin-left: 4px;
+  margin-top: 4px;
 }
 .favorite-button.is-favorite {
   color: var(--brand);

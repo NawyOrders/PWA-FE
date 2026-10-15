@@ -47,6 +47,145 @@ h3 {
   line-height: 1.4;
   text-wrap: balance;
 }
+
+.locale-home-page {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at 85% 12%, rgb(255 218 201 / 0.72), transparent 34%),
+    radial-gradient(ellipse at 8% 68%, rgb(255 239 196 / 0.72), transparent 36%),
+    #fffaf6;
+}
+
+.locale-home-card {
+  position: relative;
+  width: min(100%, 560px);
+  padding: clamp(36px, 8vw, 64px);
+  border: 1px solid rgb(139 111 99 / 0.12);
+  border-radius: 36px;
+  background: rgb(255 255 255 / 0.82);
+  box-shadow: 0 24px 80px rgb(55 38 28 / 0.12);
+  text-align: center;
+}
+
+.locale-home-language {
+  position: absolute;
+  inset-block-start: 20px;
+  inset-inline-end: 20px;
+}
+
+.locale-home-language a {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding-inline: 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.locale-home-kicker {
+  margin: 0 0 12px;
+  color: var(--brand);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.locale-home-card h1 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: 800;
+}
+
+.locale-home-intro {
+  margin: 14px 0 30px;
+  color: var(--text-secondary);
+}
+
+.locale-home-cta {
+  display: inline-flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ef3a20 0%, #ff8137 100%);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgb(228 56 32 / 0.22);
+}
+
+[dir="ltr"] body {
+  font-family: Arial, system-ui, sans-serif;
+}
+
+[dir="ltr"] .payment-option,
+[dir="ltr"] .fulfillment-option,
+[dir="ltr"] .rest-branch-option,
+[dir="ltr"] .address-card,
+[dir="ltr"] .address-card-copy,
+[dir="ltr"] .tracking-step,
+[dir="ltr"] .tracking-step-copy,
+[dir="ltr"] .tracking-courier-copy,
+[dir="ltr"] .tracking-header > div,
+[dir="ltr"] .tracking-eta > div,
+[dir="ltr"] .payment-summary-labels,
+[dir="ltr"] .payment-summary-total,
+[dir="ltr"] .summary-labels,
+[dir="ltr"] .summary-total,
+[dir="ltr"] .fulfillment-copy,
+[dir="ltr"] .payment-option-copy,
+[dir="ltr"] .address-sheet-content,
+[dir="ltr"] .address-search,
+[dir="ltr"] .rest-branch-copy {
+  direction: ltr;
+  text-align: left;
+}
+
+[dir="ltr"] .payment-header > div,
+[dir="ltr"] .fulfillment-header > div,
+[dir="ltr"] .rest-location-header > div,
+[dir="ltr"] .address-sheet-content h1,
+[dir="ltr"] .item-intro,
+[dir="ltr"] .item-section,
+[dir="ltr"] .notes-section {
+  text-align: left;
+}
+
+[dir="ltr"] .address-card-copy,
+[dir="ltr"] .rest-branch-address,
+[dir="ltr"] .rest-branch-heading,
+[dir="ltr"] .tracking-step-copy,
+[dir="ltr"] .tracking-courier-copy,
+[dir="ltr"] .receipt-file-copy,
+[dir="ltr"] .receipt-modal-note,
+[dir="ltr"] .payment-summary-lines,
+[dir="ltr"] .payment-summary-bottom,
+[dir="ltr"] .summary-lines,
+[dir="ltr"] .summary-bottom,
+[dir="ltr"] .tracking-eta,
+[dir="ltr"] .tracking-actions {
+  direction: ltr;
+}
+
+[dir="ltr"] .item-intro,
+[dir="ltr"] .item-section,
+[dir="ltr"] .address-card-copy,
+[dir="ltr"] .rest-branch-copy,
+[dir="ltr"] .tracking-step-copy,
+[dir="ltr"] .tracking-courier-copy,
+[dir="ltr"] .payment-summary-labels,
+[dir="ltr"] .payment-summary-total,
+[dir="ltr"] .summary-labels,
+[dir="ltr"] .summary-total,
+[dir="ltr"] .receipt-file-copy {
+  text-align: left;
+}
 a {
   color: inherit;
   text-decoration: none;

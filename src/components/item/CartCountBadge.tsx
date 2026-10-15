@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { getCartCount } from "./cart-store";
+import { useI18n } from "@/lib/i18n";
 
 export default function CartCountBadge() {
+  const { t } = useI18n();
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -13,5 +15,5 @@ export default function CartCountBadge() {
     return () => window.removeEventListener("nawyorders:cart-updated", updateCount);
   }, []);
 
-  return <span className="menu-cart-count" aria-label={`عدد القطع في السلة: ${count}`}>{count}</span>;
+  return <span className="menu-cart-count" aria-label={`${t("cartCountAria")}: ${count}`}>{count}</span>;
 }

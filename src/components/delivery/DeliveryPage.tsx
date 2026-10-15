@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useI18n } from "@/lib/i18n";
 
 type FulfillmentMethod = "delivery" | "pickup";
 
 const items = [
-  { name: "برجر لحم بلدي", quantity: 1, image: "/burger.png" },
-  { name: "برجر لحم بلدي", quantity: 1, image: "/burger.png" },
+  { id: "burger-1", image: "/burger.png" },
+  { id: "burger-2", image: "/burger.png" },
 ];
 
 function Icon({ name }: { name: "arrow" | "radio" | "check" }) {
@@ -27,6 +28,7 @@ function FulfillmentOption({
   selected: boolean;
   onSelect: (method: FulfillmentMethod) => void;
 }) {
+  const { t } = useI18n();
   const isDelivery = method === "delivery";
 
   return (
@@ -42,17 +44,17 @@ function FulfillmentOption({
       </span>
       <span className="fulfillment-copy">
         <span className="fulfillment-option-heading">
-          <strong>{isDelivery ? "التوصيل" : "الاستلام"}</strong>
+          <strong>{isDelivery ? t("delivery") : t("pickup")}</strong>
           <span
             className={`fulfillment-fee ${isDelivery ? "fee-paid" : "fee-free"}`}
           >
-            {isDelivery ? "يوجد رسوم توصيل" : "بدون رسوم توصيل"}
+            {isDelivery ? t("deliveryFeeTag") : t("noDeliveryFee")}
           </span>
         </span>
         <span className="fulfillment-description">
           {isDelivery
-            ? "سيصلك الطلب حتى باب المنزل لكن سيتم إضافة رسوم التوصيل على ثمن الطلب"
-            : "حي النخيل، شارع السلطان محمد فرع الملك، الإسكندرية، مصر"}
+            ? t("deliveryDescription")
+            : t("pickupAddress")}
         </span>
       </span>
     </button>
@@ -60,22 +62,23 @@ function FulfillmentOption({
 }
 
 function OrderSummary({ method }: { method: FulfillmentMethod }) {
+  const { t } = useI18n();
   const deliveryFee = method === "delivery" ? 30 : 0;
   const total = 240 + deliveryFee - 20;
 
   return (
     <section className="fulfillment-summary" aria-labelledby="fulfillment-summary-title">
-      <h2 id="fulfillment-summary-title">ملخص الطلب بعد اختيار طريقة الاستلام</h2>
+      <h2 id="fulfillment-summary-title">{t("orderSummaryFulfillment")}</h2>
       <div className="summary-lines">
-        <span className="summary-labels"><span>المجموع الفرعي</span><span>رسوم التوصيل</span><span>الخصم</span></span>
-        <span className="summary-values"><strong>240 جــ</strong><strong>{method === "delivery" ? "30 جــ" : "0 جــ"}</strong><strong className="summary-discount">20 جــ</strong></span>
+        <span className="summary-labels"><span>{t("subtotal")}</span><span>{t("deliveryFee")}</span><span>{t("discount")}</span></span>
+        <span className="summary-values"><strong>240 {t("currencyShort")}</strong><strong>{method === "delivery" ? 30 : 0} {t("currencyShort")}</strong><strong className="summary-discount">20 {t("currencyShort")}</strong></span>
       </div>
       <div className="summary-divider" />
       <div className="summary-bottom">
-        <div className="summary-thumbnails" aria-label="عنصران في الطلب">
-          {items.map((item, index) => <span className="summary-thumb" key={`${item.name}-${index}`}><Image src={item.image} alt={item.name} fill sizes="72px" /></span>)}
+        <div className="summary-thumbnails" aria-label={t("orderItemsCount")}>
+          {items.map((item) => <span className="summary-thumb" key={item.id}><Image src={item.image} alt={t("itemImageAlt")} fill sizes="72px" /></span>)}
         </div>
-        <div className="summary-total"><span>الإجمالي</span><strong>{total === 250 ? "250" : "220"} جــ</strong></div>
+        <div className="summary-total"><span>{t("total")}</span><strong>{total} {t("currencyShort")}</strong></div>
       </div>
     </section>
   );
@@ -83,29 +86,30 @@ function OrderSummary({ method }: { method: FulfillmentMethod }) {
 
 export default function DeliveryPage() {
   const router = useRouter();
+  const { t, href } = useI18n();
   const [method, setMethod] = useState<FulfillmentMethod>("delivery");
 
   function confirmFulfillment() {
     if (method === "pickup") {
-      router.push("/restLocation");
+      router.push(href("/restLocation"));
       return;
     }
 
-    router.push("/address");
+    router.push(href("/address"));
   }
 
   return (
     <main className="fulfillment-page">
       <div className="fulfillment-shell">
         <header className="fulfillment-header">
-          <Link className="fulfillment-back" href="/menu" aria-label="العودة إلى القائمة"><Icon name="arrow" /></Link>
-          <div><h1>طريقة الاستلام</h1><p>عنوان أو فرع</p></div>
+          <Link className="fulfillment-back" href={href("/")} aria-label={t("backToHome")}><Icon name="arrow" /></Link>
+          <div><h1>{t("deliveryMethod")}</h1><p>{t("addressOrBranch")}</p></div>
         </header>
 
         <section className="fulfillment-card" aria-labelledby="fulfillment-title">
-          <h2 id="fulfillment-title">اختر طريقة استلام الطلب</h2>
-          <p className="fulfillment-intro">يرجى اختيار طريقة الاستلام سواء توصيل حتى باب المنزل أو العمل او عن طريق استلام الطلب من أحد فروعنا</p>
-          <div className="fulfillment-options" role="radiogroup" aria-label="طريقة الاستلام">
+          <h2 id="fulfillment-title">{t("chooseFulfillment")}</h2>
+          <p className="fulfillment-intro">{t("fulfillmentIntro")}</p>
+          <div className="fulfillment-options" role="radiogroup" aria-label={t("deliveryMethod")}>
             <FulfillmentOption method="delivery" selected={method === "delivery"} onSelect={setMethod} />
             <FulfillmentOption method="pickup" selected={method === "pickup"} onSelect={setMethod} />
           </div>
@@ -115,7 +119,7 @@ export default function DeliveryPage() {
 
         <div className="fulfillment-action-wrap">
           <button className="fulfillment-confirm" type="button" onClick={confirmFulfillment}>
-            تأكيد طريقة الاستلام
+            {t("confirmFulfillment")}
           </button>
         </div>
         <div className="fulfillment-home-indicator" aria-hidden="true"><span /></div>

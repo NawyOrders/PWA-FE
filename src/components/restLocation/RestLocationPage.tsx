@@ -3,20 +3,19 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useI18n } from "@/lib/i18n";
 
 type Branch = {
   id: string;
-  name: string;
-  address: string;
-  distance: string;
+  distance: number;
   isOpen: boolean;
 };
 
 const branches: Branch[] = [
-  { id: "nakheel-1", name: "فرع النخيل", address: "حي النخيل، شارع السلطان محمد فرع الملك، الإسكندرية، مصر", distance: "1.5 كم", isOpen: true },
-  { id: "nakheel-2", name: "فرع النخيل", address: "حي النخيل، شارع السلطان محمد فرع الملك، الإسكندرية، مصر", distance: "10 كم", isOpen: true },
-  { id: "nakheel-3", name: "فرع النخيل", address: "حي النخيل، شارع السلطان محمد فرع الملك، الإسكندرية، مصر", distance: "4 كم", isOpen: false },
-  { id: "nakheel-4", name: "فرع النخيل", address: "حي النخيل، شارع السلطان محمد فرع الملك، الإسكندرية، مصر", distance: "7 كم", isOpen: false },
+  { id: "nakheel-1", distance: 1.5, isOpen: true },
+  { id: "nakheel-2", distance: 10, isOpen: true },
+  { id: "nakheel-3", distance: 4, isOpen: false },
+  { id: "nakheel-4", distance: 7, isOpen: false },
 ];
 
 function ArrowIcon() {
@@ -36,6 +35,7 @@ function BranchOption({
   selected: boolean;
   onSelect: (id: string) => void;
 }) {
+  const { t } = useI18n();
   return (
     <button
       className={`rest-branch-option${selected ? " is-selected" : ""}${branch.isOpen ? " is-open" : " is-closed"}`}
@@ -48,13 +48,13 @@ function BranchOption({
       <span className="rest-branch-radio" aria-hidden="true">{selected && <span />}</span>
       <span className="rest-branch-copy">
         <span className="rest-branch-heading">
-          <strong>{branch.name}</strong>
+            <strong>{t("branchName")}</strong>
           <span className={`rest-branch-status${branch.isOpen ? " status-open" : " status-closed"}`}>
-            {branch.isOpen ? "مفتوح الآن" : "مغلق"}
+            {branch.isOpen ? t("openNow") : t("closed")}
           </span>
         </span>
-        <span className="rest-branch-address">{branch.address}</span>
-        <span className="rest-branch-distance"><PinIcon />{branch.distance}</span>
+        <span className="rest-branch-address">{t("branchAddress")}</span>
+        <span className="rest-branch-distance"><PinIcon />{branch.distance} {t("distanceUnit")}</span>
       </span>
     </button>
   );
@@ -62,6 +62,7 @@ function BranchOption({
 
 export default function RestLocationPage() {
   const router = useRouter();
+  const { t, href } = useI18n();
   const [selectedId, setSelectedId] = useState(branches[0].id);
   const [isContinuing, setIsContinuing] = useState(false);
   const selectedBranch = branches.find((branch) => branch.id === selectedId) ?? branches[0];
@@ -78,7 +79,7 @@ export default function RestLocationPage() {
     } catch {
       // Payment remains usable when browser storage is unavailable.
     }
-    router.push("/payment");
+    router.push(href("/payment"));
   }
 
   return (
@@ -87,21 +88,21 @@ export default function RestLocationPage() {
         <header className="rest-location-header">
           <Link
             className="rest-location-back"
-            href="/delivery"
-            aria-label="العودة إلى طريقة الاستلام"
+            href={href("/delivery")}
+            aria-label={t("backToDelivery")}
           >
             <ArrowIcon />
           </Link>
           <div>
-            <h1>اختر الفرع</h1>
-            <p>اختر الفرع الأقرب إليك لاستلام الطلب</p>
+            <h1>{t("chooseBranch")}</h1>
+            <p>{t("chooseNearestBranch")}</p>
           </div>
         </header>
 
         <section
           className="rest-branch-list"
           role="radiogroup"
-          aria-label="فروع المطعم"
+          aria-label={t("branches")}
         >
           {branches.map((branch) => (
             <BranchOption
@@ -115,8 +116,8 @@ export default function RestLocationPage() {
 
         <footer className="rest-location-footer">
           <div className="rest-selected-branch">
-            <span>الفرع المختار</span>
-            <strong>{selectedBranch.name}</strong>
+            <span>{t("selectedBranch")}</span>
+            <strong>{t("branchName")}</strong>
           </div>
           <button
             className="rest-confirm-button"
@@ -124,7 +125,7 @@ export default function RestLocationPage() {
             onClick={confirmBranch}
             disabled={isContinuing}
           >
-            {isContinuing ? "جارٍ الانتقال إلى الدفع…" : "تأكيد الفرع"}
+            {isContinuing ? t("continueToPayment") : t("confirmBranch")}
           </button>
         </footer>
         <div className="rest-home-indicator" aria-hidden="true" />

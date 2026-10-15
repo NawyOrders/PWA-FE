@@ -2,11 +2,11 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    id: "/",
+    id: "/ar",
     name: "NawyOrders لإدارة الطلبات",
     short_name: "NawyOrders",
     description: "تطبيق نوي أوردرز لإدارة الطلبات بسهولة.",
-    start_url: "/",
+    start_url: "/ar",
     scope: "/",
     display: "standalone",
     orientation: "portrait",

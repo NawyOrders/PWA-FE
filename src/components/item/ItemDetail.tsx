@@ -12,8 +12,10 @@ import NotesField from "./NotesField";
 import QuantitySelector from "./QuantitySelector";
 import SizeSelector from "./SizeSelector";
 import type { ItemSize } from "./types";
+import { useI18n } from "@/lib/i18n";
 
 export default function ItemDetail() {
+  const { t, href } = useI18n();
   const router = useRouter();
   const [quantity, setQuantity] = useState(2);
   const [selectedSize, setSelectedSize] = useState<ItemSize>(itemSizes[1]);
@@ -38,9 +40,9 @@ export default function ItemDetail() {
   function addToCart() {
     const count = addCartItem({
       id: burgerItem.id,
-      name: burgerItem.name,
+      name: t("itemName"),
       sizeId: selectedSize.id,
-      sizeLabel: selectedSize.label,
+      sizeLabel: t(selectedSize.id === "small" ? "sizeSmall" : selectedSize.id === "large" ? "sizeLarge" : "sizeMedium"),
       unitPrice,
       quantity,
       addonIds: selectedAddons.map((addon) => addon.id),
@@ -51,7 +53,7 @@ export default function ItemDetail() {
 
   function closePage() {
     if (window.history.length > 1) router.back();
-    else router.push("/");
+    else router.push(href("/"));
   }
 
   return (
@@ -60,11 +62,11 @@ export default function ItemDetail() {
         <ItemHeader isFavorite={isFavorite} onClose={closePage} onToggleFavorite={() => setIsFavorite((value) => !value)} />
 
         <section className="item-intro" aria-labelledby="item-name">
-          <h1 id="item-name">{burgerItem.name}</h1>
-          <p className="item-description-glass max-w-3/4">{burgerItem.description}</p>
+          <h1 id="item-name">{t("itemName")}</h1>
+          <p className="item-description-glass max-w-3/4">{t("itemDescription")}</p>
         </section>
 
-        <section className="product-stage relative" aria-label="صورة المنتج والكمية">
+        <section className="product-stage relative" aria-label={t("itemImageQuantity")}>
           <BurgerArtwork />
           <QuantitySelector quantity={quantity} onChange={setQuantity} />
         </section>
@@ -75,7 +77,7 @@ export default function ItemDetail() {
         <div className="item-bottom-space" />
       </div>
 
-      {cartCount !== null && <p className="cart-status" role="status">في سلتك الآن {cartCount} قطعة</p>}
+      {cartCount !== null && <p className="cart-status" role="status">{t("cartCount")} {cartCount} {t("pieces")}</p>}
       <AddToCartButton total={total} onAdd={addToCart} />
     </main>
   );

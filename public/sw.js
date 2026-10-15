@@ -1,9 +1,9 @@
 const CACHE_NAME = "nawyorders-shell-v1";
-const OFFLINE_URL = "/offline";
+const OFFLINE_URLS = ["/ar/offline", "/en/offline"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.add(OFFLINE_URL)).then(() => self.skipWaiting()),
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(OFFLINE_URLS)).then(() => self.skipWaiting()),
   );
 });
 
@@ -43,7 +43,8 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request).catch(async () => {
       const cache = await caches.open(CACHE_NAME);
-      return (await cache.match(OFFLINE_URL)) || Response.error();
+      const locale = new URL(event.request.url).pathname.split("/")[1];
+      return (await cache.match(`/${locale}/offline`)) || (await cache.match("/ar/offline")) || Response.error();
     }),
   );
 });

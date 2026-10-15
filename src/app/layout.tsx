@@ -2,28 +2,14 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import PwaRegister from "@/components/pwa-register";
+import "leaflet/dist/leaflet.css";
 import "./globals.css";
 import "@/styles/motion.css";
 
-const cairoArabic = localFont({
-  src: [
-    { path: "./fonts/cairo-arabic-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "./fonts/cairo-arabic-600-normal.woff2", weight: "600", style: "normal" },
-    { path: "./fonts/cairo-arabic-700-normal.woff2", weight: "700", style: "normal" },
-    { path: "./fonts/cairo-arabic-800-normal.woff2", weight: "800", style: "normal" },
-  ],
-  variable: "--font-cairo-arabic",
-  display: "swap",
-});
-
-const cairoLatin = localFont({
-  src: [
-    { path: "./fonts/cairo-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "./fonts/cairo-latin-600-normal.woff2", weight: "600", style: "normal" },
-    { path: "./fonts/cairo-latin-700-normal.woff2", weight: "700", style: "normal" },
-    { path: "./fonts/cairo-latin-800-normal.woff2", weight: "800", style: "normal" },
-  ],
-  variable: "--font-cairo-latin",
+const notoKufiArabic = localFont({
+  src: "./fonts/NotoKufiArabic-Variable.ttf",
+  weight: "100 900",
+  variable: "--font-noto-kufi-arabic",
   display: "swap",
 });
 
@@ -36,7 +22,7 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "NawyOrders",
   },
-  icons: { icon: "/icons/icon.svg", apple: "/icons/icon.svg" },
+  icons: { icon: "/icons/logo.png", apple: "/icons/logo.png" },
 };
 
 export const viewport: Viewport = {
@@ -45,7 +31,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairoArabic.variable} ${cairoLatin.variable}`}>
+    <html lang="ar" dir="rtl" className={notoKufiArabic.variable}>
       <body>
         <PwaRegister />
         {children}

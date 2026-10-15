@@ -1,3 +1,4 @@
+import "./offline.css";
 import Link from "next/link";
 
 export default function OfflinePage() {

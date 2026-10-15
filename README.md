@@ -7,7 +7,7 @@ The Progressive Web App frontend for the NawyOrders platform.
 - Next.js App Router
 - TypeScript
 - Tailwind CSS
-- Arabic-first RTL interface with local Cairo Arabic and Latin fonts
+- Arabic-first RTL interface using Noto Kufi Arabic
 - NawyOrders navy, coral, and cream theme
 - Web App Manifest and service worker offline fallback
 
@@ -30,15 +30,17 @@ public/
   sw.js               Service worker and offline navigation fallback
 src/
   app/                Routes, layout, styles, and web manifest
-    fonts/            Cairo Arabic and Latin font files
+    item/[slug]/      Item detail page
+    menu/             Menu page linking to an item
     offline/          Offline fallback route
-  components/         Shared UI components
+  components/
+    item/             Reusable item detail and cart components
   lib/                Shared utilities
   styles/             Shared motion styles
   types/              Shared TypeScript types
 ```
 
-Add routes under `src/app`, reusable components under `src/components`, and shared helpers under `src/lib`.
+The sample menu links to `/item/burger-baladi`. Item quantity, size, toppings, and notes are saved as a cart line in local storage when the add-to-cart button is pressed. Add routes under `src/app`, reusable components under `src/components`, and shared helpers under `src/lib`.
 
 ## Branching
 

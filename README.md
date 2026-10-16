@@ -29,10 +29,11 @@ public/
   icons/              PWA app icons
   sw.js               Service worker and offline navigation fallback
 src/
-  app/                Routes, layout, styles, and web manifest
-    item/[slug]/      Item detail page
-    menu/             Menu page linking to an item
-    offline/          Offline fallback route
+  app/                Localized routes, layouts, and web manifest
+    [locale]/         Arabic and English pages
+      (shell)/        Storefront pages and navigation shell
+      item/[slug]/    Item detail page
+      offline/        Offline fallback route
   components/
     item/             Reusable item detail and cart components
   lib/                Shared utilities

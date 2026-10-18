@@ -9,6 +9,7 @@ interface AuthState {
   isLoggedIn: boolean;
   persistent: boolean;
   login: (user: User, remember?: boolean) => void;
+  setName: (name: string) => void;
   logout: () => void;
 }
 
@@ -19,6 +20,8 @@ export const useAuthStore = create<AuthState>()(
       isLoggedIn: false,
       persistent: true,
       login: (user, remember = true) => set({ user, isLoggedIn: true, persistent: remember }),
+      setName: (name) =>
+        set((state) => ({ user: state.user ? { ...state.user, name } : state.user })),
       logout: () => set({ user: null, isLoggedIn: false }),
     }),
     {

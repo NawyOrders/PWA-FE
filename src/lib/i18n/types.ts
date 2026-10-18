@@ -110,6 +110,7 @@ export interface Dictionary {
     favorites: string;
     orders: string;
     points: string;
+    personalInfo: string;
     account: string;
     addresses: string;
     payment: string;
@@ -123,6 +124,23 @@ export interface Dictionary {
     guestHint: string;
     login: string;
     comingSoon: string;
+  };
+  personalInfo: {
+    title: string;
+    subtitle: string;
+    label: string;
+    hint: string;
+    note: string;
+    save: string;
+    saving: string;
+    saved: string;
+    discardTitle: string;
+    discardBody: string;
+    discardConfirm: string;
+    errorRequired: string;
+    errorShort: string;
+    errorLetters: string;
+    errorLong: string;
   };
   auth: {
     welcome: string;

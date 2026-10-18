@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import { useAuthStore } from "@/store/authStore";
@@ -36,7 +36,14 @@ export default function ProfilePage() {
   const showToast = useUiStore((state) => state.showToast);
   const [confirmOpen, setConfirmOpen] = useState(false);
 
-  const rows = [
+  const rows: Array<{
+    key: string;
+    icon: ReactNode;
+    tint: string;
+    title: string;
+    href?: string;
+  }> = [
+    { key: "personalInfo", icon: <EditIcon className="h-5 w-5 text-primary" />, tint: "bg-primary-tint", title: dict.profile.personalInfo, href: `/${locale}/profile/personal-info` },
     { key: "account", icon: <UserIcon className="h-5 w-5 text-primary" />, tint: "bg-primary-tint", title: dict.profile.account },
     { key: "addresses", icon: <LocationIcon className="h-5 w-5 text-accent" />, tint: "bg-glow", title: dict.profile.addresses },
     { key: "payment", icon: <CardIcon className="h-5 w-5 text-success" />, tint: "bg-success-bg", title: dict.profile.payment },
@@ -151,7 +158,9 @@ export default function ProfilePage() {
             icon={row.icon}
             iconClassName={row.tint}
             title={row.title}
-            onClick={() => showToast(dict.profile.comingSoon)}
+            onClick={() =>
+              row.href ? router.push(row.href) : showToast(dict.profile.comingSoon)
+            }
           />
         ))}
       </div>

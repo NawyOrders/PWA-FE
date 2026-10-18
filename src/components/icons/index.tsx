@@ -287,3 +287,21 @@ export function TikTokIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function ShieldUserIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3Z" />
+      <circle cx="12" cy="10.2" r="2" />
+      <path d="M8.6 16.2c.8-1.5 2-2.3 3.4-2.3s2.6.8 3.4 2.3" />
+    </svg>
+  );
+}
+
+export function SpinnerIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3a9 9 0 1 0 9 9" />
+    </svg>
+  );
+}

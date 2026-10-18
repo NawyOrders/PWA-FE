@@ -16,7 +16,7 @@ export function Toast() {
 
   useEffect(() => {
     if (!toast) return;
-    const timer = setTimeout(hideToast, 2400);
+    const timer = setTimeout(hideToast, toast.duration ?? 2400);
     return () => clearTimeout(timer);
   }, [toast, hideToast]);
 
@@ -29,11 +29,23 @@ export function Toast() {
         role="status"
         aria-live="polite"
         className={cn(
-          "pointer-events-auto max-w-app rounded-full px-5 py-3 text-center text-[0.875rem] font-bold shadow-floating animate-fade-in",
+          "pointer-events-auto flex max-w-app items-center justify-center gap-3 rounded-full px-5 py-3 text-center text-[0.875rem] font-bold shadow-floating animate-fade-in",
           tones[toast.tone],
         )}
       >
-        {toast.message}
+        <span>{toast.message}</span>
+        {toast.action ? (
+          <button
+            type="button"
+            onClick={() => {
+              toast.action?.onAction();
+              hideToast();
+            }}
+            className="shrink-0 font-extrabold underline underline-offset-2"
+          >
+            {toast.action.label}
+          </button>
+        ) : null}
       </div>
     </div>
   );

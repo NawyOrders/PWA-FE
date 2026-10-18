@@ -114,6 +114,16 @@ export function HomeIcon(props: IconProps) {
   );
 }
 
+export function BriefcaseIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3" y="7.5" width="18" height="12" rx="2" />
+      <path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5" />
+      <path d="M3 12.5h18" />
+    </svg>
+  );
+}
+
 export function UserIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
@@ -136,6 +146,16 @@ export function LocationIcon(props: IconProps) {
     <svg {...base} {...props}>
       <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" />
       <circle cx="12" cy="10" r="2.5" />
+    </svg>
+  );
+}
+
+export function StorePinIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 21s6-4.8 6-10a6 6 0 1 0-12 0c0 5.2 6 10 6 10Z" />
+      <path d="M9.2 10.4 10 7.2h4l.8 3.2" />
+      <path d="M10 10.4c0 1 .9 1.8 2 1.8s2-.8 2-1.8" />
     </svg>
   );
 }

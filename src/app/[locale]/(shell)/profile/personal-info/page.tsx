@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import "./personal-info.css";
 import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import { useAuthStore } from "@/store/authStore";
 import { useUiStore } from "@/store/uiStore";
@@ -13,10 +12,10 @@ import {
   type DisplayNameError,
 } from "@/lib/validators";
 import { cn } from "@/lib/cn";
-import { CircleIconButton } from "@/components/CircleIconButton";
+import { SettingsScreen } from "@/components/SettingsScreen";
 import { PrimaryButton } from "@/components/PrimaryButton";
 import { Modal } from "@/components/Modal";
-import { ArrowEndIcon, EditIcon, InfoIcon, ShieldUserIcon } from "@/components/icons";
+import { EditIcon, InfoIcon, ShieldUserIcon } from "@/components/icons";
 
 export default function PersonalInfoPage() {
   const { locale, dict } = useI18n();
@@ -104,103 +103,88 @@ export default function PersonalInfoPage() {
   };
 
   return (
-    <main className="relative min-h-dvh w-full bg-bg">
-      <div aria-hidden className="pi-bg" />
-      <div className="pi-column">
-        <CircleIconButton
-          label={dict.common.back}
-          variant="white"
-          onClick={handleBack}
-          className="!h-[44px] !w-[44px]"
-        >
-          <ArrowEndIcon className="h-[20px] w-[20px] rotate-180 rtl:rotate-0" />
-        </CircleIconButton>
-
-        <h1 className="mt-[24px] text-[40px] font-extrabold leading-[1.3] text-title">
-          {dict.personalInfo.title}
-        </h1>
-        <p className="mt-[12px] text-[16px] leading-[1.6] text-muted">
-          {dict.personalInfo.subtitle}
-        </p>
-
-        <form onSubmit={handleSubmit} noValidate>
-          <div className="mt-[48px] rounded-[28px] bg-surface p-[24px] shadow-card">
-            <label htmlFor="display-name" className="mb-[12px] block text-[14px] font-bold text-title">
-              {dict.personalInfo.label}
-            </label>
-            <div className="relative">
-              <input
-                ref={inputRef}
-                id="display-name"
-                type="text"
-                name="name"
-                autoComplete="name"
-                enterKeyHint="done"
-                value={value}
-                onChange={(event) => {
-                  setDraft(event.target.value);
-                  if (errorKey) setErrorKey(null);
-                }}
-                onBlur={() => setErrorKey(validateDisplayName(value))}
-                aria-invalid={Boolean(errorKey)}
-                aria-describedby={errorKey ? "display-name-hint display-name-error" : "display-name-hint"}
-                className={cn(
-                  "h-[56px] w-full rounded-[20px] bg-surface px-4 pe-[48px] text-[16px] font-bold text-title outline-none transition-colors placeholder:font-normal placeholder:text-muted",
-                  errorKey
-                    ? "border-2 border-danger"
-                    : "border-[1.5px] border-line focus:border-2 focus:border-primary",
-                )}
-                placeholder={dict.auth.fullNamePlaceholder}
-              />
-              <span
-                aria-hidden
-                onClick={() => inputRef.current?.focus()}
-                className="absolute end-[16px] top-1/2 -translate-y-1/2 cursor-pointer text-hint-amber"
-              >
-                <EditIcon className="h-[20px] w-[20px]" />
-              </span>
-            </div>
-            <p
-              id="display-name-error"
-              aria-live="polite"
-              className={cn("text-[12px] font-medium text-danger", errorKey && "mt-[8px]")}
+    <SettingsScreen
+      title={dict.personalInfo.title}
+      subtitle={dict.personalInfo.subtitle}
+      backLabel={dict.common.back}
+      onBack={handleBack}
+      cta={
+        <PrimaryButton type="submit" form="pi-form" size="lg" disabled={!canSave} loading={saving}>
+          {dict.personalInfo.save}
+        </PrimaryButton>
+      }
+    >
+      <form id="pi-form" onSubmit={handleSubmit} noValidate>
+        <div className="mt-[48px] rounded-[28px] bg-surface p-[24px] shadow-card">
+          <label htmlFor="display-name" className="mb-[12px] block text-[14px] font-bold text-title">
+            {dict.personalInfo.label}
+          </label>
+          <div className="relative">
+            <input
+              ref={inputRef}
+              id="display-name"
+              type="text"
+              name="name"
+              autoComplete="name"
+              enterKeyHint="done"
+              value={value}
+              onChange={(event) => {
+                setDraft(event.target.value);
+                if (errorKey) setErrorKey(null);
+              }}
+              onBlur={() => setErrorKey(validateDisplayName(value))}
+              aria-invalid={Boolean(errorKey)}
+              aria-describedby={errorKey ? "display-name-hint display-name-error" : "display-name-hint"}
+              className={cn(
+                "h-[56px] w-full rounded-[20px] bg-surface px-4 pe-[48px] text-[16px] font-bold text-title outline-none transition-colors placeholder:font-normal placeholder:text-muted",
+                errorKey
+                  ? "border-2 border-danger"
+                  : "border-[1.5px] border-line focus:border-2 focus:border-primary",
+              )}
+              placeholder={dict.auth.fullNamePlaceholder}
+            />
+            <span
+              aria-hidden
+              onClick={() => inputRef.current?.focus()}
+              className="absolute end-[16px] top-1/2 -translate-y-1/2 cursor-pointer text-hint-amber"
             >
-              {errorKey ? errorMessages[errorKey] : null}
-            </p>
-            <p
-              id="display-name-hint"
-              className="mt-[16px] flex items-center gap-[8px] text-[14px] font-medium leading-[1.5] text-hint-amber-text"
-            >
-              <InfoIcon className="h-[20px] w-[20px] shrink-0 text-hint-amber" />
-              {dict.personalInfo.hint}
-            </p>
+              <EditIcon className="h-[20px] w-[20px]" />
+            </span>
           </div>
+          <p
+            id="display-name-error"
+            aria-live="polite"
+            className={cn("text-[12px] font-medium text-danger", errorKey && "mt-[8px]")}
+          >
+            {errorKey ? errorMessages[errorKey] : null}
+          </p>
+          <p
+            id="display-name-hint"
+            className="mt-[16px] flex items-center gap-[8px] text-[14px] font-medium leading-[1.5] text-hint-amber-text"
+          >
+            <InfoIcon className="h-[20px] w-[20px] shrink-0 text-hint-amber" />
+            {dict.personalInfo.hint}
+          </p>
+        </div>
 
-          <div className="mt-[24px] flex min-h-[80px] items-center gap-[12px] rounded-[28px] bg-tint-peach p-[20px]">
-            <p className="flex-1 text-[14px] leading-[1.6] text-muted">{dict.personalInfo.note}</p>
-            <ShieldUserIcon className="h-[28px] w-[28px] shrink-0 text-primary" />
-          </div>
+        <div className="mt-[24px] flex min-h-[80px] items-center gap-[12px] rounded-[28px] bg-tint-peach p-[20px]">
+          <p className="flex-1 text-[14px] leading-[1.6] text-muted">{dict.personalInfo.note}</p>
+          <ShieldUserIcon className="h-[28px] w-[28px] shrink-0 text-primary" />
+        </div>
+      </form>
 
-          <div className="pi-cta">
-            <PrimaryButton type="submit" size="lg" disabled={!canSave} loading={saving}>
-              {dict.personalInfo.save}
-            </PrimaryButton>
-          </div>
-        </form>
-
-        <Modal open={discardOpen} onClose={() => setDiscardOpen(false)} labelledBy="discard-title">
-          <h2 id="discard-title" className="text-[1.25rem] font-extrabold text-title">
-            {dict.personalInfo.discardTitle}
-          </h2>
-          <p className="mt-2 text-[0.875rem] text-muted">{dict.personalInfo.discardBody}</p>
-          <div className="mt-5 space-y-3">
-            <PrimaryButton onClick={goBack}>{dict.personalInfo.discardConfirm}</PrimaryButton>
-            <PrimaryButton variant="outline" onClick={() => setDiscardOpen(false)}>
-              {dict.common.cancel}
-            </PrimaryButton>
-          </div>
-        </Modal>
-      </div>
-    </main>
+      <Modal open={discardOpen} onClose={() => setDiscardOpen(false)} labelledBy="discard-title">
+        <h2 id="discard-title" className="text-[1.25rem] font-extrabold text-title">
+          {dict.personalInfo.discardTitle}
+        </h2>
+        <p className="mt-2 text-[0.875rem] text-muted">{dict.personalInfo.discardBody}</p>
+        <div className="mt-5 space-y-3">
+          <PrimaryButton onClick={goBack}>{dict.personalInfo.discardConfirm}</PrimaryButton>
+          <PrimaryButton variant="outline" onClick={() => setDiscardOpen(false)}>
+            {dict.common.cancel}
+          </PrimaryButton>
+        </div>
+      </Modal>
+    </SettingsScreen>
   );
 }

@@ -1,4 +1,4 @@
-.pi-bg {
+.ss-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -8,14 +8,14 @@
     radial-gradient(45% 30% at 0% 50%, var(--brand-gold-soft) 0%, transparent 70%);
 }
 
-[dir="rtl"] .pi-bg {
+[dir="rtl"] .ss-bg {
   background-image:
     radial-gradient(55% 35% at 0% 0%, var(--glow-peach) 0%, transparent 70%),
     radial-gradient(55% 35% at 0% 100%, var(--glow-peach) 0%, transparent 70%),
     radial-gradient(45% 30% at 100% 50%, var(--brand-gold-soft) 0%, transparent 70%);
 }
 
-.pi-column {
+.ss-column {
   position: relative;
   margin-inline: auto;
   width: 100%;
@@ -24,7 +24,7 @@
   padding-bottom: calc(100px + env(safe-area-inset-bottom));
 }
 
-.pi-cta {
+.ss-cta {
   position: fixed;
   inset-inline: 0;
   bottom: 0;
@@ -34,13 +34,13 @@
 }
 
 @media (min-width: 768px) {
-  .pi-column {
+  .ss-column {
     width: min(100% - 48px, 480px);
     padding-inline: 0;
     padding-bottom: 48px;
   }
 
-  .pi-cta {
+  .ss-cta {
     position: static;
     z-index: auto;
     padding-inline: 0;

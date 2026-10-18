@@ -1,4 +1,4 @@
-const CACHE_NAME = "nawyorders-shell-v2";
+const CACHE_NAME = "nawyorders-shell-v3";
 const IMAGE_CACHE = "nawyorders-images-v1";
 const OFFLINE_URL = "/offline.html";
 const OFFLINE_ROUTES = ["/ar/offline", "/en/offline"];

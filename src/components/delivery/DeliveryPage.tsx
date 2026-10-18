@@ -5,13 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
-
-type FulfillmentMethod = "delivery" | "pickup";
-
-const items = [
-  { id: "burger-1", image: "/burger.png" },
-  { id: "burger-2", image: "/burger.png" },
-];
+import { useCartStore, getFulfillmentTotals, getCartItemKey, type FulfillmentMethod } from "@/store/cartStore";
+import { getDish } from "@/data/dishes";
+import { dishImage } from "@/lib/image";
+import { formatPrice } from "@/lib/format";
 
 function Icon({ name }: { name: "arrow" | "radio" | "check" }) {
   if (name === "arrow") return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
@@ -62,23 +59,31 @@ function FulfillmentOption({
 }
 
 function OrderSummary({ method }: { method: FulfillmentMethod }) {
-  const { t } = useI18n();
-  const deliveryFee = method === "delivery" ? 30 : 0;
-  const total = 240 + deliveryFee - 20;
+  const { locale, t } = useI18n();
+  const items = useCartStore((state) => state.items);
+  const coupon = useCartStore((state) => state.coupon);
+  const { subtotal, deliveryFee, discount, total } = getFulfillmentTotals(items, coupon, method);
+  const summaryItems = items
+    .map((item) => ({ item, dish: getDish(item.dishId) }))
+    .filter((entry): entry is { item: typeof items[number]; dish: NonNullable<typeof entry.dish> } => Boolean(entry.dish));
 
   return (
     <section className="fulfillment-summary" aria-labelledby="fulfillment-summary-title">
       <h2 id="fulfillment-summary-title">{t("orderSummaryFulfillment")}</h2>
       <div className="summary-lines">
         <span className="summary-labels"><span>{t("subtotal")}</span><span>{t("deliveryFee")}</span><span>{t("discount")}</span></span>
-        <span className="summary-values"><strong>240 {t("currencyShort")}</strong><strong>{method === "delivery" ? 30 : 0} {t("currencyShort")}</strong><strong className="summary-discount">20 {t("currencyShort")}</strong></span>
+        <span className="summary-values">
+          <strong>{formatPrice(subtotal, locale)}</strong>
+          <strong>{formatPrice(deliveryFee, locale)}</strong>
+          <strong className="summary-discount">{discount > 0 ? `-${formatPrice(discount, locale)}` : formatPrice(0, locale)}</strong>
+        </span>
       </div>
       <div className="summary-divider" />
       <div className="summary-bottom">
         <div className="summary-thumbnails" aria-label={t("orderItemsCount")}>
-          {items.map((item) => <span className="summary-thumb" key={item.id}><Image src={item.image} alt={t("itemImageAlt")} fill sizes="72px" /></span>)}
+          {summaryItems.map(({ item, dish }) => <span className="summary-thumb" key={getCartItemKey(item)}><Image src={dishImage(dish.image, "thumb")} alt={t("itemImageAlt")} fill sizes="72px" /></span>)}
         </div>
-        <div className="summary-total"><span>{t("total")}</span><strong>{total} {t("currencyShort")}</strong></div>
+        <div className="summary-total"><span>{t("total")}</span><strong>{formatPrice(total, locale)}</strong></div>
       </div>
     </section>
   );
@@ -88,8 +93,10 @@ export default function DeliveryPage() {
   const router = useRouter();
   const { t, href } = useI18n();
   const [method, setMethod] = useState<FulfillmentMethod>("delivery");
+  const setFulfillmentMethod = useCartStore((state) => state.setFulfillmentMethod);
 
   function confirmFulfillment() {
+    setFulfillmentMethod(method);
     if (method === "pickup") {
       router.push(href("/restLocation"));
       return;

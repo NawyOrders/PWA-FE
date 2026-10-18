@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Dish } from "@/data/dishes";
 import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import { formatPrice } from "@/lib/format";
@@ -9,6 +10,7 @@ import { dishImage } from "@/lib/image";
 import { cn } from "@/lib/cn";
 import { CircleIconButton } from "@/components/CircleIconButton";
 import { ChevronIcon, PlusIcon } from "@/components/icons";
+import { anchors, localizedHref } from "@/lib/i18n/anchors";
 
 interface FeaturedCarouselProps {
   dishes: Dish[];
@@ -35,6 +37,7 @@ export function FeaturedCarousel({ dishes, onAdd }: FeaturedCarouselProps) {
 
   if (count === 0) return null;
   const dish = dishes[Math.min(index, count - 1)] ?? dishes[0];
+  const itemHref = localizedHref(locale, anchors.item(dish.id));
 
   return (
     <section
@@ -54,7 +57,9 @@ export function FeaturedCarousel({ dishes, onAdd }: FeaturedCarouselProps) {
                 {dict.home.featured}
               </p>
               <h2 className="mt-1 text-[1.5rem] font-extrabold leading-snug text-title md:text-[1.875rem] lg:mt-3 lg:text-[2.75rem] lg:leading-[1.12]">
-                {pick(dish.name)}
+                <Link href={itemHref} className="rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+                  {pick(dish.name)}
+                </Link>
               </h2>
               <p className="mt-3 max-w-[30rem] text-[0.875rem] leading-relaxed text-muted md:text-[0.9375rem] lg:text-[1rem]">
                 {pick(dish.description)}
@@ -84,7 +89,7 @@ export function FeaturedCarousel({ dishes, onAdd }: FeaturedCarouselProps) {
             </div>
           </div>
 
-          <div className="relative order-1 mx-auto h-[13rem] w-full max-w-[26rem] sm:h-[16rem] md:h-[19rem] lg:order-2 lg:mx-0 lg:h-[26rem] lg:max-w-none">
+          <Link href={itemHref} aria-label={pick(dish.name)} className="relative order-1 mx-auto block h-[13rem] w-full max-w-[26rem] sm:h-[16rem] md:h-[19rem] lg:order-2 lg:mx-0 lg:h-[26rem] lg:max-w-none">
             <Image
               src={dishImage(dish.image, "large")}
               alt={pick(dish.name)}
@@ -99,7 +104,7 @@ export function FeaturedCarousel({ dishes, onAdd }: FeaturedCarouselProps) {
                 {pick(dish.tag)}
               </span>
             ) : null}
-          </div>
+          </Link>
         </div>
       </div>
 

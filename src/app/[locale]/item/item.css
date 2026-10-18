@@ -129,11 +129,13 @@
   transform: translateX(-50%);
 }
 .burger-artwork {
+  --item-image-diameter: min(76vw, 344px);
+
   position: absolute;
   top: 50%;
   left: 50%;
   display: grid;
-  width: min(100%, 430px);
+  width: min(92vw, 410px);
   height: 320px;
   place-items: center;
   transform: translate(-50%, -50%);
@@ -142,7 +144,7 @@
   position: absolute;
   top: 55%;
   left: 50%;
-  width: min(76vw, 344px);
+  width: var(--item-image-diameter);
   aspect-ratio: 1;
   border: 1px solid rgb(15 42 71 / 0.2);
   border-radius: 50%;
@@ -154,11 +156,13 @@
 }
 .burger-product-image {
   position: relative;
-  width: 97%;
-  height: 100%;
+  width: var(--item-image-diameter);
+  height: var(--item-image-diameter);
+  max-width: var(--item-image-diameter);
+  max-height: var(--item-image-diameter);
+  border-radius: 50%;
   object-fit: contain;
-  object-position: 50% 40%;
-  padding: 0 4px;
+  object-position: center;
   filter: drop-shadow(0 15px 14px rgb(74 42 22 / 0.14));
   animation: burger-enter 0.65s var(--ease) both;
 }
@@ -510,10 +514,9 @@
     margin-top: 0;
   }
   .burger-artwork {
+    --item-image-diameter: min(68vw, 344px);
+
     height: 320px;
-  }
-  .burger-white-circle {
-    width: min(68vw, 344px);
   }
   .quantity-control{
     bottom: -24%;

@@ -44,7 +44,6 @@ export default function ProfilePage() {
     href?: string;
   }> = [
     { key: "personalInfo", icon: <EditIcon className="h-5 w-5 text-primary" />, tint: "bg-primary-tint", title: dict.profile.personalInfo, href: `/${locale}/profile/personal-info` },
-    { key: "account", icon: <UserIcon className="h-5 w-5 text-primary" />, tint: "bg-primary-tint", title: dict.profile.account },
     { key: "addresses", icon: <LocationIcon className="h-5 w-5 text-accent" />, tint: "bg-glow", title: dict.profile.addresses, href: `/${locale}/profile/addresses` },
     { key: "payment", icon: <CardIcon className="h-5 w-5 text-success" />, tint: "bg-success-bg", title: dict.profile.payment },
     { key: "notifications", icon: <BellIcon className="h-5 w-5 text-primary" />, tint: "bg-primary-tint", title: dict.profile.notifications },

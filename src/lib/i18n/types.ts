@@ -110,7 +110,6 @@ export interface Dictionary {
     orders: string;
     points: string;
     personalInfo: string;
-    account: string;
     addresses: string;
     payment: string;
     notifications: string;

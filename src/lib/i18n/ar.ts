@@ -108,7 +108,6 @@ export const ar: Dictionary = {
     orders: "الطلبات",
     points: "النقاط",
     personalInfo: "المعلومات الشخصية",
-    account: "بيانات الحساب",
     addresses: "العناوين",
     payment: "طرق الدفع",
     notifications: "الاشعارات",

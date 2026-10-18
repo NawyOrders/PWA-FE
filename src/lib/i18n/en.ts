@@ -108,7 +108,6 @@ export const en: Dictionary = {
     orders: "Orders",
     points: "Points",
     personalInfo: "Personal information",
-    account: "Account details",
     addresses: "Addresses",
     payment: "Payment methods",
     notifications: "Notifications",

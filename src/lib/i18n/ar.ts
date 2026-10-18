@@ -81,6 +81,7 @@ export const ar: Dictionary = {
     subtotal: "المجموع الفرعي",
     discount: "الخصم",
     total: "الاجمالي",
+    viewCart: "عرض السلة",
     checkout: "اتمام الطلب",
     empty: "سلة التسوق فارغة",
     emptyHint: "اضف بعض الاطباق اللذيذة لتظهر هنا",

@@ -83,6 +83,7 @@ export interface Dictionary {
     subtotal: string;
     discount: string;
     total: string;
+    viewCart: string;
     checkout: string;
     empty: string;
     emptyHint: string;

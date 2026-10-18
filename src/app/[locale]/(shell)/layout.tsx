@@ -6,6 +6,8 @@ import { useUiStore } from "@/store/uiStore";
 import { DesktopNav } from "@/components/DesktopNav";
 import { Drawer } from "@/components/Drawer";
 import { Toast } from "@/components/Toast";
+import { CartSummaryBar } from "@/components/CartSummaryBar/CartSummaryBar";
+import { OrderTrackingCard } from "@/components/OrderTrackingCard/OrderTrackingCard";
 
 const DrawerContent = dynamic(
   () => import("@/components/DrawerContent").then((mod) => mod.DrawerContent),
@@ -25,6 +27,8 @@ export default function ShellLayout({ children }: { children: ReactNode }) {
     <div className="relative flex min-h-dvh w-full flex-col bg-bg">
       <DesktopNav />
       <div className="flex-1">{children}</div>
+      <CartSummaryBar />
+      <OrderTrackingCard />
       {drawerOpen ? (
         <Drawer open onClose={closeDrawer} labelledBy="drawer-title">
           <DrawerContent />

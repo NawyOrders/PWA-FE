@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type ChangeEvent, type DragEvent } from "react";
 import { useI18n } from "@/lib/i18n";
+import { markOrderConfirmed } from "@/lib/orderStatus";
 
 type PaymentMethod = "cash" | "instapay" | "wallet";
 type PaymentFile = { file: File; previewUrl: string };
@@ -77,11 +78,11 @@ export default function PaymentPage() {
   function handleDrop(event: DragEvent<HTMLButtonElement>) { event.preventDefault(); chooseFile(event.dataTransfer.files[0]); }
   function confirmReceipt() {
     if (!pendingFile) return;
-    setReceipt(pendingFile.file); sessionStorage.setItem("nawy-payment-method", "instapay"); setPendingFile(null); router.push(href("/payConfirmation"));
+    setReceipt(pendingFile.file); sessionStorage.setItem("nawy-payment-method", "instapay"); markOrderConfirmed(); setPendingFile(null); router.push(href("/payConfirmation"));
   }
   function confirmPayment() {
     if ((method === "instapay" || method === "wallet") && !receipt) { setNotice(t("uploadReceiptFirst")); return; }
-    sessionStorage.setItem("nawy-payment-method", method); router.push(href("/payConfirmation"));
+    sessionStorage.setItem("nawy-payment-method", method); markOrderConfirmed(); router.push(href("/payConfirmation"));
   }
   function proofUpload() {
     return <section className="payment-proof" aria-labelledby="payment-proof-title"><h2 id="payment-proof-title"><Image src="/icons/audit.png" alt="" width={22} height={22} />{t("paymentProof")}</h2>

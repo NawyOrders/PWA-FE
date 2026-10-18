@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useAddressStore } from "@/store/addressStore";
 import { useAuthStore } from "@/store/authStore";
 import { useCartStore } from "@/store/cartStore";
 import { useFavoritesStore } from "@/store/favoritesStore";
@@ -10,6 +11,7 @@ import type { Locale } from "@/lib/i18n/types";
 
 export function StoreHydrator({ locale }: { locale: Locale }) {
   useEffect(() => {
+    void useAddressStore.persist.rehydrate();
     void useAuthStore.persist.rehydrate();
     void useCartStore.persist.rehydrate();
     void useFavoritesStore.persist.rehydrate();

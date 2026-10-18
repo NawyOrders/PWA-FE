@@ -44,6 +44,7 @@ Done when: a `/dev/components` page (dev only) shows every component in AR and E
 7. Profile
 8. Drawer and the login-required modal (shown when a guest tries to checkout, favorite, or reorder)
 9. Personal information (edit name), reached from the Profile row "المعلومات الشخصية" (spec: `DESIGN.md` 12.1)
+10. Addresses (list, remove, add), reached from the Profile row "العناوين" (spec: `DESIGN.md` 12.5); build the shared settings-style layout first and reuse it for screens 9 and 10
 
 **Phase 3 — Behavior**
 - Guest vs logged-in: guests browse freely; add-to-cart works; checkout, favorites and reorder open the login-required modal.
@@ -70,6 +71,7 @@ Screen-specific checks:
 - **Orders:** chips filter; "اعادة الطلب" adds the order's items and opens the cart.
 - **Drawer:** closes on backdrop tap, Escape, and link tap; focus returns to the menu button.
 - **Personal information:** matches the measurements in `DESIGN.md` 12.1 at 390px and, on desktop, as a 480px centered column with the same sizes; Save disabled until the name changed and is valid; Enter submits; validation messages in Arabic and English; dirty Back asks for confirmation; saved name updates the header, drawer and profile; CTA pinned at the bottom only on mobile.
+- **Addresses:** matches `DESIGN.md` 12.5 at 390px and, on desktop, as the same 480px centered column; cards are list items with an edit button and a separate 44px delete button; delete is staged with an undo toast (5s) and committed by Save; Save disabled until something changed; dirty Back asks for confirmation; empty, loading and error states exist; maximum 5 addresses with the limit hint; Arabic subtitle uses the corrected text ("ادارة عناوين التوصيل الخاصة بك"); the proposed address form is clearly marked as a placeholder until the real mockup arrives.
 
 ## Screen intake protocol (new screens from images)
 

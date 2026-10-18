@@ -1,0 +1,44 @@
+.ad-collapse {
+  transform-origin: top center;
+  transition:
+    transform 250ms var(--ease-smooth),
+    opacity 250ms var(--ease-smooth);
+}
+
+.ad-collapse--out {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+.ad-switch {
+  position: relative;
+  display: flex;
+  height: 28px;
+  width: 48px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: var(--disabled-fill);
+}
+
+.ad-switch--on {
+  background: var(--primary);
+}
+
+.ad-switch__knob {
+  position: absolute;
+  top: 3px;
+  inset-inline-start: 3px;
+  height: 22px;
+  width: 22px;
+  border-radius: 9999px;
+  background: var(--surface);
+  transition: transform 200ms var(--ease-smooth);
+}
+
+.ad-switch--on .ad-switch__knob {
+  transform: translateX(20px);
+}
+
+[dir="rtl"] .ad-switch--on .ad-switch__knob {
+  transform: translateX(-20px);
+}

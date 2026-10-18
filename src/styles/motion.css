@@ -66,6 +66,17 @@
   }
 }
 
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes pop {
   0% {
     transform: scale(1);
@@ -147,6 +158,16 @@
 
 .animate-modal-in {
   animation: modal-in 260ms var(--ease-smooth) both;
+}
+
+.animate-sheet-in {
+  animation: sheet-in 260ms var(--ease-smooth) both;
+}
+
+@media (min-width: 768px) {
+  .animate-sheet-in {
+    animation-name: modal-in;
+  }
 }
 
 .animate-fade-in {

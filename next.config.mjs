@@ -3,6 +3,7 @@ const ONE_YEAR = 60 * 60 * 24 * 365;
 
 const nextConfig = {
   reactStrictMode: true,
+  devIndicators: false,
   images: {
     formats: ["image/avif", "image/webp"],
     // Real display widths only; never larger than the source (max 736px),

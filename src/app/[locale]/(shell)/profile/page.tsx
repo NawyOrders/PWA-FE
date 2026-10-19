@@ -49,7 +49,7 @@ export default function ProfilePage() {
     { key: "offersPoints", icon: <CouponIcon className="h-5 w-5 text-primary" />, tint: "bg-primary-tint", title: dict.profile.offersPoints },
    
     { key: "about", icon: <InfoIcon className="h-5 w-5 text-accent" />, tint: "bg-glow", title: dict.profile.about, href: `/${locale}/aboutRestaurant` },
-    { key: "help", icon: <HelpIcon className="h-5 w-5 text-success" />, tint: "bg-success-bg", title: dict.profile.help },
+    { key: "help", icon: <HelpIcon className="h-5 w-5 text-success" />, tint: "bg-success-bg", title: dict.profile.help, href: `/${locale}/profile/help` },
   ];
 
   const handleLogout = () => {

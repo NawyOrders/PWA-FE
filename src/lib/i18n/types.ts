@@ -138,6 +138,21 @@ export interface Dictionary {
     version: string;
     copyright: string;
   };
+  privacyPolicy: {
+    title: string;
+    introductionTitle: string;
+    introduction: string;
+    collectionTitle: string;
+    collection: string;
+    useTitle: string;
+    use: string;
+    sharingTitle: string;
+    sharing: string;
+    securityTitle: string;
+    security: string;
+    updatedAt: string;
+    updatedDate: string;
+  };
   personalInfo: {
     title: string;
     subtitle: string;

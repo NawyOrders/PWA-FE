@@ -17,6 +17,34 @@ function PolicyIcon({ src }: { src: string }) {
   return <Image src={src} alt="" width={28} height={28} />;
 }
 
+function PolicyRow({
+  row,
+  label,
+  href,
+  onClick,
+}: {
+  row: (typeof policyRows)[number];
+  label: string;
+  href?: string;
+  onClick: () => void;
+}) {
+  const content = (
+    <>
+      <span className="about-policy-icon"><PolicyIcon src={row.icon} /></span>
+      <strong>{label}</strong>
+      <span className="about-policy-chevron" aria-hidden="true">
+        <ArrowEndIcon />
+      </span>
+    </>
+  );
+
+  return href ? (
+    <Link className="about-policy-row" href={href}>{content}</Link>
+  ) : (
+    <button className="about-policy-row" type="button" onClick={onClick}>{content}</button>
+  );
+}
+
 export function AboutRestaurantPage() {
   const { locale, dict, t } = useI18n();
   const showToast = useUiStore((state) => state.showToast);
@@ -57,18 +85,21 @@ export function AboutRestaurantPage() {
 
         <section className="about-restaurant-policies" aria-label={about.title}>
           {policyRows.map((row) => (
-            <button
-              className="about-policy-row"
+            <PolicyRow
               key={row.key}
-              type="button"
+              row={row}
+              label={about[row.key]}
+              href={
+                row.key === "privacy"
+                  ? `/${locale}/privacyPolicy`
+                  : row.key === "terms"
+                    ? `/${locale}/termsAndConditions`
+                    : row.key === "dataProcessing"
+                      ? `/${locale}/dataProcessingAgreement`
+                      : undefined
+              }
               onClick={comingSoon}
-            >
-              <span className="about-policy-icon"><PolicyIcon src={row.icon} /></span>
-              <strong>{about[row.key]}</strong>
-              <span className="about-policy-chevron" aria-hidden="true">
-                <ArrowEndIcon />
-              </span>
-            </button>
+            />
           ))}
         </section>
 

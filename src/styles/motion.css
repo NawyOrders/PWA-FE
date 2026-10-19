@@ -221,63 +221,27 @@
   transition: opacity 0.45s ease;
 }
 
-.splash__logo {
-  width: clamp(110px, 24vw, 200px);
-  height: auto;
-  max-width: 100vw;
-  max-height: min(100svh, 900px);
-  object-fit: contain;
-  user-select: none;
-  -webkit-user-drag: none;
-  animation:
-    splash-logo-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both,
-    splash-logo-breathe 2.4s ease-in-out 0.6s infinite;
-  transition:
-    transform 0.45s ease,
-    opacity 0.45s ease;
-  will-change: transform, opacity;
+.splash__spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--primary-tint);
+  border-top-color: var(--primary);
+  animation: splash-spin 0.8s linear infinite;
+  will-change: transform;
 }
 
 .splash--exit {
   opacity: 0;
 }
 
-.splash--exit .splash__logo {
-  animation: none;
-  transform: scale(1.05);
-}
-
 [data-splash="seen"] .splash {
   display: none;
 }
 
-@keyframes splash-logo-in {
-  from {
-    opacity: 0;
-    transform: scale(0.94);
-  }
+@keyframes splash-spin {
   to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes splash-logo-breathe {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-}
-
-@keyframes splash-logo-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+    transform: rotate(360deg);
   }
 }
 
@@ -286,14 +250,7 @@
     transition-duration: 0.3s !important;
   }
 
-  .splash__logo {
-    animation: splash-logo-fade 0.3s ease both !important;
-    transform: none !important;
-  }
-
-  .splash--exit .splash__logo {
+  .splash__spinner {
     animation: none !important;
-    transform: none !important;
-    transition-duration: 0.3s !important;
   }
 }

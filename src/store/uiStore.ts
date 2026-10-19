@@ -23,9 +23,11 @@ export interface Toast {
 }
 
 interface UiState {
+  hydrated: boolean;
   drawerOpen: boolean;
   loginModalOpen: boolean;
   toast: Toast | null;
+  setHydrated: () => void;
   openDrawer: () => void;
   closeDrawer: () => void;
   openLoginModal: () => void;
@@ -37,9 +39,11 @@ interface UiState {
 let toastId = 0;
 
 export const useUiStore = create<UiState>()((set) => ({
+  hydrated: false,
   drawerOpen: false,
   loginModalOpen: false,
   toast: null,
+  setHydrated: () => set({ hydrated: true }),
   openDrawer: () => set({ drawerOpen: true }),
   closeDrawer: () => set({ drawerOpen: false }),
   openLoginModal: () => set({ loginModalOpen: true }),

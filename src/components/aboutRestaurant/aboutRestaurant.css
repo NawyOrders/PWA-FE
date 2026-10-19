@@ -151,7 +151,9 @@
   box-shadow: 0 4px 12px rgb(90 49 22 / 7%);
   color: #201510;
   cursor: pointer;
+  font: inherit;
   text-align: start;
+  text-decoration: none;
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
 

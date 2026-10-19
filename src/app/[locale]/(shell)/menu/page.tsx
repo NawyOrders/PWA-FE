@@ -6,17 +6,14 @@ import { useCartStore } from "@/store/cartStore";
 import { useFavoritesStore } from "@/store/favoritesStore";
 import { useUiStore } from "@/store/uiStore";
 import { useAuthGuard } from "@/lib/useAuthGuard";
-import { useLoadingDelay } from "@/lib/useLoadingDelay";
 import { categories, type CategoryId } from "@/data/categories";
 import { dishes } from "@/data/dishes";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import { CategoryCircle } from "@/components/CategoryCircle";
 import { ProductCard } from "@/components/ProductCard";
-import { ProductListSkeleton } from "@/components/skeletons/ProductListSkeleton";
 
 export default function MenuPage() {
   const { dict } = useI18n();
-  const loading = useLoadingDelay();
   const [activeCategory, setActiveCategory] = useState<CategoryId>("burger");
 
   const addToCart = useCartStore((state) => state.add);
@@ -61,25 +58,19 @@ export default function MenuPage() {
           ))}
         </section>
 
-        <div className="pt-5 md:pt-8">
-          {loading ? (
-            <ProductListSkeleton />
-          ) : (
-            <div className="grid grid-cols-1 gap-3 pb-8 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
-              {list.map((dish) => (
-                <ProductCard
-                  key={dish.id}
-                  dish={dish}
-                  isFavorite={favoriteIds.includes(dish.id)}
-                  onAdd={() => {
-                    addToCart(dish.id);
-                    showToast(dict.toast.addedToCart, "success");
-                  }}
-                  onToggleFavorite={() => handleFavorite(dish.id)}
-                />
-              ))}
-            </div>
-          )}
+        <div className="grid grid-cols-1 gap-3 pt-5 pb-8 md:grid-cols-2 md:gap-4 md:pt-8 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
+          {list.map((dish) => (
+            <ProductCard
+              key={dish.id}
+              dish={dish}
+              isFavorite={favoriteIds.includes(dish.id)}
+              onAdd={() => {
+                addToCart(dish.id);
+                showToast(dict.toast.addedToCart, "success");
+              }}
+              onToggleFavorite={() => handleFavorite(dish.id)}
+            />
+          ))}
         </div>
       </div>
     </main>

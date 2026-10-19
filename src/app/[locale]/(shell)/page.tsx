@@ -8,7 +8,6 @@ import { useCartStore } from "@/store/cartStore";
 import { useFavoritesStore } from "@/store/favoritesStore";
 import { useUiStore } from "@/store/uiStore";
 import { useAuthGuard } from "@/lib/useAuthGuard";
-import { useLoadingDelay } from "@/lib/useLoadingDelay";
 import { categories, type CategoryId } from "@/data/categories";
 import { dishes, featuredDishes } from "@/data/dishes";
 import { ScreenHeader } from "@/components/ScreenHeader";
@@ -17,13 +16,11 @@ import { FeaturedCarousel } from "@/components/FeaturedCarousel";
 import { CategoryCircle } from "@/components/CategoryCircle";
 import { ProductCard } from "@/components/ProductCard";
 import { EmptyState } from "@/components/EmptyState";
-import { ProductListSkeleton } from "@/components/skeletons/ProductListSkeleton";
 import { Footer } from "@/components/Footer";
 import { SearchIcon } from "@/components/icons";
 
 export default function HomePage() {
   const { locale, dict, pick } = useI18n();
-  const loading = useLoadingDelay();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<CategoryId | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -126,11 +123,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {loading ? (
-            <div>
-              <ProductListSkeleton />
-            </div>
-          ) : list.length > 0 ? (
+          {list.length > 0 ? (
             <div className="pb-8 lg:pb-0">
               <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
                 {list.map((dish) => (

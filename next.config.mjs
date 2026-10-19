@@ -9,6 +9,7 @@ const nextConfig = {
     // so the optimizer never upscales the food photography.
     deviceSizes: [320, 384, 480, 640, 736],
     imageSizes: [64, 96, 128, 192, 256],
+    qualities: [64, 72, 75, 78],
     minimumCacheTTL: 60 * 60 * 24 * 31,
   },
   async headers() {

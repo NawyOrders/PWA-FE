@@ -14,7 +14,7 @@ const services = [
 const contacts = [
   { label: "website", value: "websiteValue", icon: "/aboutIcons/web.svg", href: "https://www.spacetech.com" },
   { label: "email", value: "emailValue", icon: "/aboutIcons/mail.svg", href: "mailto:info@spacetech.com" },
-  { label: "linkedin", value: "linkedinValue", icon: "/aboutIcons/linkedin.svg" },
+  { label: "linkedin", value: "linkedinValue", icon: "/aboutIcons/linkedin.svg", href: "" },
 ] as const;
 
 export function AboutSpaceTechPage() {

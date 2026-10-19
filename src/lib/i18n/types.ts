@@ -125,6 +125,19 @@ export interface Dictionary {
     login: string;
     comingSoon: string;
   };
+  aboutRestaurant: {
+    title: string;
+    brandName: string;
+    tagline: string;
+    privacy: string;
+    terms: string;
+    dataProcessing: string;
+    platform: string;
+    poweredBy: string;
+    developedBy: string;
+    version: string;
+    copyright: string;
+  };
   personalInfo: {
     title: string;
     subtitle: string;

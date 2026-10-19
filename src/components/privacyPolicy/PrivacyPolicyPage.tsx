@@ -38,7 +38,7 @@ export function PrivacyPolicyPage({ title }: { title?: string }) {
           <div className="privacy-policy-shield" aria-hidden="true">
             <span className="privacy-policy-orb privacy-policy-orb-top" />
             <span className="privacy-policy-orb privacy-policy-orb-bottom" />
-            <Image src="/aboutIcons/bigshield.png" alt="" width={112} height={112} priority />
+            <Image src="/aboutIcons/bigshield.svg" alt="" width={112} height={112} priority />
           </div>
 
           <div className="privacy-policy-sections">

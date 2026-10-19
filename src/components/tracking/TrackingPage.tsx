@@ -27,7 +27,7 @@ export default function TrackingPage() {
   const { t, href } = useI18n();
   const [notice, setNotice] = useState<NoticeKind | null>(null);
   return <main className="tracking-page"><div className="tracking-shell">
-    <header className="tracking-header"><Link className="tracking-back" href={href("/payConfirmation")} aria-label={t("backToHome")}><ArrowIcon /></Link><div><h1>{t("trackingTitle")}</h1><p>{t("orderNumber")} <bdi dir="ltr">#NOELB-11254</bdi></p></div></header>
+    <header className="tracking-header"><Link className="tracking-back" href={href("/")} aria-label={t("backToHome")}><ArrowIcon /></Link><div><h1>{t("trackingTitle")}</h1><p>{t("orderNumber")} <bdi dir="ltr">#NOELB-11254</bdi></p></div></header>
     <section className="tracking-eta" aria-label={t("deliveryTimeRemaining")}><span className="tracking-eta-icon"><Image src="/icons/time.svg" alt="" width={23} height={23} /></span><div><span>{t("deliveryTimeRemaining")}</span><strong>{t("within")} {t("deliveryTime")}</strong></div></section>
     <ol className="tracking-timeline" aria-label={t("trackingStages")}>{steps.map((step) => <li className={`tracking-step is-${step.state}`} key={step.id} aria-current={step.state === "current" ? "step" : undefined}>
       <span className="tracking-step-marker" aria-hidden="true">{step.icon ? <Image src={step.icon} alt="" width={28} height={28} /> : <span className="tracking-check">✓</span>}</span>

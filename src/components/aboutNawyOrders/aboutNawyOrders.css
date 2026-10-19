@@ -1,0 +1,396 @@
+.about-nawy-page {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #fff9f4;
+  color: #1b100c;
+}
+
+.about-nawy-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(62% 24% at 100% 0%, rgb(255 224 213 / 72%), transparent 76%),
+    radial-gradient(46% 25% at 0% 45%, rgb(255 236 190 / 68%), transparent 74%),
+    radial-gradient(52% 28% at 100% 78%, rgb(255 228 216 / 68%), transparent 76%);
+}
+
+[dir="rtl"] .about-nawy-background {
+  background:
+    radial-gradient(62% 24% at 0% 0%, rgb(255 224 213 / 72%), transparent 76%),
+    radial-gradient(46% 25% at 100% 45%, rgb(255 236 190 / 68%), transparent 74%),
+    radial-gradient(52% 28% at 0% 78%, rgb(255 228 216 / 68%), transparent 76%);
+}
+
+.about-nawy-shell {
+  position: relative;
+  width: min(100%, 700px);
+  margin-inline: auto;
+  padding: max(28px, env(safe-area-inset-top)) 28px calc(24px + env(safe-area-inset-bottom));
+}
+
+.about-nawy-header {
+  display: flex;
+  direction: ltr;
+  justify-content: flex-end;
+}
+
+.about-nawy-back {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 68%);
+  color: #8b7166;
+  text-decoration: none;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.about-nawy-back:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.about-nawy-back-icon {
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .about-nawy-back-icon {
+  transform: none;
+}
+
+[dir="ltr"] .about-nawy-header {
+  justify-content: flex-start;
+}
+
+.about-nawy-hero {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  gap: clamp(20px, 6vw, 48px);
+  margin-top: -12px;
+  direction: ltr;
+}
+
+.about-nawy-logo {
+  width: min(46%, 270px);
+  height: auto;
+  flex: 0 0 auto;
+  margin-left: -28px;
+  border-radius: 30%;
+  object-fit: contain;
+}
+
+.about-nawy-intro {
+  min-width: 0;
+  flex: 1;
+}
+
+.about-nawy-intro.is-rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.about-nawy-intro.is-ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+.about-nawy-intro > p {
+  margin: 0;
+  font-size: clamp(1.7rem, 6vw, 2.35rem);
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.about-nawy-intro h1 {
+  margin: 6px 0 10px;
+  color: #f16b39;
+  font-size: clamp(1.7rem, 6vw, 2.35rem);
+  font-weight: 900;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.about-nawy-intro > span {
+  display: block;
+  color: #8d7569;
+  font-size: clamp(0.84rem, 3vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.about-nawy-features {
+  margin-top: 36px;
+}
+
+.about-nawy-features > h2 {
+  margin: 0 0 76px;
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+[dir="rtl"] .about-nawy-features > h2 {
+  text-align: right;
+}
+
+[dir="ltr"] .about-nawy-features > h2 {
+  text-align: left;
+}
+
+.about-nawy-feature-list {
+  display: grid;
+  gap: 76px;
+}
+
+.about-nawy-feature {
+  position: relative;
+  display: flex;
+  min-height: 170px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px 22px;
+  border: 1px solid rgb(255 238 217 / 92%);
+  border-radius: 34px;
+  background: rgb(255 255 255 / 48%);
+  box-shadow: 0 5px 14px rgb(90 49 22 / 7%);
+  text-align: center;
+}
+
+.about-nawy-feature-icon {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  display: grid;
+  width: 65px;
+  height: 65px;
+  place-items: center;
+  border-radius: 21px;
+  background: linear-gradient(140deg, #ff6547 0%, #ff684c 100%);
+  box-shadow: 0 8px 12px rgb(68 35 18 / 20%);
+  transform: translateX(-50%);
+}
+
+.about-nawy-feature-icon img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.about-nawy-feature h3 {
+  margin: 0 0 6px;
+  font-size: clamp(0.95rem, 3.6vw, 1.15rem);
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.about-nawy-feature p {
+  margin: 0;
+  color: #2b211d;
+  font-size: clamp(0.84rem, 3vw, 1rem);
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.about-nawy-learn-more {
+  display: flex;
+  direction: ltr;
+  width: 100%;
+  min-height: 78px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 64px;
+  border: 0;
+  border-radius: 34px;
+  background: linear-gradient(115deg, #f13e20 0%, #ff803b 100%);
+  box-shadow: 0 10px 22px rgb(222 64 32 / 16%);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 900;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+
+.about-nawy-learn-more:hover {
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+}
+
+.about-nawy-learn-more:active {
+  transform: scale(0.99);
+}
+
+.about-nawy-learn-more svg {
+  width: 22px;
+  height: 22px;
+  transform: rotate(180deg);
+}
+
+.about-nawy-learn-more span {
+  text-align: center;
+}
+
+[dir="rtl"] .about-nawy-learn-more svg {
+  transform: none;
+}
+
+.about-nawy-footer {
+  margin-top: 20px;
+  color: #d6a152;
+  font-size: clamp(0.82rem, 2.9vw, 0.98rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 420px) {
+  .about-nawy-shell {
+    padding-inline: 22px;
+  }
+
+  .about-nawy-hero {
+    min-height: 260px;
+    gap: 16px;
+  }
+
+  .about-nawy-logo {
+    width: 46%;
+    margin-left: -22px;
+  }
+
+  .about-nawy-intro h1 {
+    white-space: normal;
+  }
+
+  .about-nawy-intro > span {
+    white-space: normal;
+  }
+
+  .about-nawy-features {
+    margin-top: 28px;
+  }
+
+  .about-nawy-features > h2 {
+    margin-bottom: 68px;
+  }
+
+  .about-nawy-feature-list {
+    gap: 68px;
+  }
+
+  .about-nawy-feature {
+    min-height: 158px;
+    padding-inline: 18px;
+    border-radius: 30px;
+  }
+
+  .about-nawy-feature-icon {
+    top: -32px;
+    width: 65px;
+    height: 65px;
+    border-radius: 21px;
+  }
+
+  .about-nawy-feature-icon img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .about-nawy-learn-more {
+    min-height: 72px;
+    margin-top: 46px;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-nawy-shell {
+    width: min(100%, 620px);
+    padding: 24px 26px 28px;
+  }
+
+  .about-nawy-back {
+    width: 48px;
+    height: 48px;
+  }
+
+  .about-nawy-hero {
+    min-height: 250px;
+    gap: 28px;
+  }
+
+  .about-nawy-logo {
+    width: min(40%, 210px);
+    margin-left: -26px;
+  }
+
+  .about-nawy-intro > p,
+  .about-nawy-intro h1 {
+    font-size: 1.9rem;
+  }
+
+  .about-nawy-intro h1 {
+    margin-block: 4px 8px;
+  }
+
+  .about-nawy-intro > span {
+    font-size: 0.9rem;
+  }
+
+  .about-nawy-features {
+    margin-top: 20px;
+  }
+
+  .about-nawy-features > h2 {
+    margin-bottom: 58px;
+    font-size: 1.4rem;
+  }
+
+  .about-nawy-feature-list {
+    gap: 58px;
+  }
+
+  .about-nawy-feature {
+    min-height: 145px;
+    padding: 54px 18px 18px;
+  }
+
+  .about-nawy-feature-icon {
+    top: -28px;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+  }
+
+  .about-nawy-feature-icon img {
+    width: 31px;
+    height: 31px;
+  }
+
+  .about-nawy-feature h3 {
+    font-size: 1rem;
+  }
+
+  .about-nawy-feature p {
+    font-size: 0.88rem;
+  }
+
+  .about-nawy-learn-more {
+    min-height: 68px;
+    margin-top: 40px;
+    border-radius: 28px;
+    font-size: 0.95rem;
+  }
+
+  .about-nawy-footer {
+    margin-top: 16px;
+    font-size: 0.85rem;
+  }
+}

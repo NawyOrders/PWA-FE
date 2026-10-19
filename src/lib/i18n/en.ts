@@ -107,6 +107,7 @@ export const en: Dictionary = {
     favorites: "Favorites",
     orders: "Orders",
     points: "Points",
+    offersPoints: "Offers & Points",
     personalInfo: "Personal information",
     addresses: "Addresses",
     payment: "Payment methods",

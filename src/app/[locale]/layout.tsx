@@ -72,13 +72,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body>
-        <Script
-          id="splash-seen-state"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: 'try{if(sessionStorage.getItem("splash-seen")==="1"){document.documentElement.setAttribute("data-splash","seen")}}catch(e){}',
-          }}
-        />
+        <Script id="splash-seen-state" src="/splash-state.js" strategy="beforeInteractive" />
         <Splash label={dict.splash.loading} />
         <LegacyI18nProvider locale={locale}>
           <I18nProvider locale={locale} dict={dict}>

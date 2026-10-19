@@ -105,13 +105,13 @@ export function AboutRestaurantPage() {
 
         <section className="about-platform" aria-labelledby="about-platform-title">
           <h2 id="about-platform-title">{about.platform}</h2>
-          <div className="about-platform-card">
+          <Link className="about-platform-card" href={`/${locale}/aboutNawyOrders`}>
             <Image src="/icons/logo.png" alt="" width={64} height={64} />
             <div>
               <span>{about.poweredBy}</span>
               <strong>Nawy Orders</strong>
             </div>
-          </div>
+          </Link>
           <div className="about-platform-card about-platform-card-tech">
             <Image src="/aboutIcons/spacethec%20logo.png" alt="" width={64} height={64} />
             <div>

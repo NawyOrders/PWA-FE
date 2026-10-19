@@ -153,6 +153,20 @@ export interface Dictionary {
     updatedAt: string;
     updatedDate: string;
   };
+  aboutNawyOrders: {
+    eyebrow: string;
+    title: string;
+    tagline: string;
+    featuresTitle: string;
+    commissionTitle: string;
+    commissionDescription: string;
+    menuTitle: string;
+    menuDescription: string;
+    customersTitle: string;
+    customersDescription: string;
+    learnMore: string;
+    footer: string;
+  };
   personalInfo: {
     title: string;
     subtitle: string;

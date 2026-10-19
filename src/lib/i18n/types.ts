@@ -110,8 +110,8 @@ export interface Dictionary {
     favorites: string;
     orders: string;
     points: string;
+    offersPoints: string;
     personalInfo: string;
-    account: string;
     addresses: string;
     payment: string;
     notifications: string;

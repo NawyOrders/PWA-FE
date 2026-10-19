@@ -106,7 +106,7 @@ export default function PaymentPage() {
   }
 
   return <main className="payment-page"><div className="payment-shell">
-    <header className="payment-header"><Link className="payment-back" href={href("/restLocation")} aria-label={t("backToBranch")}><ArrowIcon /></Link><div><h1>{t("paymentTitle")}</h1><p>{t("paymentSubtitle")}</p></div></header>
+    <header className="payment-header"><Link className="payment-back" href={href("/delivery")} aria-label={t("backToBranch")}><ArrowIcon /></Link><div><h1>{t("paymentTitle")}</h1><p>{t("paymentSubtitle")}</p></div></header>
     <section className="payment-method-list" role="radiogroup" aria-label={t("paymentTitle")}>
       <PaymentOption method="cash" selected={method === "cash"} title={t("cashOnDelivery")} description={t("payCashOnArrival")} image="/icons/money.png" onSelect={changeMethod} />
       <PaymentOption method="instapay" selected={method === "instapay"} title={t("instaPay")} description={t("instaPayDescription")} image="/icons/instapay.png" onSelect={changeMethod} />

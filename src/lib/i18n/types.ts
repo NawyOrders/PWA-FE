@@ -167,6 +167,23 @@ export interface Dictionary {
     learnMore: string;
     footer: string;
   };
+  aboutSpaceTech: {
+    company: string;
+    name: string;
+    tagline: string;
+    services: string;
+    webDevelopment: string;
+    appDevelopment: string;
+    saasPlatforms: string;
+    contact: string;
+    website: string;
+    websiteValue: string;
+    email: string;
+    emailValue: string;
+    linkedin: string;
+    linkedinValue: string;
+    footer: string;
+  };
   personalInfo: {
     title: string;
     subtitle: string;

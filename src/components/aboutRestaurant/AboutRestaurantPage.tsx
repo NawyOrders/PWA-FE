@@ -112,13 +112,13 @@ export function AboutRestaurantPage() {
               <strong>Nawy Orders</strong>
             </div>
           </Link>
-          <div className="about-platform-card about-platform-card-tech">
+          <Link className="about-platform-card about-platform-card-tech" href={`/${locale}/aboutSpaceTech`}>
             <Image src="/aboutIcons/spacethec%20logo.png" alt="" width={64} height={64} />
             <div>
               <span>{about.developedBy}</span>
               <strong>Space Tech</strong>
             </div>
-          </div>
+          </Link>
         </section>
 
         <div className="about-version">

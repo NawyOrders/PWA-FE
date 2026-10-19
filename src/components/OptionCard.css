@@ -1,0 +1,18 @@
+.oc-card {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.oc-card:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oc-card:hover {
+    transform: none;
+  }
+
+  .oc-card:active {
+    transform: none;
+  }
+}

@@ -13,7 +13,6 @@ import {
 } from "@/store/cartStore";
 import { useUiStore } from "@/store/uiStore";
 import { useAuthGuard } from "@/lib/useAuthGuard";
-import { useLoadingDelay } from "@/lib/useLoadingDelay";
 import { formatPrice } from "@/lib/format";
 import { dishImage } from "@/lib/image";
 import { getDish } from "@/data/dishes";
@@ -28,7 +27,7 @@ import { cn } from "@/lib/cn";
 export default function CartPage() {
   const { locale, dict, t } = useI18n();
   const router = useRouter();
-  const loading = useLoadingDelay();
+  const hydrated = useUiStore((state) => state.hydrated);
   const items = useCartStore((state) => state.items);
   const coupon = useCartStore((state) => state.coupon);
   const increment = useCartStore((state) => state.increment);
@@ -81,7 +80,7 @@ export default function CartPage() {
           closeLabel={dict.common.close}
         />
 
-        {loading ? (
+        {!hydrated ? (
           <div className="space-y-3 pt-5">
             <div className="skeleton h-[6.25rem] rounded-card" />
             <div className="skeleton h-[6.25rem] rounded-card" />

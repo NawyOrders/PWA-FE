@@ -1,17 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 const SHOW_EVERY_LOAD = false;
 const SEEN_KEY = "splash-seen";
 const MIN_VISIBLE_MS = 700;
 const MAX_VISIBLE_MS = 3500;
 const EXIT_MS = 450;
-
-const IMAGE_SRC = "/splash.png";
-const IMAGE_WIDTH = 161;
-const IMAGE_HEIGHT = 213;
 
 type Phase = "enter" | "exit" | "gone";
 
@@ -152,16 +147,7 @@ export function Splash({ label }: { label: string }) {
       }}
     >
       <noscript dangerouslySetInnerHTML={{ __html: "<style>.splash{display:none !important}</style>" }} />
-      <Image
-        src={IMAGE_SRC}
-        alt=""
-        width={IMAGE_WIDTH}
-        height={IMAGE_HEIGHT}
-        priority
-        fetchPriority="high"
-        draggable={false}
-        className="splash__logo"
-      />
+      <span className="splash__spinner" aria-hidden="true" />
     </div>
   );
 }

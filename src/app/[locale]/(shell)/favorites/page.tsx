@@ -6,7 +6,6 @@ import { useCartStore } from "@/store/cartStore";
 import { useFavoritesStore } from "@/store/favoritesStore";
 import { useUiStore } from "@/store/uiStore";
 import { useAuthGuard } from "@/lib/useAuthGuard";
-import { useLoadingDelay } from "@/lib/useLoadingDelay";
 import { getDish } from "@/data/dishes";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import { ProductCard } from "@/components/ProductCard";
@@ -17,7 +16,7 @@ import { HeartIcon } from "@/components/icons";
 export default function FavoritesPage() {
   const { locale, dict, t } = useI18n();
   const router = useRouter();
-  const loading = useLoadingDelay();
+  const hydrated = useUiStore((state) => state.hydrated);
   const favoriteIds = useFavoritesStore((state) => state.ids);
   const toggleFavorite = useFavoritesStore((state) => state.toggle);
   const addToCart = useCartStore((state) => state.add);
@@ -44,7 +43,7 @@ export default function FavoritesPage() {
         />
 
         <div className="pt-5">
-          {loading ? (
+          {!hydrated ? (
             <ProductListSkeleton />
           ) : items.length > 0 ? (
             <div className="grid grid-cols-1 gap-3 pb-8 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">

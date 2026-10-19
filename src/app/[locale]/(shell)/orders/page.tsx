@@ -8,7 +8,6 @@ import { useCartStore } from "@/store/cartStore";
 import { useOrdersStore } from "@/store/ordersStore";
 import { useUiStore } from "@/store/uiStore";
 import { useAuthGuard } from "@/lib/useAuthGuard";
-import { useLoadingDelay } from "@/lib/useLoadingDelay";
 import { formatPrice } from "@/lib/format";
 import { dishImage } from "@/lib/image";
 import { getDish } from "@/data/dishes";
@@ -25,7 +24,7 @@ type Filter = "all" | OrderStatus;
 export default function OrdersPage() {
   const { locale, dict, pick, t } = useI18n();
   const router = useRouter();
-  const loading = useLoadingDelay();
+  const hydrated = useUiStore((state) => state.hydrated);
   const [filter, setFilter] = useState<Filter>("all");
   const orders = useOrdersStore((state) => state.orders);
   const addToCart = useCartStore((state) => state.add);
@@ -83,7 +82,7 @@ export default function OrdersPage() {
         </div>
 
         <div className="pt-5 pb-8">
-          {loading ? (
+          {!hydrated ? (
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-6">
               <div className="skeleton h-[9.375rem] rounded-card" />
               <div className="skeleton h-[9.375rem] rounded-card" />

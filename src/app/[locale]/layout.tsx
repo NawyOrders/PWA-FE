@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import localFont from "next/font/local";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import "leaflet/dist/leaflet.css";
 import "@/styles/globals.css";
@@ -71,6 +72,13 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body>
+        <Script
+          id="splash-seen-state"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: 'try{if(sessionStorage.getItem("splash-seen")==="1"){document.documentElement.setAttribute("data-splash","seen")}}catch(e){}',
+          }}
+        />
         <Splash label={dict.splash.loading} />
         <LegacyI18nProvider locale={locale}>
           <I18nProvider locale={locale} dict={dict}>

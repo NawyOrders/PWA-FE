@@ -151,11 +151,6 @@ export function Splash({ label }: { label: string }) {
         }
       }}
     >
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `try{if(!${SHOW_EVERY_LOAD}&&sessionStorage.getItem("${SEEN_KEY}")==="1"){document.documentElement.setAttribute("data-splash","seen")}}catch(e){}`,
-        }}
-      />
       <noscript dangerouslySetInnerHTML={{ __html: "<style>.splash{display:none !important}</style>" }} />
       <Image
         src={IMAGE_SRC}

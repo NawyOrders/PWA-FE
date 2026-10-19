@@ -34,6 +34,7 @@
   --feature-gradient: linear-gradient(135deg, #ffe6dc 0%, #fff4ec 100%);
 
   --surface: #ffffff;
+  --surface-soft: #fbf6f1;
   --surface-muted: #f3f3f3;
   --disabled-fill: #d6d6d6;
   --ring-inactive: #b8b8b8;

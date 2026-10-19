@@ -21,6 +21,7 @@ const config: Config = {
         "brand-gold-soft": "var(--brand-gold-soft)",
         surface: {
           DEFAULT: "var(--surface)",
+          soft: "var(--surface-soft)",
           muted: "var(--surface-muted)",
         },
         title: "var(--text)",

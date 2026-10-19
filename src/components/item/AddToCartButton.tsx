@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import ItemIcon from "./ItemIcon";
 import { useI18n } from "@/lib/i18n";
 
@@ -11,7 +11,9 @@ export default function AddToCartButton({ total, onAdd }: AddToCartButtonProps) 
   const { t } = useI18n();
   const [wasAdded, setWasAdded] = useState(false);
 
-  function handleAdd() {
+  function handleAdd(event: MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    event.stopPropagation();
     onAdd();
     setWasAdded(true);
     window.setTimeout(() => setWasAdded(false), 1800);

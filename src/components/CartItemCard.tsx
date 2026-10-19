@@ -12,6 +12,7 @@ import { SwipeToDelete } from "@/components/SwipeToDelete";
 interface CartItemCardProps {
   dish: Dish;
   quantity: number;
+  unitPrice: number;
   onIncrement: () => void;
   onDecrement: () => void;
   onDelete: () => void;
@@ -20,6 +21,7 @@ interface CartItemCardProps {
 function CartItemCardBase({
   dish,
   quantity,
+  unitPrice,
   onIncrement,
   onDecrement,
   onDelete,
@@ -32,7 +34,7 @@ function CartItemCardBase({
         <div className="flex min-w-0 flex-1 flex-col text-start">
           <h3 className="truncate text-[1rem] font-bold text-title">{pick(dish.name)}</h3>
           <p className="mt-0.5 text-[1.375rem] font-extrabold text-primary">
-            {formatPrice(dish.price, locale)}
+            {formatPrice(unitPrice * quantity, locale)}
           </p>
           <div className="mt-2">
             <QuantityStepper

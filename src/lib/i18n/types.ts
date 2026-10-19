@@ -83,6 +83,7 @@ export interface Dictionary {
     subtotal: string;
     discount: string;
     total: string;
+    viewCart: string;
     checkout: string;
     empty: string;
     emptyHint: string;
@@ -123,6 +124,65 @@ export interface Dictionary {
     guestHint: string;
     login: string;
     comingSoon: string;
+  };
+  aboutRestaurant: {
+    title: string;
+    brandName: string;
+    tagline: string;
+    privacy: string;
+    terms: string;
+    dataProcessing: string;
+    platform: string;
+    poweredBy: string;
+    developedBy: string;
+    version: string;
+    copyright: string;
+  };
+  privacyPolicy: {
+    title: string;
+    introductionTitle: string;
+    introduction: string;
+    collectionTitle: string;
+    collection: string;
+    useTitle: string;
+    use: string;
+    sharingTitle: string;
+    sharing: string;
+    securityTitle: string;
+    security: string;
+    updatedAt: string;
+    updatedDate: string;
+  };
+  aboutNawyOrders: {
+    eyebrow: string;
+    title: string;
+    tagline: string;
+    featuresTitle: string;
+    commissionTitle: string;
+    commissionDescription: string;
+    menuTitle: string;
+    menuDescription: string;
+    customersTitle: string;
+    customersDescription: string;
+    learnMore: string;
+    footer: string;
+  };
+  aboutSpaceTech: {
+    company: string;
+    name: string;
+    tagline: string;
+    services: string;
+    webDevelopment: string;
+    appDevelopment: string;
+    saasPlatforms: string;
+    contact: string;
+    website: string;
+    websiteValue: string;
+    email: string;
+    emailValue: string;
+    linkedin: string;
+    linkedinValue: string;
+    footer: string;
   };
   personalInfo: {
     title: string;

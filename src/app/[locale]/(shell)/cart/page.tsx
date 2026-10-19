@@ -7,17 +7,16 @@ import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import {
   COUPON_CODE,
   getCartCount,
+  getCartItemKey,
   getCartTotals,
   useCartStore,
 } from "@/store/cartStore";
-import { useOrdersStore } from "@/store/ordersStore";
 import { useUiStore } from "@/store/uiStore";
 import { useAuthGuard } from "@/lib/useAuthGuard";
 import { useLoadingDelay } from "@/lib/useLoadingDelay";
 import { formatPrice } from "@/lib/format";
 import { dishImage } from "@/lib/image";
 import { getDish } from "@/data/dishes";
-import { DELIVERY_FEE } from "@/data/orders";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import { CartItemCard } from "@/components/CartItemCard";
 import { PrimaryButton } from "@/components/PrimaryButton";
@@ -37,7 +36,6 @@ export default function CartPage() {
   const remove = useCartStore((state) => state.remove);
   const clear = useCartStore((state) => state.clear);
   const applyCoupon = useCartStore((state) => state.applyCoupon);
-  const addOrder = useOrdersStore((state) => state.addOrder);
   const showToast = useUiStore((state) => state.showToast);
   const openDrawer = useUiStore((state) => state.openDrawer);
   const guard = useAuthGuard();
@@ -65,14 +63,7 @@ export default function CartPage() {
   const handleCheckout = () => {
     guard(() => {
       if (items.length === 0) return;
-      addOrder({
-        items: items.map((item) => ({ dishId: item.dishId, quantity: item.quantity })),
-        deliveryFee: DELIVERY_FEE,
-        discount,
-      });
-      clear();
-      showToast(dict.toast.orderPlaced, "success");
-      router.push(`/${locale}/orders`);
+      router.push(`/${locale}/delivery`);
     });
   };
 
@@ -120,13 +111,14 @@ export default function CartPage() {
               <div className="space-y-3">
                 {resolved.map(({ item, dish }) => (
                   <CartItemCard
-                    key={item.dishId}
+                    key={getCartItemKey(item)}
                     dish={dish}
                     quantity={item.quantity}
-                    onIncrement={() => increment(item.dishId)}
-                    onDecrement={() => decrement(item.dishId)}
+                    unitPrice={item.unitPrice ?? dish.price}
+                    onIncrement={() => increment(getCartItemKey(item))}
+                    onDecrement={() => decrement(getCartItemKey(item))}
                     onDelete={() => {
-                      remove(item.dishId);
+                      remove(getCartItemKey(item));
                       showToast(dict.toast.removed);
                     }}
                   />

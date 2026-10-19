@@ -2,6 +2,7 @@
 
 import { memo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Dish } from "@/data/dishes";
 import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import { formatPrice } from "@/lib/format";
@@ -9,6 +10,7 @@ import { dishImage, dishBlur } from "@/lib/image";
 import { cn } from "@/lib/cn";
 import { CircleIconButton } from "@/components/CircleIconButton";
 import { HeartIcon, PlusIcon } from "@/components/icons";
+import { anchors, localizedHref } from "@/lib/i18n/anchors";
 
 interface ProductCardProps {
   dish: Dish;
@@ -19,12 +21,18 @@ interface ProductCardProps {
 
 function ProductCardBase({ dish, isFavorite, onAdd, onToggleFavorite }: ProductCardProps) {
   const { locale, dict, pick } = useI18n();
+  const itemHref = localizedHref(locale, anchors.item(dish.id));
   const [heartPop, setHeartPop] = useState(false);
   const [addPulse, setAddPulse] = useState(false);
 
   return (
-    <article className="group flex items-stretch gap-3 rounded-card bg-surface p-3 shadow-card transition-shadow duration-300 hover:shadow-floating lg:flex-col lg:gap-0 lg:overflow-hidden lg:p-0">
-      <div className="flex min-w-0 flex-1 flex-col text-start lg:p-4">
+    <article className="group relative flex items-stretch gap-3 rounded-card bg-surface p-3 shadow-card transition-shadow duration-300 hover:shadow-floating lg:flex-col lg:gap-0 lg:overflow-hidden lg:p-0">
+      <Link
+        href={itemHref}
+        aria-label={pick(dish.name)}
+        className="absolute inset-0 z-0 rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      />
+      <div className="pointer-events-none relative z-10 flex min-w-0 flex-1 flex-col text-start lg:p-4">
         <h3 className="truncate text-[1rem] font-bold text-title lg:text-[1.0625rem]">
           {pick(dish.name)}
         </h3>
@@ -45,7 +53,7 @@ function ProductCardBase({ dish, isFavorite, onAdd, onToggleFavorite }: ProductC
             </p>
           </div>
 
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="pointer-events-auto relative z-10 flex shrink-0 items-center gap-2">
             <CircleIconButton
               label={isFavorite ? dict.product.unfavorite : dict.product.favorite}
               variant="muted"
@@ -85,7 +93,7 @@ function ProductCardBase({ dish, isFavorite, onAdd, onToggleFavorite }: ProductC
         </div>
       </div>
 
-      <div className="relative aspect-square w-[40%] shrink-0 overflow-hidden rounded-image bg-bg lg:order-first lg:aspect-[4/3] lg:w-full lg:rounded-none">
+      <div className="pointer-events-none relative z-10 aspect-square w-[40%] shrink-0 overflow-hidden rounded-image bg-bg lg:order-first lg:aspect-[4/3] lg:w-full lg:rounded-none">
         <Image
           src={dishImage(dish.image, "large")}
           alt={pick(dish.name)}

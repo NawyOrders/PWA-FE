@@ -47,6 +47,7 @@ export default function ProfilePage() {
     { key: "addresses", icon: <LocationIcon className="h-5 w-5 text-accent" />, tint: "bg-glow", title: dict.profile.addresses, href: `/${locale}/profile/addresses` },
     { key: "payment", icon: <CardIcon className="h-5 w-5 text-success" />, tint: "bg-success-bg", title: dict.profile.payment },
     { key: "offersPoints", icon: <CouponIcon className="h-5 w-5 text-primary" />, tint: "bg-primary-tint", title: dict.profile.offersPoints },
+    { key: "notifications", icon: <BellIcon className="h-5 w-5 text-primary" />, tint: "bg-primary-tint", title: dict.profile.notifications },
     { key: "about", icon: <InfoIcon className="h-5 w-5 text-accent" />, tint: "bg-glow", title: dict.profile.about },
     { key: "help", icon: <HelpIcon className="h-5 w-5 text-success" />, tint: "bg-success-bg", title: dict.profile.help },
   ];
@@ -67,7 +68,7 @@ export default function ProfilePage() {
             kicker={dict.profile.kicker}
             title={dict.profile.title}
             action="back"
-            onAction={() => router.back()}
+            onAction={() => router.push(`/${locale}`)}
             actionLabel={dict.common.back}
           />
           <div className="flex flex-col items-center gap-4 py-20 text-center">
@@ -102,7 +103,7 @@ export default function ProfilePage() {
         kicker={dict.profile.kicker}
         title={dict.profile.title}
         action="back"
-        onAction={() => router.back()}
+        onAction={() => router.push(`/${locale}`)}
         actionLabel={dict.common.back}
       />
 

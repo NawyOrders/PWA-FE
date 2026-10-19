@@ -1,12 +1,14 @@
 import "../item.css";
 import { notFound } from "next/navigation";
 import ItemDetail from "@/components/item/ItemDetail";
-
-const availableItems = new Set(["burger-baladi"]);
+import { getDish } from "@/data/dishes";
 
 export default async function ItemPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  if (!availableItems.has(slug)) notFound();
+  if (slug === "burger-baladi") return <ItemDetail key={slug} />;
 
-  return <ItemDetail />;
+  const dish = getDish(slug);
+  if (!dish) notFound();
+
+  return <ItemDetail key={dish.id} dish={dish} />;
 }

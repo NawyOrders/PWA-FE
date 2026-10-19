@@ -42,6 +42,7 @@ const config: Config = {
         "hint-amber": "var(--hint-amber)",
         "hint-amber-text": "var(--hint-amber-text)",
         "tint-peach": "var(--tint-peach)",
+        "star-off": "var(--star-off)",
         ink: "var(--ink)",
         overlay: "var(--overlay)",
       },

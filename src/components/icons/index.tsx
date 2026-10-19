@@ -394,6 +394,16 @@ export function ImageIcon(props: IconProps) {
   );
 }
 
+export function CloudUploadIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 13v8" />
+      <path d="M4 14.9A7 7 0 0 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2" />
+      <path d="m8 17 4-4 4 4" />
+    </svg>
+  );
+}
+
 export function ExpandIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>

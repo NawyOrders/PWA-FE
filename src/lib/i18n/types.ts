@@ -328,6 +328,21 @@ export interface Dictionary {
     retry: string;
     placeholderNote: string;
   };
+  faq: {
+    title: string;
+    subtitle: string;
+    searchPlaceholder: string;
+    searchButton: string;
+    clear: string;
+    section: string;
+    results: string;
+    noResults: string;
+    noResultsHint: string;
+    cta: string;
+    empty: string;
+    offline: string;
+    loading: string;
+  };
   auth: {
     welcome: string;
     subtitle: string;

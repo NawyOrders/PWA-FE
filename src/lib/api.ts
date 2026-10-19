@@ -1,7 +1,18 @@
 import type { Address } from "@/store/addressStore";
+import { faqItems, type FaqItem } from "@/data/faq";
 
 const SAVE_NAME_DELAY_MS = 600;
 const ADDRESSES_DELAY_MS = 600;
+
+const FAQ_DELAY_MS = 500;
+let faqCache: FaqItem[] | null = null;
+
+export async function fetchFaq(): Promise<FaqItem[]> {
+  if (faqCache) return faqCache;
+  await new Promise((resolve) => setTimeout(resolve, FAQ_DELAY_MS));
+  faqCache = faqItems;
+  return faqCache;
+}
 
 export async function saveDisplayName(name: string): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, SAVE_NAME_DELAY_MS));

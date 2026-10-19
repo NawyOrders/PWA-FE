@@ -278,6 +278,7 @@ export const ar: Dictionary = {
     faqQ4: "كيف اعدل بيانات حسابي؟",
     faqA4: "من شاشة المعلومات الشخصية تقدر تحدث اسمك، ومن العناوين تدير عناوين التوصيل.",
     chatTitle: "محادثة الدعم",
+    chatGreeting: "اهلا بك في محادثة الدعم، اكتب رسالتك وسنرد عليك فورا",
     leaveMessage: "اترك رسالة",
     messageLabel: "الرسالة",
     messagePlaceholder: "اكتب رسالتك هنا",

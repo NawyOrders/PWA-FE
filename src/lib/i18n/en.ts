@@ -278,6 +278,7 @@ export const en: Dictionary = {
     faqQ4: "How do I edit my account details?",
     faqA4: "From Personal information you can update your name, and from Addresses you manage delivery addresses.",
     chatTitle: "Support chat",
+    chatGreeting: "Welcome to support chat, type your message and we will reply shortly",
     leaveMessage: "Leave a message",
     messageLabel: "Message",
     messagePlaceholder: "Write your message here",

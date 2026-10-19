@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import "./OptionCard.css";
 
 export interface OptionCardStatus {
@@ -21,7 +22,9 @@ interface OptionCardProps {
 }
 
 export function OptionCard({ icon, title, subtitle, status, href, onClick, className }: OptionCardProps) {
-  const accessibleName = status ? `${title}, ${status.label}` : `${title}، ${subtitle}`;
+  const { locale } = useI18n();
+  // Accessible name is the title plus the subtitle (or the live status when present).
+  const accessibleName = `${title}${locale === "ar" ? "، " : ", "}${status ? status.label : subtitle}`;
 
   const content = (
     <>

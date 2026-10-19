@@ -4,14 +4,13 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import { brand } from "@/lib/brand";
-import { getSupportStatusNow } from "@/lib/supportHours";
+import { getSupportStatusNow, type SupportStatus } from "@/lib/supportHours";
 import { SettingsScreen } from "@/components/SettingsScreen";
 import { OptionCard, type OptionCardStatus } from "@/components/OptionCard";
 import { ContactModal } from "@/components/help/ContactModal";
 import { ChatSheet } from "@/components/help/ChatSheet";
 import { FeedbackSheet } from "@/components/help/FeedbackSheet";
 import { ReportSheet } from "@/components/help/ReportSheet";
-import { FaqSheet } from "@/components/help/FaqSheet";
 import {
   ChatIcon,
   PaperPlaneIcon,
@@ -21,20 +20,20 @@ import {
 } from "@/components/icons";
 import "./help.css";
 
-type Sheet = "faq" | "chat" | "feedback" | "report" | "contact" | null;
+type Sheet = "chat" | "feedback" | "report" | "contact" | null;
 
 export default function HelpPage() {
   const { locale, dict, t } = useI18n();
   const router = useRouter();
   const [sheet, setSheet] = useState<Sheet>(null);
-  const [status, setStatus] = useState(() =>
-    getSupportStatusNow(locale === "ar" ? "ar" : "en"),
-  );
+  // Computed in an effect so the clock never differs between the prerendered
+  // HTML and the client (avoids a hydration mismatch).
+  const [status, setStatus] = useState<SupportStatus | null>(null);
 
   useEffect(() => {
-    const id = window.setInterval(() => {
-      setStatus(getSupportStatusNow(locale === "ar" ? "ar" : "en"));
-    }, 60_000);
+    const update = () => setStatus(getSupportStatusNow(locale));
+    update();
+    const id = window.setInterval(update, 60_000);
     return () => window.clearInterval(id);
   }, [locale]);
 
@@ -46,14 +45,16 @@ export default function HelpPage() {
     }
   }, [locale, router]);
 
-  const chatStatus: OptionCardStatus = {
-    open: status.open,
-    label: status.open
-      ? dict.help.chatSub
-      : status.opensAtLabel
-        ? t(dict.help.chatOfflineWithTime, { time: status.opensAtLabel })
-        : dict.help.chatOffline,
-  };
+  const chatStatus: OptionCardStatus | undefined = status
+    ? {
+        open: status.open,
+        label: status.open
+          ? dict.help.chatSub
+          : status.opensAtLabel
+            ? t(dict.help.chatOfflineWithTime, { time: status.opensAtLabel })
+            : dict.help.chatOffline,
+      }
+    : undefined;
 
   const cards = [
     {
@@ -88,8 +89,8 @@ export default function HelpPage() {
   ];
 
   const handleContact = () => {
-    // On phones (no hover, coarse pointer) use the native dialer; on desktop
-    // open the contact modal. A real tel: link is always used on phone.
+    // On phones (coarse pointer, no hover) the tel: link dials directly; on
+    // desktop there is no dialer, so open the contact modal instead.
     const isPhone =
       typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
     if (isPhone) {
@@ -136,11 +137,10 @@ export default function HelpPage() {
       </ul>
 
       {/* PLACEHOLDER destinations — proposals until the owner sends their mockups (DESIGN.md 12.6). */}
-      {sheet === "faq" ? <FaqSheet onClose={() => setSheet(null)} /> : null}
       {sheet === "chat" ? (
         <ChatSheet
-          online={status.open}
-          onlineLabel={chatStatus.label}
+          online={status?.open ?? false}
+          onlineLabel={chatStatus?.label ?? dict.help.chatSub}
           onClose={() => setSheet(null)}
         />
       ) : null}

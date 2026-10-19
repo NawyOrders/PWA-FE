@@ -280,6 +280,7 @@ export interface Dictionary {
     faqQ4: string;
     faqA4: string;
     chatTitle: string;
+    chatGreeting: string;
     leaveMessage: string;
     messageLabel: string;
     messagePlaceholder: string;

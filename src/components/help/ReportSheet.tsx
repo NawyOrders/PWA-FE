@@ -137,6 +137,8 @@ export function ReportSheet({ onClose }: ReportSheetProps) {
             </CircleIconButton>
           </div>
 
+          <p className="mt-[12px] text-[12px] text-muted">{dict.help.placeholderNote}</p>
+
           <fieldset className="mt-[20px]">
             <legend className="mb-[12px] block text-[14px] font-bold text-title">
               {dict.help.categoryLabel}

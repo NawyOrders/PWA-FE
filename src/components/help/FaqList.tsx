@@ -37,7 +37,9 @@ export function FaqList() {
 
   return (
     <>
-      <div className="relative mt-[24px]">
+      <p className="mt-[24px] text-[12px] text-muted">{dict.help.placeholderNote}</p>
+
+      <div className="relative mt-[12px]">
         <SearchIcon className="pointer-events-none absolute top-1/2 h-[20px] w-[20px] -translate-y-1/2 text-muted start-[16px]" />
         <input
           type="search"

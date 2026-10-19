@@ -1,8 +1,9 @@
 "use client";
 
 // PLACEHOLDER UI — the live chat destination is a proposal (DESIGN.md 12.6)
-// until the owner sends its mockup. Online: a simple chat panel. Offline:
-// a "leave a message" form that keeps the draft when offline.
+// until the owner sends its mockup. Online: a simple local chat panel that
+// echoes the typed message (no backend). Offline: a "leave a message" form
+// that keeps the draft when offline.
 
 import { useState, type FormEvent } from "react";
 import { useI18n } from "@/lib/i18n/DictionaryProvider";
@@ -13,8 +14,7 @@ import { cn } from "@/lib/cn";
 import { Modal } from "@/components/Modal";
 import { PrimaryButton } from "@/components/PrimaryButton";
 import { CircleIconButton } from "@/components/CircleIconButton";
-import { CloseIcon } from "@/components/icons";
-import { brand } from "@/lib/brand";
+import { CloseIcon, PaperPlaneIcon } from "@/components/icons";
 
 const DRAFT_KEY = "nawy-support-chat-draft";
 
@@ -44,6 +44,8 @@ export function ChatSheet({ online, onlineLabel, onClose }: ChatSheetProps) {
   const [message, setMessage] = useState(readDraft);
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<{ name?: boolean; phone?: boolean; message?: boolean }>({});
+  const [live, setLive] = useState<{ id: number; text: string }[]>([]);
+  const [liveDraft, setLiveDraft] = useState("");
 
   const persistDraft = (value: string) => {
     setMessage(value);
@@ -95,7 +97,13 @@ export function ChatSheet({ online, onlineLabel, onClose }: ChatSheetProps) {
     onClose();
   };
 
-  const whatsappHref = brand.support.whatsapp;
+  const handleLiveSend = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const text = liveDraft.trim();
+    if (!text) return;
+    setLive((prev) => [...prev, { id: Date.now(), text }]);
+    setLiveDraft("");
+  };
 
   return (
     <Modal open onClose={onClose} labelledBy="chat-title" bottomSheet>
@@ -124,20 +132,48 @@ export function ChatSheet({ online, onlineLabel, onClose }: ChatSheetProps) {
 
       {online ? (
         <div className="mt-[20px]">
-          <div className="rounded-[20px] bg-tint-peach p-[16px] text-[15px] leading-[1.7] text-title">
-            {dict.help.chatSent}
-          </div>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-[16px] flex min-h-[56px] items-center justify-center rounded-full bg-primary-gradient text-[16px] font-extrabold text-white shadow-cta transition-transform active:scale-[0.98]"
+          <p className="text-[12px] text-muted">{dict.help.placeholderNote}</p>
+          <div
+            role="log"
+            aria-live="polite"
+            className="mt-[12px] flex max-h-[40vh] flex-col gap-[8px] overflow-y-auto"
           >
-            {dict.help.contactWhatsapp}
-          </a>
+            <p className="max-w-[85%] self-start rounded-[16px] rounded-ss-[4px] bg-tint-peach p-[12px] text-[14px] leading-[1.6] text-title">
+              {dict.help.chatGreeting}
+            </p>
+            {live.map((entry) => (
+              <p
+                key={entry.id}
+                className="max-w-[85%] self-end rounded-[16px] rounded-se-[4px] bg-primary-gradient p-[12px] text-[14px] leading-[1.6] text-white"
+              >
+                {entry.text}
+              </p>
+            ))}
+          </div>
+          <form onSubmit={handleLiveSend} className="mt-[12px] flex items-center gap-[8px]">
+            <label htmlFor="chat-live-message" className="sr-only">
+              {dict.help.messageLabel}
+            </label>
+            <input
+              id="chat-live-message"
+              value={liveDraft}
+              onChange={(event) => setLiveDraft(event.target.value)}
+              placeholder={dict.help.messagePlaceholder}
+              className="h-[52px] min-w-0 flex-1 rounded-[20px] border-[1.5px] border-line bg-surface px-4 text-[16px] text-title outline-none transition-colors placeholder:text-muted focus:border-2 focus:border-primary"
+            />
+            <button
+              type="submit"
+              aria-label={dict.help.send}
+              disabled={!liveDraft.trim()}
+              className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-primary-gradient text-white shadow-cta transition-transform active:scale-95 disabled:opacity-50"
+            >
+              <PaperPlaneIcon className="h-[22px] w-[22px]" />
+            </button>
+          </form>
         </div>
       ) : (
         <form onSubmit={handleSubmit} noValidate className="mt-[20px] flex flex-col gap-[16px]">
+          <p className="text-[12px] text-muted">{dict.help.placeholderNote}</p>
           <p className="text-[13px] text-muted">{dict.help.offlineDraft}</p>
 
           {!isLoggedIn ? (

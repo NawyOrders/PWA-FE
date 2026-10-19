@@ -8,7 +8,7 @@ import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import { brand } from "@/lib/brand";
 import { Modal } from "@/components/Modal";
 import { CircleIconButton } from "@/components/CircleIconButton";
-import { CloseIcon, CopyIcon, MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/icons";
+import { CloseIcon, CopyIcon, MailIcon, WhatsAppIcon } from "@/components/icons";
 
 function formatMinutes(minutes: number, locale: "ar" | "en"): string {
   const hours24 = Math.floor(minutes / 60) % 24;
@@ -105,11 +105,6 @@ export function ContactModal({ onClose }: ContactModalProps) {
           </span>
         </a>
       </div>
-
-      <p className="mt-[16px] flex items-center gap-[8px] text-[13px] text-muted">
-        <PhoneIcon className="h-[18px] w-[18px] shrink-0 text-primary" />
-        {dict.help.online}: {brand.support.phoneDisplay}
-      </p>
     </Modal>
   );
 }

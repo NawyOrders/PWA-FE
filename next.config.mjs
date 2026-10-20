@@ -20,7 +20,29 @@ const nextConfig = {
         headers: [{ key: "Cache-Control", value: "no-cache" }],
       },
       {
+        source: "/manifest.webmanifest",
+        headers: [{ key: "Cache-Control", value: "no-cache" }],
+      },
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          { key: "Cache-Control", value: `public, max-age=${ONE_YEAR}, immutable` },
+        ],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [
+          { key: "Cache-Control", value: `public, max-age=${ONE_YEAR}, immutable` },
+        ],
+      },
+      {
         source: "/images/:path*",
+        headers: [
+          { key: "Cache-Control", value: `public, max-age=${ONE_YEAR}, immutable` },
+        ],
+      },
+      {
+        source: "/icons/:path*",
         headers: [
           { key: "Cache-Control", value: `public, max-age=${ONE_YEAR}, immutable` },
         ],

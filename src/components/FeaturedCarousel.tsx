@@ -95,6 +95,7 @@ export function FeaturedCarousel({ dishes, onAdd }: FeaturedCarouselProps) {
               alt={pick(dish.name)}
               fill
               priority={index === 0}
+              fetchPriority={index === 0 ? "high" : undefined}
               sizes="(max-width: 1023px) 80vw, 40rem"
               quality={64}
               className="animate-float object-contain drop-shadow-xl"

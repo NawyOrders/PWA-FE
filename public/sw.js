@@ -1,8 +1,9 @@
-const CACHE_NAME = "nawyorders-shell-v3";
-const IMAGE_CACHE = "nawyorders-images-v1";
+const CACHE_NAME = "nawyorders-shell-v4";
+const IMAGE_CACHE = "nawyorders-images-v2";
 const OFFLINE_URL = "/offline.html";
 const OFFLINE_ROUTES = ["/ar/offline", "/en/offline"];
 const IMAGE_CACHE_LIMIT = 60;
+const NAV_TIMEOUT_MS = 3000;
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -62,15 +63,22 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin || url.pathname.startsWith("/_next/static")) return;
 
   if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request).catch(async () => {
+    event.respondWith((async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), NAV_TIMEOUT_MS);
+      try {
+        const response = await fetch(request, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        return response;
+      } catch {
+        clearTimeout(timeoutId);
         const locale = url.pathname.split("/")[1];
         const cache = await caches.open(CACHE_NAME);
         return (await cache.match(`/${locale}/offline`)) ||
           (await cache.match(OFFLINE_URL)) ||
           Response.error();
-      }),
-    );
+      }
+    })());
     return;
   }
 

@@ -20,7 +20,7 @@
   width: 100%;
   min-height: 180px;
   padding: 34px 22px env(safe-area-inset-bottom);
-  direction: ltr;
+  direction: inherit;
   pointer-events: auto;
 }
 

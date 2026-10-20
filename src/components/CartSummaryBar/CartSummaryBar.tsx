@@ -36,10 +36,10 @@ export function CartSummaryBar() {
       <div className="cart-summary-bar" dir="ltr">
         <svg
           className="cart-summary-shape"
-          viewBox="0 0 400 130"
+          viewBox="0 0 390 180"
           preserveAspectRatio="none"
           aria-hidden="true"
-          focusable="false"
+          style={{ transform: "scaleX(var(--dir-scale, 1))" }}
         >
           <defs>
             <linearGradient id="cart-summary-gradient" x1="0" y1="0" x2="1" y2="1">

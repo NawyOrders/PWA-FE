@@ -203,3 +203,6 @@
     scroll-behavior: auto !important;
   }
 }
+
+html[dir=" rtl]{--dir-scale:-1}
+html[dir=ltr]{--dir-scale:1}

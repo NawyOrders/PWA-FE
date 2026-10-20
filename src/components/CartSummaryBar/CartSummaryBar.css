@@ -1,3 +1,9 @@
+.cart-summary-spacer {
+  flex: 0 0 180px;
+  height: 180px;
+  pointer-events: none;
+}
+
 .cart-summary-dock {
   position: fixed;
   z-index: 40;
@@ -129,6 +135,11 @@
 }
 
 @media (max-width: 380px) {
+  .cart-summary-spacer {
+    flex-basis: 160px;
+    height: 160px;
+  }
+
   .cart-summary-bar {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 7px;
@@ -169,6 +180,10 @@
 }
 
 @media (min-width: 1024px) {
+  .cart-summary-spacer {
+    display: none;
+  }
+
   .cart-summary-dock {
     display: none;
   }

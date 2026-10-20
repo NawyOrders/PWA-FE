@@ -84,6 +84,8 @@ export interface Dictionary {
     discount: string;
     total: string;
     viewCart: string;
+    addonsLabel: string;
+    specialNotesLabel: string;
     checkout: string;
     empty: string;
     emptyHint: string;

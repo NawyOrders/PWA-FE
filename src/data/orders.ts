@@ -3,6 +3,9 @@ export type OrderStatus = "delivered" | "cancelled" | "processing";
 export interface OrderItem {
   dishId: string;
   quantity: number;
+  unitPrice?: number;
+  addonIds?: string[];
+  note?: string;
 }
 
 export interface Order {
@@ -25,7 +28,12 @@ export const orders: Order[] = [
     date: "2026-09-28T19:30:00.000Z",
     deliveryFee: 2000,
     items: [
-      { dishId: "gourmet-burger", quantity: 2 },
+      {
+        dishId: "gourmet-burger",
+        quantity: 2,
+        addonIds: ["cheese", "pickles"],
+        note: "No onions",
+      },
       { dishId: "cheese-pizza", quantity: 1 },
     ],
   },
@@ -35,7 +43,7 @@ export const orders: Order[] = [
     status: "cancelled",
     date: "2026-09-21T14:05:00.000Z",
     deliveryFee: 2000,
-    items: [{ dishId: "chicken-shawarma", quantity: 3 }],
+    items: [{ dishId: "chicken-shawarma", quantity: 3, note: "Extra spicy" }],
   },
   {
     id: "order-1031",

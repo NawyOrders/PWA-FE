@@ -82,6 +82,8 @@ export const ar: Dictionary = {
     discount: "الخصم",
     total: "الاجمالي",
     viewCart: "عرض السلة",
+    addonsLabel: "الإضافات",
+    specialNotesLabel: "ملاحظات خاصة",
     checkout: "اتمام الطلب",
     empty: "سلة التسوق فارغة",
     emptyHint: "اضف بعض الاطباق اللذيذة لتظهر هنا",

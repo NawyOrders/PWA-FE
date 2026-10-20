@@ -13,11 +13,15 @@ export interface CartItem {
   dishId: string;
   quantity: number;
   unitPrice?: number;
+  addonIds?: string[];
+  note?: string;
 }
 
 export function getCartItemKey(item: CartItem): string {
   const basePrice = getDish(item.dishId)?.price ?? 0;
-  return `${item.dishId}:${item.unitPrice ?? basePrice}`;
+  const addonKey = [...(item.addonIds ?? [])].sort().join(",");
+  const noteKey = encodeURIComponent(item.note?.trim() ?? "");
+  return `${item.dishId}:${item.unitPrice ?? basePrice}:${addonKey}:${noteKey}`;
 }
 
 interface CartState {
@@ -25,7 +29,12 @@ interface CartState {
   coupon: string | null;
   fulfillmentMethod: FulfillmentMethod;
   setFulfillmentMethod: (method: FulfillmentMethod) => void;
-  add: (dishId: string, quantity?: number, unitPrice?: number) => void;
+  add: (
+    dishId: string,
+    quantity?: number,
+    unitPrice?: number,
+    customization?: { addonIds?: string[]; note?: string },
+  ) => void;
   remove: (itemKey: string) => void;
   increment: (itemKey: string) => void;
   decrement: (itemKey: string) => void;
@@ -41,23 +50,31 @@ export const useCartStore = create<CartState>()(
       coupon: null,
       fulfillmentMethod: "delivery",
       setFulfillmentMethod: (fulfillmentMethod) => set({ fulfillmentMethod }),
-      add: (dishId, quantity = 1, unitPrice) =>
+      add: (dishId, quantity = 1, unitPrice, customization) =>
         set((state) => {
           const basePrice = getDish(dishId)?.price ?? 0;
           const selectedPrice = unitPrice ?? basePrice;
-          const existing = state.items.find(
-            (item) => item.dishId === dishId && (item.unitPrice ?? basePrice) === selectedPrice,
-          );
+          const addonIds = [...new Set(customization?.addonIds ?? [])].sort();
+          const note = customization?.note?.trim() ?? "";
+          const newItem: CartItem = {
+            dishId,
+            quantity,
+            unitPrice: selectedPrice,
+            ...(addonIds.length > 0 ? { addonIds } : {}),
+            ...(note ? { note } : {}),
+          };
+          const newItemKey = getCartItemKey(newItem);
+          const existing = state.items.find((item) => getCartItemKey(item) === newItemKey);
           if (existing) {
             return {
               items: state.items.map((item) =>
                 getCartItemKey(item) === getCartItemKey(existing)
-                  ? { ...item, quantity: item.quantity + quantity, unitPrice: selectedPrice }
+                  ? { ...item, quantity: item.quantity + quantity }
                   : item,
               ),
             };
           }
-          return { items: [...state.items, { dishId, quantity, unitPrice: selectedPrice }] };
+          return { items: [...state.items, newItem] };
         }),
       remove: (itemKey) =>
         set((state) => ({

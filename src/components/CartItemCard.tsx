@@ -16,6 +16,8 @@ interface CartItemCardProps {
   unitPrice: number;
   addonIds: string[];
   note: string;
+  editLabel: string;
+  onEdit: () => void;
   onIncrement: () => void;
   onDecrement: () => void;
   onDelete: () => void;
@@ -27,6 +29,8 @@ function CartItemCardBase({
   unitPrice,
   addonIds,
   note,
+  editLabel,
+  onEdit,
   onIncrement,
   onDecrement,
   onDelete,
@@ -58,15 +62,24 @@ function CartItemCardBase({
             />
           </div>
         </div>
-        <div className="relative h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden rounded-image bg-bg">
-          <Image
-            src={dishImage(dish.image, "small")}
-            alt={pick(dish.name)}
-            fill
-            sizes="72px"
-            quality={78}
-            className="object-cover"
-          />
+        <div className="flex shrink-0 flex-col items-center gap-1.5">
+          <div className="relative h-[4.5rem] w-[4.5rem] overflow-hidden rounded-image bg-bg">
+            <Image
+              src={dishImage(dish.image, "small")}
+              alt={pick(dish.name)}
+              fill
+              sizes="72px"
+              quality={78}
+              className="object-cover"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={onEdit}
+            className="min-h-8 rounded-full px-2 text-[0.75rem] font-bold text-primary underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {editLabel}
+          </button>
         </div>
       </article>
     </SwipeToDelete>

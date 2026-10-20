@@ -44,7 +44,13 @@ export function CartSummaryBar() {
             style={{ transform: "scaleX(var(--dir-scale, 1))" }}
           >
             <defs>
-              <linearGradient id="cart-summary-gradient" x1="0" y1="0" x2="1" y2="1">
+              <linearGradient
+                id="cart-summary-gradient"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
                 <stop offset="0%" stopColor="#ef3d23" />
                 <stop offset="100%" stopColor="#ff7939" />
               </linearGradient>
@@ -54,6 +60,24 @@ export function CartSummaryBar() {
               fill="url(#cart-summary-gradient)"
             />
           </svg>
+          <div className="cart-summary-total" dir="ltr">
+            <div
+              className="cart-summary-amount"
+              dir={locale === "ar" ? "rtl" : "ltr"}
+            >
+              <span className="cart-summary-label">
+                {locale === "ar" ? "المبلغ الإجمالي" : dict.cart.total}
+              </span>
+              <strong>{formatPrice(total, locale)}</strong>
+            </div>
+            <span
+              className="cart-summary-count"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {count}
+            </span>
+          </div>
           <Link
             className="cart-summary-view"
             href={`/${locale}/cart`}
@@ -62,18 +86,6 @@ export function CartSummaryBar() {
             <CartIcon className="cart-summary-icon" />
             <span>{dict.cart.viewCart}</span>
           </Link>
-
-          <div className="cart-summary-total" dir="ltr">
-            <div className="cart-summary-amount" dir={locale === "ar" ? "rtl" : "ltr"}>
-              <span className="cart-summary-label">
-                {locale === "ar" ? "المبلغ الإجمالي" : dict.cart.total}
-              </span>
-              <strong>{formatPrice(total, locale)}</strong>
-            </div>
-            <span className="cart-summary-count" aria-live="polite" aria-atomic="true">
-              {count}
-            </span>
-          </div>
         </div>
       </aside>
     </>

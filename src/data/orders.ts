@@ -4,6 +4,7 @@ export interface OrderItem {
   dishId: string;
   quantity: number;
   unitPrice?: number;
+  sizeId?: "small" | "medium" | "large";
   addonIds?: string[];
   note?: string;
 }

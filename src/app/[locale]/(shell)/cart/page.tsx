@@ -116,6 +116,10 @@ export default function CartPage() {
                     unitPrice={item.unitPrice ?? dish.price}
                     addonIds={item.addonIds ?? []}
                     note={item.note ?? ""}
+                    editLabel={dict.cart.editItem}
+                    onEdit={() => router.push(
+                      `/${locale}/item/${encodeURIComponent(item.dishId)}?edit=${encodeURIComponent(getCartItemKey(item))}`,
+                    )}
                     onIncrement={() => increment(getCartItemKey(item))}
                     onDecrement={() => decrement(getCartItemKey(item))}
                     onDelete={() => {
@@ -193,7 +197,7 @@ export default function CartPage() {
                 <div className="mt-4 flex items-center justify-end gap-2">
                   {resolved.slice(0, 4).map(({ item, dish }) => (
                     <div
-                      key={item.dishId}
+                      key={getCartItemKey(item)}
                       className="relative h-10 w-10 overflow-hidden rounded-full border border-line"
                     >
                       <Image

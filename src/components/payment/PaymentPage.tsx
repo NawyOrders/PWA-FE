@@ -83,10 +83,11 @@ export default function PaymentPage() {
   function changeMethod(next: PaymentMethod) { setMethod(next); setNotice(""); setFileError(""); }
   function saveOrder() {
     addOrder({
-      items: items.map(({ dishId, quantity, unitPrice, addonIds, note }) => ({
+      items: items.map(({ dishId, quantity, unitPrice, sizeId, addonIds, note }) => ({
         dishId,
         quantity,
         unitPrice,
+        sizeId,
         addonIds,
         note,
       })),

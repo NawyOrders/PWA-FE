@@ -84,6 +84,8 @@ export const ar: Dictionary = {
     viewCart: "عرض السلة",
     addonsLabel: "الإضافات",
     specialNotesLabel: "ملاحظات خاصة",
+    editItem: "تعديل",
+    confirmEdits: "تأكيد التعديلات",
     checkout: "اتمام الطلب",
     empty: "سلة التسوق فارغة",
     emptyHint: "اضف بعض الاطباق اللذيذة لتظهر هنا",

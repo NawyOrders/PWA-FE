@@ -7,6 +7,7 @@ import { useEffect, useRef, useState, type ChangeEvent, type DragEvent } from "r
 import { useI18n } from "@/lib/i18n";
 import { markOrderConfirmed } from "@/lib/orderStatus";
 import { useCartStore, getFulfillmentTotals, getCartItemKey } from "@/store/cartStore";
+import { useOrdersStore } from "@/store/ordersStore";
 import { getDish } from "@/data/dishes";
 import { dishImage } from "@/lib/image";
 import { formatPrice } from "@/lib/format";
@@ -69,6 +70,7 @@ export default function PaymentPage() {
   const coupon = useCartStore((state) => state.coupon);
   const fulfillmentMethod = useCartStore((state) => state.fulfillmentMethod);
   const clearCart = useCartStore((state) => state.clear);
+  const addOrder = useOrdersStore((state) => state.addOrder);
   const totals = getFulfillmentTotals(items, coupon, fulfillmentMethod);
   const [method, setMethod] = useState<PaymentMethod>("instapay");
   const [pendingFile, setPendingFile] = useState<PaymentFile | null>(null);
@@ -79,6 +81,19 @@ export default function PaymentPage() {
 
   useEffect(() => () => { if (pendingFile) URL.revokeObjectURL(pendingFile.previewUrl); }, [pendingFile]);
   function changeMethod(next: PaymentMethod) { setMethod(next); setNotice(""); setFileError(""); }
+  function saveOrder() {
+    addOrder({
+      items: items.map(({ dishId, quantity, unitPrice, addonIds, note }) => ({
+        dishId,
+        quantity,
+        unitPrice,
+        addonIds,
+        note,
+      })),
+      deliveryFee: totals.deliveryFee,
+      discount: totals.discount,
+    });
+  }
   function chooseFile(file?: File) {
     if (!file) return;
     if (!/^image\/(jpeg|png)$/.test(file.type)) { setFileError(t("invalidReceiptType")); return; }
@@ -89,11 +104,11 @@ export default function PaymentPage() {
   function handleDrop(event: DragEvent<HTMLButtonElement>) { event.preventDefault(); chooseFile(event.dataTransfer.files[0]); }
   function confirmReceipt() {
     if (!pendingFile) return;
-    setReceipt(pendingFile.file); sessionStorage.setItem("nawy-payment-method", "instapay"); markOrderConfirmed(); clearCart(); setPendingFile(null); router.push(href("/payConfirmation"));
+    setReceipt(pendingFile.file); sessionStorage.setItem("nawy-payment-method", "instapay"); saveOrder(); markOrderConfirmed(); clearCart(); setPendingFile(null); router.push(href("/payConfirmation"));
   }
   function confirmPayment() {
     if ((method === "instapay" || method === "wallet") && !receipt) { setNotice(t("uploadReceiptFirst")); return; }
-    sessionStorage.setItem("nawy-payment-method", method); markOrderConfirmed(); clearCart(); router.push(href("/payConfirmation"));
+    sessionStorage.setItem("nawy-payment-method", method); saveOrder(); markOrderConfirmed(); clearCart(); router.push(href("/payConfirmation"));
   }
   function proofUpload() {
     return <section className="payment-proof" aria-labelledby="payment-proof-title"><h2 id="payment-proof-title"><Image src="/icons/audit.png" alt="" width={22} height={22} />{t("paymentProof")}</h2>

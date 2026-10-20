@@ -18,6 +18,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { PrimaryButton } from "@/components/PrimaryButton";
 import { EmptyState } from "@/components/EmptyState";
 import { CartIcon } from "@/components/icons";
+import { ItemCustomizationDetails } from "@/components/ItemCustomizationDetails";
 
 type Filter = "all" | OrderStatus;
 
@@ -42,9 +43,10 @@ export default function OrdersPage() {
       const order = orders.find((item) => item.id === orderId);
       if (!order) return;
       order.items.forEach((item) => {
-        for (let index = 0; index < item.quantity; index += 1) {
-          addToCart(item.dishId);
-        }
+        addToCart(item.dishId, item.quantity, item.unitPrice, {
+          addonIds: item.addonIds,
+          note: item.note,
+        });
       });
       showToast(dict.toast.addedToCart, "success");
       router.push(`/${locale}/cart`);
@@ -93,7 +95,7 @@ export default function OrdersPage() {
                 const total =
                   order.items.reduce((sum, item) => {
                     const dish = getDish(item.dishId);
-                    return sum + (dish ? dish.price * item.quantity : 0);
+                    return sum + (dish ? (item.unitPrice ?? dish.price) * item.quantity : 0);
                   }, 0) +
                   order.deliveryFee -
                   (order.discount ?? 0);
@@ -142,6 +144,32 @@ export default function OrdersPage() {
                         </p>
                       </div>
                     </div>
+
+                    <ul className="space-y-2 border-t border-border pt-2">
+                      {order.items.map((item, index) => {
+                        const dish = getDish(item.dishId);
+                        if (!dish) return null;
+                        return (
+                          <li
+                            key={`${item.dishId}-${index}`}
+                            className="flex min-w-0 items-start justify-between gap-3 text-start"
+                          >
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-[0.8125rem] font-semibold text-title">
+                                {item.quantity > 1 ? `${item.quantity}× ` : ""}{pick(dish.name)}
+                              </p>
+                              <ItemCustomizationDetails
+                                addonIds={item.addonIds}
+                                note={item.note}
+                              />
+                            </div>
+                            <p className="shrink-0 text-[0.8125rem] font-bold text-primary">
+                              {formatPrice((item.unitPrice ?? dish.price) * item.quantity, locale)}
+                            </p>
+                          </li>
+                        );
+                      })}
+                    </ul>
 
                     <PrimaryButton
                       variant="outline"

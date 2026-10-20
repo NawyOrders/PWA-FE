@@ -114,6 +114,8 @@ export default function CartPage() {
                     dish={dish}
                     quantity={item.quantity}
                     unitPrice={item.unitPrice ?? dish.price}
+                    addonIds={item.addonIds ?? []}
+                    note={item.note ?? ""}
                     onIncrement={() => increment(getCartItemKey(item))}
                     onDecrement={() => decrement(getCartItemKey(item))}
                     onDelete={() => {

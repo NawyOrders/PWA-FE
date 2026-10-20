@@ -58,7 +58,10 @@ export default function ItemDetail({ dish }: { dish?: Dish }) {
   }
 
   function addToCart() {
-    addCartItems(itemId, quantity, Math.round(unitPrice * 100));
+    addCartItems(itemId, quantity, Math.round(unitPrice * 100), {
+      addonIds: selectedAddonIds,
+      note,
+    });
   }
 
   function handleToggleFavorite() {

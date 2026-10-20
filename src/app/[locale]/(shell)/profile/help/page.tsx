@@ -9,7 +9,6 @@ import { SettingsScreen } from "@/components/SettingsScreen";
 import { OptionCard, type OptionCardStatus } from "@/components/OptionCard";
 import { ContactModal } from "@/components/help/ContactModal";
 import { ChatSheet } from "@/components/help/ChatSheet";
-import { FeedbackSheet } from "@/components/help/FeedbackSheet";
 import { ReportSheet } from "@/components/help/ReportSheet";
 import {
   ChatIcon,
@@ -20,7 +19,7 @@ import {
 } from "@/components/icons";
 import "./help.css";
 
-type Sheet = "chat" | "feedback" | "report" | "contact" | null;
+type Sheet = "chat" | "report" | "contact" | null;
 
 export default function HelpPage() {
   const { locale, dict, t } = useI18n();
@@ -74,7 +73,7 @@ export default function HelpPage() {
     },
     {
       key: "feedback",
-      onClick: () => setSheet("feedback"),
+      href: `/${locale}/profile/help/feedback`,
       icon: <PaperPlaneIcon />,
       title: dict.help.feedback,
       subtitle: dict.help.feedbackSub,
@@ -144,7 +143,6 @@ export default function HelpPage() {
           onClose={() => setSheet(null)}
         />
       ) : null}
-      {sheet === "feedback" ? <FeedbackSheet onClose={() => setSheet(null)} /> : null}
       {sheet === "report" ? <ReportSheet onClose={() => setSheet(null)} /> : null}
       {sheet === "contact" ? <ContactModal onClose={() => setSheet(null)} /> : null}
     </SettingsScreen>

@@ -86,6 +86,8 @@ export interface Dictionary {
     viewCart: string;
     addonsLabel: string;
     specialNotesLabel: string;
+    editItem: string;
+    confirmEdits: string;
     checkout: string;
     empty: string;
     emptyHint: string;

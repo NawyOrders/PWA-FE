@@ -13,6 +13,7 @@ export interface CartItem {
   dishId: string;
   quantity: number;
   unitPrice?: number;
+  sizeId?: "small" | "medium" | "large";
   addonIds?: string[];
   note?: string;
 }
@@ -33,8 +34,9 @@ interface CartState {
     dishId: string,
     quantity?: number,
     unitPrice?: number,
-    customization?: { addonIds?: string[]; note?: string },
+    customization?: { sizeId?: CartItem["sizeId"]; addonIds?: string[]; note?: string },
   ) => void;
+  update: (itemKey: string, item: CartItem) => void;
   remove: (itemKey: string) => void;
   increment: (itemKey: string) => void;
   decrement: (itemKey: string) => void;
@@ -60,6 +62,7 @@ export const useCartStore = create<CartState>()(
             dishId,
             quantity,
             unitPrice: selectedPrice,
+            ...(customization?.sizeId ? { sizeId: customization.sizeId } : {}),
             ...(addonIds.length > 0 ? { addonIds } : {}),
             ...(note ? { note } : {}),
           };
@@ -75,6 +78,37 @@ export const useCartStore = create<CartState>()(
             };
           }
           return { items: [...state.items, newItem] };
+        }),
+      update: (itemKey, item) =>
+        set((state) => {
+          if (!state.items.some((current) => getCartItemKey(current) === itemKey)) {
+            return state;
+          }
+          const normalized: CartItem = {
+            ...item,
+            addonIds: [...new Set(item.addonIds ?? [])].sort(),
+            note: item.note?.trim() ?? "",
+          };
+          const updatedKey = getCartItemKey(normalized);
+          const matching = state.items.find(
+            (current) => getCartItemKey(current) === updatedKey && getCartItemKey(current) !== itemKey,
+          );
+          if (matching) {
+            return {
+              items: state.items
+                .filter((current) => getCartItemKey(current) !== itemKey)
+                .map((current) =>
+                  getCartItemKey(current) === updatedKey
+                    ? { ...current, quantity: current.quantity + normalized.quantity }
+                    : current,
+                ),
+            };
+          }
+          return {
+            items: state.items.map((current) =>
+              getCartItemKey(current) === itemKey ? normalized : current,
+            ),
+          };
         }),
       remove: (itemKey) =>
         set((state) => ({

@@ -44,6 +44,7 @@ export default function OrdersPage() {
       if (!order) return;
       order.items.forEach((item) => {
         addToCart(item.dishId, item.quantity, item.unitPrice, {
+          sizeId: item.sizeId,
           addonIds: item.addonIds,
           note: item.note,
         });

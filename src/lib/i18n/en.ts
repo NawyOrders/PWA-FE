@@ -84,6 +84,8 @@ export const en: Dictionary = {
     viewCart: "View cart",
     addonsLabel: "Add-ons",
     specialNotesLabel: "Special notes",
+    editItem: "Edit",
+    confirmEdits: "Confirm changes",
     checkout: "Checkout",
     empty: "Your cart is empty",
     emptyHint: "Add some delicious dishes to see them here",

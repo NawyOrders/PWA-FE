@@ -1,0 +1,332 @@
+.pay-confirmation-page {
+  min-height: 100svh;
+  padding-inline: 18px;
+  background: #fff;
+}
+
+.pay-confirmation-shell {
+  position: relative;
+  display: flex;
+  width: min(100%, 100%);
+  min-height: 100svh;
+  flex-direction: column;
+  margin-inline: auto;
+  padding: max(10px, env(safe-area-inset-top)) 30px
+    max(48px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 88% 13%,
+      rgb(255 218 201 / 0.54),
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 9% 49%,
+      rgb(255 239 196 / 0.62),
+      transparent 31%
+    ),
+    radial-gradient(
+      ellipse at 92% 94%,
+      rgb(255 222 208 / 0.6),
+      transparent 32%
+    ),
+    #fffaf6;
+  box-shadow: 0 10px 36px rgb(55 38 28 / 0.12);
+}
+
+.pay-confirmation-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 28px 0;
+  padding-inline: 6px;
+}
+
+.pay-confirmation-support {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.pay-confirmation-close {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #eee7e3;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.82);
+  color: var(--text-secondary);
+  transition:
+    background 0.18s ease,
+    transform 0.18s var(--ease);
+}
+
+.pay-confirmation-close:hover {
+  background: #fff;
+  transform: rotate(5deg);
+}
+
+.pay-confirmation-close span {
+  font:
+    300 35px/1 Arial,
+    sans-serif;
+}
+
+.pay-confirmation-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 26px;
+  text-align: center;
+}
+
+.pay-confirmation-check-halo {
+  display: grid;
+  width: 230px;
+  height: 230px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(255 237 222 / 0.8);
+}
+
+.pay-confirmation-check-box {
+  display: grid;
+  width: 180px;
+  height: 180px;
+  place-items: center;
+  border-radius: 34px;
+  background: linear-gradient(145deg, #f13e22 4%, #ff783c 96%);
+  color: #fff;
+  box-shadow: 0 14px 30px rgb(228 56 32 / 0.14);
+}
+
+.pay-confirmation-check-box svg {
+  width: 82px;
+  height: 82px;
+}
+
+.pay-confirmation-success h1 {
+  margin: 40px 0 0;
+  color: #080605;
+  font-size: clamp(23px, 6vw, 34px);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.pay-confirmation-success p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: clamp(16px, 4.3vw, 23px);
+  line-height: 1.7;
+}
+
+.pay-confirmation-order {
+  display: flex;
+  gap: 12px;
+  min-height: 63px;
+  align-items: center;
+  margin-top: 48px;
+  padding: 16px 22px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgb(62 45 33 / 0.09);
+}
+
+.pay-confirmation-order-icon {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+  background: #ffefe3;
+}
+
+.pay-confirmation-order-icon img {
+  object-fit: contain;
+}
+
+.pay-confirmation-order > div {
+  display: grid;
+  gap: 3px;
+  text-align: right;
+}
+
+.pay-confirmation-order > div span {
+  color: #a58d83;
+  font-size: 10px;
+}
+
+.pay-confirmation-order > div strong {
+  color: var(--text-primary);
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pay-confirmation-summary {
+  display: grid;
+  gap: 17px;
+  margin-top: 38px;
+  padding: 22px 23px;
+  border-radius: 18px;
+  background: rgb(255 250 250 / 0.84);
+  box-shadow: 0 7px 20px rgb(62 45 33 / 0.045);
+}
+
+.pay-confirmation-summary > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pay-confirmation-summary > div strong {
+  font-weight: 700;
+}
+
+.pay-confirmation-time {
+  color: #c8291b;
+  white-space: nowrap;
+}
+
+.pay-confirmation-actions {
+  display: grid;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 48px;
+}
+
+.pay-confirmation-track,
+.pay-confirmation-home {
+  display: flex;
+  width: 100%;
+  min-height: 61px;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  border: 0;
+  border-radius: 20px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 0.16s var(--ease),
+    filter 0.16s ease;
+}
+
+.pay-confirmation-track:hover,
+.pay-confirmation-home:hover {
+  transform: translateY(-2px);
+}
+
+.pay-confirmation-track {
+  background: linear-gradient(165deg, #f13e22 0%, #ff783c 100%);
+  color: #fff;
+  box-shadow: 0 12px 28px rgb(228 56 32 / 0.14);
+}
+
+.pay-confirmation-track svg {
+  width: 18px;
+  height: 18px;
+}
+
+.pay-confirmation-home {
+  background: #fff;
+  color: var(--text-primary);
+}
+
+.pay-confirmation-tracking-message {
+  margin: -7px 0 -4px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 430px) {
+  .pay-confirmation-page {
+    padding-inline: 0;
+  }
+
+  .pay-confirmation-shell {
+    padding-inline: 24px;
+    box-shadow: none;
+  }
+
+  .pay-confirmation-topbar {
+    margin: 28px 0;
+  }
+
+  .pay-confirmation-success {
+    margin-top: 28px;
+  }
+
+  .pay-confirmation-check-halo {
+    width: 208px;
+    height: 208px;
+  }
+
+  .pay-confirmation-check-box {
+    width: 164px;
+    height: 164px;
+    border-radius: 30px;
+  }
+
+  .pay-confirmation-success h1 {
+    margin-top: 34px;
+  }
+
+  .pay-confirmation-order {
+    margin-top: 38px;
+  }
+
+  .pay-confirmation-summary {
+    margin-top: 30px;
+  }
+
+  .pay-confirmation-actions {
+    padding-top: 34px;
+  }
+}
+
+@media (max-height: 760px) {
+  .pay-confirmation-topbar {
+    margin: 28px 0;
+  }
+
+  .pay-confirmation-success {
+    margin-top: 22px;
+  }
+
+  .pay-confirmation-check-halo {
+    width: 174px;
+    height: 174px;
+  }
+
+  .pay-confirmation-check-box {
+    width: 136px;
+    height: 136px;
+  }
+
+  .pay-confirmation-success h1 {
+    margin-top: 22px;
+  }
+
+  .pay-confirmation-order {
+    margin-top: 26px;
+  }
+
+  .pay-confirmation-summary {
+    margin-top: 22px;
+  }
+
+  .pay-confirmation-actions {
+    padding-top: 24px;
+  }
+}

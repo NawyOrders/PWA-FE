@@ -1,0 +1,472 @@
+.tracking-page {
+  min-height: 100svh;
+  padding-inline: 18px;
+  background: #fff;
+}
+
+.tracking-shell {
+  position: relative;
+  display: flex;
+  width: min(100%, 100%);
+  min-height: 100svh;
+  flex-direction: column;
+  margin-inline: auto;
+  padding: max(20px, env(safe-area-inset-top)) 30px
+    max(46px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 88% 13%,
+      rgb(255 218 201 / 0.54),
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 9% 49%,
+      rgb(255 239 196 / 0.62),
+      transparent 31%
+    ),
+    radial-gradient(
+      ellipse at 92% 94%,
+      rgb(255 222 208 / 0.6),
+      transparent 32%
+    ),
+    #fffaf6;
+  box-shadow: 0 10px 36px rgb(55 38 28 / 0.12);
+}
+
+.tracking-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 28px 0 ;
+  padding-inline: 2px;
+}
+
+.tracking-header > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.tracking-header h1 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.tracking-header p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.tracking-back {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.82);
+  color: var(--text-secondary);
+  transition:
+    background 0.18s ease,
+    transform 0.18s var(--ease);
+}
+
+.tracking-back:hover {
+  background: #fff;
+  transform: translateX(2px);
+}
+
+.tracking-back svg {
+  width: 20px;
+  height: 20px;
+  transform: rotate(180deg);
+}
+
+.tracking-eta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 23px;
+  direction: rtl;
+}
+
+.tracking-eta-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(145deg, var(--brand) 0%, #ff783c 100%);
+}
+
+.tracking-eta-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.tracking-eta > div {
+  display: grid;
+  gap: 1px;
+}
+
+.tracking-eta > div > span {
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.tracking-eta strong {
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.tracking-timeline {
+  position: relative;
+  display: grid;
+  flex: 1;
+  grid-template-rows: repeat(4, minmax(100px, 1fr));
+  margin: 52px 4px 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tracking-timeline::before {
+  position: absolute;
+  top: 34px;
+  right: 17px;
+  bottom: 42px;
+  width: 2px;
+  background: var(--text-secondary);
+  content: "";
+}
+
+.tracking-timeline::after {
+  position: absolute;
+  top: 34px;
+  right: 17px;
+  height: 35%;
+  width: 2px;
+  background: var(--brand);
+  content: "";
+}
+
+.tracking-step {
+  position: relative;
+  display: flex;
+  min-height: 90px;
+  align-items: center;
+  gap: 20px;
+  direction: rtl;
+}
+
+.tracking-step-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1.5px solid var(--text-secondary);
+  border-radius: 50%;
+  background: #fffaf6;
+  color: var(--text-secondary);
+}
+
+.tracking-step-marker img {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+}
+
+.tracking-step.is-complete .tracking-step-marker {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: white;
+}
+
+.tracking-step.is-current .tracking-step-marker {
+  width: 52px;
+  height: 52px;
+  margin-inline: -8px;
+  border: 7px solid #ffd6b8;
+  background: var(--brand);
+  color: white;
+}
+
+.tracking-step.is-current .tracking-step-marker img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.tracking-step.is-upcoming .tracking-step-marker img {
+  opacity: 0.82;
+}
+
+.tracking-check {
+  margin-top: -2px;
+  font:
+    700 24px/1 Arial,
+    sans-serif;
+}
+
+.tracking-step-copy {
+  display: grid;
+  justify-items: start;
+  gap: 1px;
+  color: var(--text-secondary);
+}
+
+.tracking-step-copy strong {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.tracking-step-copy > span:not(.tracking-current-badge) {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.tracking-step.is-complete .tracking-step-copy strong {
+  color: var(--text-primary);
+}
+
+.tracking-step.is-current .tracking-step-copy strong {
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.tracking-current-badge {
+  margin-bottom: 2px;
+  border-radius: 99px;
+  padding: 4px 13px;
+  background: #FFEDE0;
+  color: var(--brand-dark);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.tracking-courier {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  direction: ltr;
+}
+
+.tracking-courier-art {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.tracking-courier-art img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) saturate(100%) invert(31%) sepia(95%) saturate(2368%)
+    hue-rotate(348deg) brightness(97%) contrast(96%);
+}
+
+.tracking-courier-avatar {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d5a179, #8b6f63);
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgb(62 45 33 / 0.12);
+}
+
+.tracking-courier-copy {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+  margin-inline-end: auto;
+  direction: rtl;
+  text-align: right;
+}
+
+.tracking-courier-copy strong {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tracking-courier-copy span {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.tracking-actions {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.tracking-actions button {
+  display: flex;
+  min-width: 0;
+  min-height: 61px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 20px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.16s var(--ease),
+    filter 0.16s ease;
+}
+
+.tracking-actions button:hover {
+  filter: saturate(1.08);
+  transform: translateY(-2px);
+}
+
+.tracking-contact {
+  border: 1.5px solid var(--brand);
+  background: transparent;
+  color: var(--brand);
+}
+
+.tracking-cancel {
+  border: 1px solid #ffdddd;
+  background: #ffe0df;
+  color: #c8143c;
+}
+
+.tracking-cancel > span {
+  margin-top: -2px;
+  font:
+    300 29px/1 Arial,
+    sans-serif;
+}
+
+
+.tracking-notice-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(22 19 18 / 0.62);
+  backdrop-filter: blur(3px);
+}
+
+.tracking-notice {
+  position: relative;
+  width: min(100%, 420px);
+  border-radius: 30px;
+  padding: 32px 24px 24px;
+  background: #fffaf6;
+  box-shadow: 0 18px 50px rgb(0 0 0 / 0.2);
+  text-align: center;
+}
+
+.tracking-notice-close {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 14px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font:
+    300 27px/1 Arial,
+    sans-serif;
+}
+
+.tracking-notice h2 {
+  margin: 12px 0 8px;
+  color: var(--text-primary);
+  font-size: 18px;
+}
+
+.tracking-notice p {
+  margin: 0 0 20px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.tracking-notice-ok {
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  border-radius: 17px;
+  background: linear-gradient(165deg, #f13e22 0%, #ff783c 100%);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+@media (max-width: 430px) {
+  .tracking-page {
+    padding-inline: 0;
+  }
+
+  .tracking-shell {
+    padding-inline: 24px;
+    box-shadow: none;
+  }
+
+  .tracking-header {
+    margin: 28px 0;
+  }
+
+  .tracking-eta {
+    margin-top: 23px;
+  }
+
+  .tracking-timeline {
+    grid-template-rows: repeat(4, minmax(100px, 1fr));
+    margin-top: 40px;
+  }
+}
+
+@media (max-height: 760px) {
+  .tracking-header {
+    margin: 28px 0;
+  }
+
+  .tracking-eta {
+    margin-top: 23px;
+  }
+
+  .tracking-timeline {
+    grid-template-rows: repeat(4, minmax(100px, 1fr));
+    margin-top: 24px;
+  }
+
+  .tracking-step {
+    min-height: 72px;
+  }
+}

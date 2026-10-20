@@ -1,0 +1,220 @@
+.privacy-policy-page {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #fff9f4;
+  color: #1b100c;
+}
+
+.privacy-policy-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(62% 25% at 100% 0%, rgb(255 224 213 / 72%), transparent 76%),
+    radial-gradient(48% 27% at 0% 40%, rgb(255 236 190 / 70%), transparent 74%),
+    radial-gradient(52% 28% at 100% 75%, rgb(255 228 216 / 68%), transparent 76%);
+}
+
+[dir="rtl"] .privacy-policy-background {
+  background:
+    radial-gradient(62% 25% at 0% 0%, rgb(255 224 213 / 72%), transparent 76%),
+    radial-gradient(48% 27% at 100% 40%, rgb(255 236 190 / 70%), transparent 74%),
+    radial-gradient(52% 28% at 0% 75%, rgb(255 228 216 / 68%), transparent 76%);
+}
+
+.privacy-policy-shell {
+  position: relative;
+  width: min(100%, 560px);
+  margin-inline: auto;
+  padding: max(28px, env(safe-area-inset-top)) 24px calc(28px + env(safe-area-inset-bottom));
+}
+
+.privacy-policy-header {
+  display: flex;
+  direction: ltr;
+  justify-content: flex-end;
+}
+
+.privacy-policy-back {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 68%);
+  color: #8b7166;
+  text-decoration: none;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.privacy-policy-back:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.privacy-policy-back-icon {
+  width: 23px;
+  height: 23px;
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .privacy-policy-back-icon {
+  transform: none;
+}
+
+.privacy-policy-title {
+  width: min(100%, 265px);
+  margin: 38px 0 0 auto;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.35;
+  text-align: end;
+}
+
+.privacy-policy-card {
+  position: relative;
+  margin-top: 154px;
+  padding: 34px 22px 24px;
+  border-radius: 30px;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 4px 12px rgb(70 43 27 / 12%);
+}
+
+.privacy-policy-shield {
+  position: absolute;
+  top: -112px;
+  left: 50%;
+  display: grid;
+  width: 120px;
+  height: 142px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 48%);
+  border-radius: 34px;
+  background: linear-gradient(145deg, #f14b25 4%, #ffae36 100%);
+  box-shadow: 0 16px 26px rgb(101 45 15 / 25%), inset 0 2px 4px rgb(255 255 255 / 45%);
+  transform: translateX(-50%);
+}
+
+.privacy-policy-shield > img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 3px rgb(63 29 10 / 28%));
+}
+
+.privacy-policy-orb {
+  position: absolute;
+  z-index: 1;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffedbd, #e7a74b);
+  box-shadow: 0 3px 6px rgb(75 39 12 / 20%);
+}
+
+.privacy-policy-orb-top {
+  top: -8px;
+  right: 2px;
+  width: 22px;
+  height: 22px;
+}
+
+.privacy-policy-orb-bottom {
+  bottom: 6px;
+  left: -9px;
+  width: 16px;
+  height: 16px;
+  background: #f34c27;
+}
+
+.privacy-policy-sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.privacy-policy-section {
+  padding: 22px 0 18px;
+  border-bottom: 1px solid #edd3aa;
+}
+
+.privacy-policy-section:first-child {
+  padding-top: 0;
+}
+
+.privacy-policy-section:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.privacy-policy-section h2 {
+  margin: 0 0 10px;
+  color: #dda451;
+  font-size: 1.25rem;
+  font-weight: 900;
+  line-height: 1.5;
+  text-align: end;
+}
+
+.privacy-policy-section p {
+  margin: 0;
+  color: #927b70;
+  font-size: clamp(0.94rem, 3.3vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.9;
+  text-align: end;
+}
+
+.privacy-policy-updated {
+  margin: 34px 0 0;
+  color: #d8a453;
+  font-size: clamp(0.92rem, 3.2vw, 1.1rem);
+  font-weight: 700;
+  line-height: 1.7;
+  text-align: center;
+}
+
+[dir="rtl"] .privacy-policy-title,
+[dir="rtl"] .privacy-policy-section h2,
+[dir="rtl"] .privacy-policy-section p {
+  text-align: right;
+}
+
+.privacy-policy-updated {
+  text-align: center;
+}
+
+[dir="ltr"] .privacy-policy-header {
+  justify-content: flex-start;
+}
+
+[dir="ltr"] .privacy-policy-title {
+  margin-right: auto;
+  margin-left: 0;
+  text-align: left;
+}
+
+[dir="ltr"] .privacy-policy-section h2,
+[dir="ltr"] .privacy-policy-section p,
+[dir="ltr"] .privacy-policy-updated {
+  text-align: left;
+}
+
+@media (max-width: 380px) {
+  .privacy-policy-shell {
+    padding-inline: 18px;
+  }
+
+  .privacy-policy-title {
+    margin-top: 30px;
+  }
+
+  .privacy-policy-card {
+    margin-top: 142px;
+    padding-inline: 18px;
+  }
+
+  .privacy-policy-section {
+    padding-block: 18px 16px;
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "nawyorders-pwa",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "next": "^16.4.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-leaflet": "^5.0.0",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^16.4.2",
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.4.0",
+    "lighthouse": "^13.5.0",
+    "postcss": "^8.4.39",
+    "puppeteer-core": "^25.15.0",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.0.0"
+  }
+}

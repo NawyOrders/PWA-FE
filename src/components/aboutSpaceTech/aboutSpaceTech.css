@@ -1,0 +1,451 @@
+.about-space-tech-page {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #fff9f4;
+  color: #1b100c;
+}
+
+.about-space-tech-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(62% 24% at 100% 0%, rgb(255 224 213 / 72%), transparent 76%),
+    radial-gradient(46% 25% at 0% 45%, rgb(255 236 190 / 68%), transparent 74%),
+    radial-gradient(52% 28% at 100% 78%, rgb(255 228 216 / 68%), transparent 76%);
+}
+
+[dir="rtl"] .about-space-tech-background {
+  background:
+    radial-gradient(62% 24% at 0% 0%, rgb(255 224 213 / 72%), transparent 76%),
+    radial-gradient(46% 25% at 100% 45%, rgb(255 236 190 / 68%), transparent 74%),
+    radial-gradient(52% 28% at 0% 78%, rgb(255 228 216 / 68%), transparent 76%);
+}
+
+.about-space-tech-shell {
+  position: relative;
+  width: min(100%, 700px);
+  margin-inline: auto;
+  padding: max(28px, env(safe-area-inset-top)) 28px calc(24px + env(safe-area-inset-bottom));
+}
+
+.about-space-tech-header {
+  display: flex;
+  direction: ltr;
+  justify-content: flex-end;
+}
+
+[dir="ltr"] .about-space-tech-header {
+  justify-content: flex-start;
+}
+
+.about-space-tech-back {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 68%);
+  color: #8b7166;
+  text-decoration: none;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.about-space-tech-back:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.about-space-tech-back-icon {
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .about-space-tech-back-icon {
+  transform: none;
+}
+
+.about-space-tech-hero {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  gap: clamp(20px, 6vw, 48px);
+  margin-top: -12px;
+  direction: ltr;
+}
+
+.about-space-tech-logo {
+  width: min(46%, 280px);
+  height: auto;
+  flex: 0 0 auto;
+  margin-left: -28px;
+  border-radius: 30%;
+  object-fit: contain;
+}
+
+.about-space-tech-intro {
+  min-width: 0;
+  flex: 1;
+}
+
+.about-space-tech-intro.is-rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.about-space-tech-intro.is-ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+.about-space-tech-intro > p {
+  margin: 0;
+  font-size: clamp(1.7rem, 6vw, 2.35rem);
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.about-space-tech-intro h1 {
+  margin: 6px 0 10px;
+  color: #a800a1;
+  font-size: clamp(1.7rem, 6vw, 2.35rem);
+  font-weight: 900;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.about-space-tech-intro > span {
+  display: block;
+  color: #8d7569;
+  font-size: clamp(0.84rem, 3vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.about-space-tech-services,
+.about-space-tech-contact {
+  margin-top: 36px;
+}
+
+.about-space-tech-services > h2,
+.about-space-tech-contact > h2 {
+  margin: 0 0 76px;
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1.4;
+  text-align: start;
+}
+
+.about-space-tech-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  direction: inherit;
+}
+
+.about-space-tech-service {
+  position: relative;
+  display: flex;
+  min-height: 145px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 12px 14px;
+  border: 1px solid rgb(255 238 217 / 92%);
+  border-radius: 30px;
+  background: rgb(255 255 255 / 48%);
+  box-shadow: 0 5px 14px rgb(90 49 22 / 7%);
+  text-align: center;
+}
+
+.about-space-tech-service-icon,
+.about-space-tech-contact-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 21px;
+  background: linear-gradient(145deg, #bc00b4 0%, #760071 100%);
+  box-shadow: 0 8px 12px rgb(68 0 67 / 20%);
+}
+
+.about-space-tech-service-icon {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  transform: translateX(-50%);
+}
+
+.about-space-tech-service-icon img {
+  width: 29px;
+  height: 29px;
+  object-fit: contain;
+}
+
+.about-space-tech-service h3 {
+  margin: 0;
+  font-size: clamp(0.88rem, 3.4vw, 1.1rem);
+  font-weight: 800;
+  line-height: 1.75;
+}
+
+.about-space-tech-contact {
+  margin-top: 74px;
+}
+
+.about-space-tech-contact > h2 {
+  margin-bottom: 28px;
+}
+
+.about-space-tech-contact-list {
+  display: grid;
+  gap: 16px;
+}
+
+.about-space-tech-contact-row {
+  display: flex;
+  min-height: 100px;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  border: 1px solid rgb(255 238 217 / 92%);
+  border-radius: 30px;
+  background: rgb(255 255 255 / 55%);
+  box-shadow: 0 5px 14px rgb(90 49 22 / 7%);
+  color: inherit;
+  text-decoration: none;
+}
+
+.about-space-tech-contact-row[href]:hover {
+  box-shadow: 0 8px 20px rgb(90 0 85 / 12%);
+}
+
+.about-space-tech-contact-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 17px;
+}
+
+.about-space-tech-contact-icon img {
+  width: 29px;
+  height: 29px;
+  object-fit: contain;
+}
+
+.about-space-tech-contact-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+  text-align: start;
+}
+
+.about-space-tech-contact-copy > span {
+  color: #6e176b;
+  font-size: clamp(0.9rem, 3.2vw, 1.08rem);
+  font-weight: 600;
+}
+
+.about-space-tech-contact-copy > strong {
+  color: #a800a1;
+  font-size: clamp(1rem, 3.8vw, 1.25rem);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+  text-align: start;
+}
+
+.about-space-tech-footer {
+  margin-top: 36px;
+  color: #a800a1;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  font-weight: 800;
+  text-align: center;
+}
+
+@media (max-width: 420px) {
+  .about-space-tech-shell {
+    padding-inline: 22px;
+  }
+
+  .about-space-tech-hero {
+    min-height: 260px;
+    gap: 16px;
+  }
+
+  .about-space-tech-logo {
+    width: 46%;
+    margin-left: -22px;
+  }
+
+  .about-space-tech-intro h1,
+  .about-space-tech-intro > span {
+    white-space: normal;
+  }
+
+  .about-space-tech-services,
+  .about-space-tech-contact {
+    margin-top: 28px;
+  }
+
+  .about-space-tech-services > h2 {
+    margin-bottom: 68px;
+  }
+
+  .about-space-tech-service-grid {
+    gap: 9px;
+  }
+
+  .about-space-tech-service {
+    min-height: 132px;
+    padding-inline: 7px;
+    padding-top: 43px;
+    border-radius: 25px;
+  }
+
+  .about-space-tech-service h3 {
+    font-size: clamp(0.76rem, 3.5vw, 0.9rem);
+  }
+
+  .about-space-tech-contact {
+    margin-top: 62px;
+  }
+
+  .about-space-tech-contact > h2 {
+    margin-bottom: 24px;
+  }
+
+  .about-space-tech-contact-list {
+    gap: 14px;
+  }
+
+  .about-space-tech-contact-row {
+    min-height: 92px;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 26px;
+  }
+
+  .about-space-tech-contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 17px;
+  }
+
+  .about-space-tech-contact-icon img {
+    width: 29px;
+    height: 29px;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-space-tech-shell {
+    width: min(100%, 620px);
+    padding: 24px 26px 28px;
+  }
+
+  .about-space-tech-back {
+    width: 48px;
+    height: 48px;
+  }
+
+  .about-space-tech-hero {
+    min-height: 250px;
+    gap: 28px;
+  }
+
+  .about-space-tech-logo {
+    width: min(40%, 210px);
+    margin-left: -26px;
+  }
+
+  .about-space-tech-intro > p,
+  .about-space-tech-intro h1 {
+    font-size: 1.9rem;
+  }
+
+  .about-space-tech-intro h1 {
+    margin-block: 4px 8px;
+  }
+
+  .about-space-tech-intro > span {
+    font-size: 0.9rem;
+  }
+
+  .about-space-tech-services,
+  .about-space-tech-contact {
+    margin-top: 20px;
+  }
+
+  .about-space-tech-services > h2,
+  .about-space-tech-contact > h2 {
+    margin-bottom: 58px;
+    font-size: 1.4rem;
+  }
+
+  .about-space-tech-service {
+    min-height: 132px;
+    padding: 43px 10px 14px;
+  }
+
+  .about-space-tech-service-icon {
+    top: -25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 17px;
+  }
+
+  .about-space-tech-service-icon img {
+    width: 29px;
+    height: 29px;
+  }
+
+  .about-space-tech-service h3 {
+    font-size: 0.95rem;
+  }
+
+  .about-space-tech-contact {
+    margin-top: 54px;
+  }
+
+  .about-space-tech-contact > h2 {
+    margin-bottom: 24px;
+  }
+
+  .about-space-tech-contact-list {
+    gap: 12px;
+  }
+
+  .about-space-tech-contact-row {
+    min-height: 82px;
+    gap: 16px;
+    padding: 12px 18px;
+    border-radius: 25px;
+  }
+
+  .about-space-tech-contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 17px;
+  }
+
+  .about-space-tech-contact-icon img {
+    width: 29px;
+    height: 29px;
+  }
+
+  .about-space-tech-contact-copy > span {
+    font-size: 0.9rem;
+  }
+
+  .about-space-tech-contact-copy > strong {
+    font-size: 1.05rem;
+  }
+
+  .about-space-tech-footer {
+    margin-top: 28px;
+    font-size: 0.9rem;
+  }
+}

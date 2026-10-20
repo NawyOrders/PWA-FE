@@ -1,0 +1,50 @@
+.ss-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(55% 35% at 100% 0%, var(--glow-peach) 0%, transparent 70%),
+    radial-gradient(55% 35% at 100% 100%, var(--glow-peach) 0%, transparent 70%),
+    radial-gradient(45% 30% at 0% 50%, var(--brand-gold-soft) 0%, transparent 70%);
+}
+
+[dir="rtl"] .ss-bg {
+  background-image:
+    radial-gradient(55% 35% at 0% 0%, var(--glow-peach) 0%, transparent 70%),
+    radial-gradient(55% 35% at 0% 100%, var(--glow-peach) 0%, transparent 70%),
+    radial-gradient(45% 30% at 100% 50%, var(--brand-gold-soft) 0%, transparent 70%);
+}
+
+.ss-column {
+  position: relative;
+  margin-inline: auto;
+  width: 100%;
+  padding-inline: 24px;
+  margin-top: clamp(24px, 4vw, 48px);
+  padding-bottom: calc(100px + env(safe-area-inset-bottom));
+}
+
+.ss-cta {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 40;
+  padding-inline: 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 768px) {
+  .ss-column {
+    width: min(100% - 48px, 480px);
+    padding-inline: 0;
+    padding-bottom: 48px;
+  }
+
+  .ss-cta {
+    position: static;
+    z-index: auto;
+    padding-inline: 0;
+    padding-bottom: 0;
+    margin-top: 32px;
+  }
+}

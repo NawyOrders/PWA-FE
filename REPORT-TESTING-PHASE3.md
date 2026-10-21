@@ -2,7 +2,7 @@
 
 Phase 3 — Unit specs for the Zustand stores of `src/store` and for the two hooks that exist in `src/lib`
 Changed: 9 new test files (7 stores, 2 hooks), 6 extra tests inside 4 Phase 2 files, `src/store/languageStore.ts` (validate the stored locale on rehydration)
-Verified: `npm test` (318/318 pass, 25 files), `npx tsc --noEmit` (pass), `npm run lint` (only the pre-existing `ItemDetail.tsx` error), `npm run test:cov` (`src/store` at 100% lines / 92% branches, `src/lib` at 99.28% lines / 98.33% branches, global gate still red as expected)
+Verified: `npm test` (318/318 pass, 25 files — the state at the end of Phase 3), `npx tsc --noEmit` (pass), `npm run lint` (only the pre-existing `ItemDetail.tsx` error), `npm run test:cov` (`src/store` at 100% lines / 92% branches, `src/lib` at 99.28% lines / 98.33% branches, global gate still red as expected)
 Build: pass (`tsc --noEmit` clean; the only lint error is pre-existing on `master`)
 Open questions: the spec rows of `TESTING.md` section 6 that describe staged edits, undo, dirty flags and the login-required flag are not implemented in the stores — they live in the screens, so they move to Phase 4; `chatStore`, `draftStore` and eight of the ten spec hooks do not exist in the repository.
 Next: Phase 4 — unit specs for the components and the screens
@@ -46,17 +46,19 @@ Extra tests inside the Phase 2 files (to close the branch gaps of `src/lib`):
 | `src/lib/useFocusTrap.test.tsx` | 12 | 12 | 0 |
 | `src/lib/useAuthGuard.test.ts` | 3 | 3 | 0 |
 | **Phase 3 new files** | **110** | **110** | **0** |
-| `src/lib/api.test.ts` (+4) | 19 | 19 | 0 |
+| `src/lib/api.test.ts` (+4) | 20 | 20 | 0 |
 | `src/lib/image.test.ts` (+1) | 19 | 19 | 0 |
 | `src/lib/geocoding.test.ts` (+1) | 13 | 13 | 0 |
-| `src/lib/delivery-addresses.test.ts` (+5) | 15 | 15 | 0 |
-| **Phase 3 total (new + extended)** | **116** | **116** | **0** |
-| Phase 1 + Phase 2 suites | 202 | 202 | 0 |
+| `src/lib/delivery-addresses.test.ts` (+5) | 19 | 19 | 0 |
+| **Phase 3 total (new + extended)** | **121** | **121** | **0** |
+| Phase 1 + Phase 2 suites | 208 | 208 | 0 |
 | **Repository total** | **318** | **318** | **0** |
 
 Test IDs follow `UT-<AREA>-<NN>` (`UT-CART-01`, `UT-AUTH-06`, `UT-LANG-06`, `UT-FOCUS-04`, `UT-GUARD-02`, …) and each title starts with the ID.
 
 ## 3. Coverage against `TESTING.md` section 10
+
+The numbers below are the state **at the end of Phase 3**. The current numbers live in `REPORT-TESTING-PHASE4.md`.
 
 | Area | Target lines / branches | Current | Status |
 |------|-------------------------|---------|--------|

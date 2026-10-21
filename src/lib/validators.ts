@@ -3,10 +3,16 @@ export const DISPLAY_NAME_MAX_LENGTH = 40;
 
 export type DisplayNameError = "required" | "short" | "letters" | "long";
 
-const DISPLAY_NAME_PATTERN = /^[A-Za-zء-ي\s'-]+$/;
+// Latin letters, Arabic letters (U+0621..U+064A), Arabic diacritics
+// (U+064B..U+0652, U+0670, U+06D6..U+06ED), spaces, hyphens and apostrophes.
+const DISPLAY_NAME_PATTERN = /^[A-Za-zء-يً-ٰٟۖ-ۭ\s'-]+$/;
+
+// Zero width space, zero width non-joiner, zero width joiner and the
+// zero width no-break space (BOM).
+const ZERO_WIDTH = /[\u200B-\u200D\uFEFF]/g;
 
 export function normalizeDisplayName(value: string): string {
-  return value.replace(/\s+/g, " ").trim();
+  return value.replace(ZERO_WIDTH, "").replace(/\s+/g, " ").trim();
 }
 
 export function validateDisplayName(value: string): DisplayNameError | null {

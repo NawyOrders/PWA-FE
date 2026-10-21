@@ -15,4 +15,14 @@ next-env.d.ts
 /CLAUDE.md 
 /DESIGN.md
 /TESTING.md
+/DESKTOP.md
+
+# Test artifacts
+/coverage/
+/playwright-report/
+/test-results/
+/blob-report/
+/.playwright/
+/.stryker-tmp/
+/.stryker-output/
 

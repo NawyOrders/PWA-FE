@@ -54,6 +54,37 @@ describe("getSavedAddresses", () => {
     );
     expect(getSavedAddresses()).toEqual([newAddress]);
   });
+
+  it("UT-ADDR-15 drops the entries whose fields have the wrong type", () => {
+    const broken = [
+      { ...newAddress, latitude: "31.2" },
+      { ...newAddress, longitude: "29.9" },
+      { ...newAddress, kind: 5 },
+      { ...newAddress, isDefault: "yes" },
+    ];
+    window.localStorage.setItem(ADDRESS_LIST_KEY, JSON.stringify(broken));
+
+    expect(getSavedAddresses()).toEqual([]);
+  });
+
+  it("UT-ADDR-16 returns the example addresses when there is no window", () => {
+    vi.stubGlobal("window", undefined);
+
+    expect(getSavedAddresses()).toEqual(exampleAddresses);
+
+    vi.unstubAllGlobals();
+  });
+
+  it("UT-ADDR-17 does not subscribe when there is no window", () => {
+    vi.stubGlobal("window", undefined);
+
+    const unsubscribe = subscribeToAddressChanges(() => {});
+
+    expect(typeof unsubscribe).toBe("function");
+    expect(() => unsubscribe()).not.toThrow();
+
+    vi.unstubAllGlobals();
+  });
 });
 
 describe("saveDeliveryAddress", () => {
@@ -116,6 +147,26 @@ describe("confirmDeliveryAddress", () => {
   it("UT-ADDR-12 stores the active address id", () => {
     confirmDeliveryAddress(newAddress);
     expect(window.localStorage.getItem(ACTIVE_ADDRESS_KEY)).toBe(newAddress.id);
+  });
+
+  it("UT-ADDR-18 confirms an address that is already stored", () => {
+    saveDeliveryAddress(newAddress);
+
+    const saved = confirmDeliveryAddress({ ...newAddress, label: "المنزل الجديد" });
+
+    expect(saved.filter((item) => item.id === newAddress.id)).toHaveLength(1);
+    expect(saved.find((item) => item.id === newAddress.id)?.label).toBe("المنزل الجديد");
+    expect(saved.find((item) => item.id === newAddress.id)?.isDefault).toBe(true);
+  });
+
+  it("UT-ADDR-19 refuses to write when the storage is not available", () => {
+    vi.stubGlobal("window", undefined);
+
+    expect(() => saveDeliveryAddress(newAddress)).toThrow(
+      "التخزين غير متاح على هذا الجهاز.",
+    );
+
+    vi.unstubAllGlobals();
   });
 });
 

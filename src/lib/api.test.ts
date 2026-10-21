@@ -198,4 +198,52 @@ describe("api mock layer", () => {
     const result = await pending;
     expect(result.ticket).toMatch(/^TK-[0-9A-Z]{1,6}$/);
   });
+
+  it("UT-API-17 keeps working when the stored attempts are corrupted", async () => {
+    window.sessionStorage.setItem("nawy-feedback-attempts", "{not json");
+
+    const pending = sendFeedback(feedbackInput());
+    await settle(SUPPORT_DELAY);
+    await expect(pending).resolves.toBeUndefined();
+  });
+
+  it("UT-API-18 ignores stored attempts that are not a list of numbers", async () => {
+    window.sessionStorage.setItem(
+      "nawy-feedback-attempts",
+      JSON.stringify({ "user-test": "not-a-list" }),
+    );
+
+    const pending = sendFeedback(feedbackInput());
+    await settle(SUPPORT_DELAY);
+    await expect(pending).resolves.toBeUndefined();
+  });
+
+  it("UT-API-19 ignores stored attempts that are not numbers", async () => {
+    window.sessionStorage.setItem(
+      "nawy-feedback-attempts",
+      JSON.stringify({ "user-test": ["now", null] }),
+    );
+
+    const pending = sendFeedback(feedbackInput());
+    await settle(SUPPORT_DELAY);
+    await expect(pending).resolves.toBeUndefined();
+  });
+
+  it("UT-API-20 keeps the rate limit in memory when there is no window", async () => {
+    vi.stubGlobal("window", undefined);
+
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      const pending = sendFeedback(feedbackInput({ userId: "user-ssr" }));
+      await settle(SUPPORT_DELAY);
+      await expect(pending).resolves.toBeUndefined();
+    }
+
+    const blocked = expect(
+      sendFeedback(feedbackInput({ userId: "user-ssr" })),
+    ).rejects.toBeInstanceOf(RateLimitError);
+    await settle(SUPPORT_DELAY);
+    await blocked;
+
+    vi.unstubAllGlobals();
+  });
 });

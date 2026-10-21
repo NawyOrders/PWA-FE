@@ -86,6 +86,16 @@ describe("reverseGeocode", () => {
 
     expect(receivedSignal).not.toBeNull();
   });
+
+  it("UT-GEO-13 throws the English message when the response has no display name", async () => {
+    server.use(
+      http.get(`${BASE}/reverse`, () => HttpResponse.json({ lat: "31.2" })),
+    );
+
+    await expect(
+      reverseGeocode({ lat: 31.5, lng: 29.9 }, undefined, "en"),
+    ).rejects.toThrow("No address was found for this location.");
+  });
 });
 
 describe("searchAddresses", () => {

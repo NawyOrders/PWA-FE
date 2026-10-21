@@ -167,4 +167,17 @@ describe("prepareUploadImage", () => {
 
     expect(result).toBe(file);
   });
+
+  it("UT-IMAGE-19 returns the original file when the 2d context is unavailable", async () => {
+    const calls: BlobCall[] = [];
+    stubCanvas(calls);
+    stubBitmap(400, 400);
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
+
+    const file = new File(["x"], "photo.png", { type: "image/png" });
+    const result = await prepareUploadImage(file);
+
+    expect(result).toBe(file);
+    expect(calls).toHaveLength(0);
+  });
 });

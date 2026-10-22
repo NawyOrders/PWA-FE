@@ -47,7 +47,7 @@ Tablet (768–1023px) uses the same templates with smaller gaps and one column f
 | Token | Value |
 |-------|-------|
 | `--container-max` | `1440px` |
-| `--gutter` | `24px` (mobile 16px, tablet 24px, desktop 32px) |
+| `--gutter` | `16px` below 768px, `24px` from 768px up |
 | Container width | `min(100% - 2 * var(--gutter), var(--container-max))`, centered with `margin-inline: auto` |
 | Focused column | `min(100% - 48px, 480px)`, centered |
 | Page background | full width, `width: 100%` (never `100vw`) |

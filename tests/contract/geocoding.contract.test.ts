@@ -4,10 +4,10 @@ import {
   ReverseGeocodeResponseSchema,
   SearchAddressSchema,
   SearchAddressesResponseSchema,
-} from "../../../src/lib/schemas/geocoding";
-import { reverseGeocode, searchAddresses } from "../../../src/lib/geocoding";
-import { respondAfter, respondOffline, respondWith, respondWithMalformedJson } from "../../mocks/network";
-import { server } from "../../mocks/server";
+} from "@/lib/schemas/geocoding";
+import { reverseGeocode, searchAddresses } from "@/lib/geocoding";
+import { respondAfter, respondOffline, respondWith, respondWithMalformedJson } from "../mocks/network";
+import { server } from "../mocks/server";
 import { http, HttpResponse } from "msw";
 
 const LOCATION = { lat: 31.2001, lng: 29.9187 };
@@ -106,7 +106,7 @@ describe("network: contract scenarios (TESTING.md 8.5)", () => {
     const p1 = reverseGeocode(LOCATION);
     const p2 = reverseGeocode(LOCATION);
     await Promise.all([p1, p2]);
-    expect(count).toBe(2); // independent calls both go through
+    expect(count).toBe(2);
   });
 
   it("UT-NET-SCN-10 out of order responses not overwriting newer", async () => {

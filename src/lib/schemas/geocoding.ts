@@ -1,10 +1,14 @@
 import { z } from "zod";
 
-export const ReverseGeocodeResponseSchema = z.object({
-  display_name: z.string().min(1).optional(),
-  lat: z.string().optional(),
-  lon: z.string().optional(),
-});
+export const ReverseGeocodeResponseSchema = z
+  .object({
+    display_name: z.string().min(1).optional(),
+    lat: z.string().optional(),
+    lon: z.string().optional(),
+  })
+  .refine((data) => typeof data.display_name === "string", {
+    message: "display_name is required",
+  });
 
 export const SearchAddressSchema = z.object({
   lat: z.string(),

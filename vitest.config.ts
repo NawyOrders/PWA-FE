@@ -11,7 +11,7 @@ export default defineConfig({
     css: false,
     restoreMocks: true,
     clearMocks: true,
-    include: ["src/**/*.test.{ts,tsx}", "tests/unit/**/*.test.{ts,tsx}"],
+    include: ["src/**/*.test.{ts,tsx}", "tests/unit/**/*.test.{ts,tsx}", "tests/contract/**/*.test.{ts,tsx}"],
     exclude: ["node_modules/**", ".next/**", "tests/e2e/**", "playwright-report/**", "test-results/**"],
     coverage: {
       provider: "v8",

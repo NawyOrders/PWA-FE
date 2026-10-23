@@ -12,6 +12,8 @@ export interface Dish {
   categoryId: CategoryId;
   featured?: boolean;
   tag?: LocalizedText;
+  /** Optional synonyms used by the language-independent search. */
+  keywords?: LocalizedText;
 }
 
 // Prices use minor currency units; medium matches the listed price, with small/large at 80%/120%.
@@ -30,6 +32,7 @@ export const dishes: Dish[] = [
     categoryId: "burger",
     featured: true,
     tag: { ar: "الاكثر مبيعا", en: "Best seller" },
+    keywords: { ar: "همبرجر برغر", en: "hamburger cheeseburger" },
   },
   {
     id: "gourmet-burger",
@@ -45,6 +48,7 @@ export const dishes: Dish[] = [
     categoryId: "burger",
     featured: true,
     tag: { ar: "مع بطاطس", en: "With fries" },
+    keywords: { ar: "شيدر جبنة", en: "cheddar cheese" },
   },
   {
     id: "classic-burger",
@@ -99,6 +103,7 @@ export const dishes: Dish[] = [
     categoryId: "shawarma",
     featured: true,
     tag: { ar: "ملفوف في خبز صاح", en: "Wrapped in saj bread" },
+    keywords: { ar: "فراخ دجاج راب", en: "chicken wrap" },
   },
   {
     id: "beef-shawarma",
@@ -139,6 +144,7 @@ export const dishes: Dish[] = [
     categoryId: "noodles",
     featured: true,
     tag: { ar: "جديد", en: "New" },
+    keywords: { ar: "معكرونة باستا", en: "pasta spaghetti" },
   },
   {
     id: "chef-noodles",
@@ -166,6 +172,7 @@ export const dishes: Dish[] = [
     categoryId: "desserts",
     featured: true,
     tag: { ar: "حلو المذاق", en: "Sweet treat" },
+    keywords: { ar: "دونات حلو", en: "donut dessert" },
   },
   {
     id: "three-donuts",
@@ -198,3 +205,4 @@ export const featuredDishes = dishes.filter((dish) => dish.featured);
 export function getDish(id: string): Dish | undefined {
   return dishes.find((dish) => dish.id === id);
 }
+

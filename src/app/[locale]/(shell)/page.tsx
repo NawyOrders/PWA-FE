@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { searchDishes, categorySearchLabels } from "@/lib/search";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import { brand } from "@/lib/brand";
@@ -33,13 +34,8 @@ export default function HomePage() {
   const guard = useAuthGuard();
 
   const list = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    if (query) {
-      return dishes.filter(
-        (dish) =>
-          dish.name.ar.toLowerCase().includes(query) ||
-          dish.name.en.toLowerCase().includes(query),
-      );
+    if (search.trim()) {
+      return searchDishes(dishes, search, categorySearchLabels);
     }
     if (activeCategory) {
       return dishes.filter((dish) => dish.categoryId === activeCategory);

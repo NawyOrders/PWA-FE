@@ -108,7 +108,7 @@ describe("persistence: missing and older payloads", () => {
     // FINDING: no store declares a `version`, so an unknown version marker
     // makes zustand persist drop the stored value instead of merging it.
     expect(useFavoritesStore.getState().ids).toEqual([]);
-    expect((useFavoritesStore.getState() as Record<string, unknown>).unknown).toBeUndefined();
+    expect(useFavoritesStore.getState()).not.toHaveProperty("unknown");
   });
 });
 

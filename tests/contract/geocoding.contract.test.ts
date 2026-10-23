@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { z } from "zod";
 import {
   ReverseGeocodeResponseSchema,
   SearchAddressSchema,
@@ -128,3 +127,4 @@ describe("network: contract scenarios (TESTING.md 8.5)", () => {
     expect(newRes).toBe("new");
   });
 });
+

@@ -5,6 +5,8 @@ import { getDictionary, interpolate } from "@/lib/i18n";
 import { I18nProvider as LegacyI18nProvider } from "@/lib/i18n";
 import { I18nProvider } from "@/lib/i18n/DictionaryProvider";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
+
+export type { Locale };
 import { setRoute } from "../mocks/router";
 import { advanceTimers } from "./timers";
 import { applyStoreSeeds, type StoreSeed } from "./stores";

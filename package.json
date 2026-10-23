@@ -15,7 +15,10 @@
     "test:e2e": "playwright test",
     "test:visual": "playwright test --project=visual",
     "test:a11y": "playwright test --grep @a11y",
-    "test:all": "npm run lint && npx tsc --noEmit && npm run test:cov && npm run build"
+    "test:all": "npm run lint && npm run typecheck:all && npm run test:cov && npm run build",
+    "typecheck:tests": "tsc -p tsconfig.test.json --noEmit",
+    "typecheck:all": "npm run typecheck && npm run typecheck:tests",
+    "check:norm": "node scripts/check-normalization.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

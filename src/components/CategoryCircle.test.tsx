@@ -36,19 +36,18 @@ describe("CategoryCircle", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("UT-CATEGORY-04 gives the image the name of the category", () => {
-    renderCategory();
+  it("UT-CATEGORY-04 marks the image as decorative because the button is named by the label", () => {
+    const { container } = renderCategory();
 
-    const image = screen.getByRole("img", { name: "برجر" });
+    const image = container.querySelector("img");
+    expect(image).toHaveAttribute("alt", "");
     expect(image).toHaveAttribute("src", expect.stringContaining("crack-burgers"));
   });
 
   it("UT-CATEGORY-05 uses the primary ring and label for the active category", () => {
-    renderCategory(true);
+    const { container } = renderCategory(true);
 
     expect(screen.getByText("برجر").className).toContain("text-primary");
-    expect(screen.getByRole("img", { name: "برجر" }).parentElement?.className).toContain(
-      "ring-primary",
-    );
+    expect(container.querySelector("img")?.parentElement?.className).toContain("ring-primary");
   });
 });

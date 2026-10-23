@@ -27,7 +27,7 @@ export function CategoryCircle({ label, image, active, onClick }: CategoryCircle
       >
         <Image
           src={dishImage(image, "small")}
-          alt={label}
+          alt=""
           fill
           sizes="(max-width: 1023px) 68px, 96px"
           quality={78}

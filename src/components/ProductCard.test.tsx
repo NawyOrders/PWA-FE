@@ -81,11 +81,13 @@ describe("ProductCard", () => {
     expect(screen.getByRole("button", { name: t("product.unfavorite") })).toBeInTheDocument();
   });
 
-  it("UT-CARD-09 shows the image of the dish with its name", () => {
-    const { dish } = renderCard();
+  it("UT-CARD-09 shows a decorative image and names the card link after the dish", () => {
+    const { dish, container } = renderCard();
 
-    const image = screen.getByRole("img", { name: dish.name.ar });
+    const image = container.querySelector("img");
     expect(image).toHaveAttribute("src", expect.stringContaining("crack-burgers"));
+    expect(image).toHaveAttribute("alt", "");
+    expect(screen.getByRole("link", { name: dish.name.ar })).toBeInTheDocument();
   });
 
   it("UT-CARD-10 keeps the buttons inside the card", () => {

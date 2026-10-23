@@ -1,4 +1,6 @@
 import { HttpResponse, delay, http } from "msw";
+
+type JsonBody = Parameters<typeof HttpResponse.json>[0];
 import { server } from "./server";
 import { GEOCODING_BASE } from "./handlers";
 import "./handlers";
@@ -8,13 +10,13 @@ import "./handlers";
  *
  * Only `fetch` and the clock are involved: no application module is mocked.
  */
-export function respondWith(status: number, body?: unknown): void {
+export function respondWith(status: number, body?: JsonBody): void {
   server.use(
     http.get(`${GEOCODING_BASE}/reverse`, () =>
-      body === undefined ? new HttpResponse(null, { status }) : HttpResponse.json(body as any, { status }),
+      body === undefined ? new HttpResponse(null, { status }) : HttpResponse.json(body, { status }),
     ),
     http.get(`${GEOCODING_BASE}/search`, () =>
-      body === undefined ? new HttpResponse(null, { status }) : HttpResponse.json(body as any, { status }),
+      body === undefined ? new HttpResponse(null, { status }) : HttpResponse.json(body, { status }),
     ),
   );
 }
@@ -36,15 +38,15 @@ export function respondWithMalformedJson(): void {
   );
 }
 
-export function respondAfter(ms: number, body: unknown): void {
+export function respondAfter(ms: number, body: JsonBody): void {
   server.use(
     http.get(`${GEOCODING_BASE}/reverse`, async () => {
       await delay(ms);
-      return HttpResponse.json(body as any);
+      return HttpResponse.json(body);
     }),
     http.get(`${GEOCODING_BASE}/search`, async () => {
       await delay(ms);
-      return HttpResponse.json(body as any);
+      return HttpResponse.json(body);
     }),
   );
 }
@@ -71,3 +73,4 @@ export function countRequests(): () => number {
   );
   return () => count;
 }
+

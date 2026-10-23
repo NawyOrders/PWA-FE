@@ -1,15 +1,16 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import HomePage from "./page";
-import { renderWithProviders } from "../../../../tests/utils/render";
+import { renderWithProviders, type Locale } from "../../../../tests/utils/render";
 import { useCartStore } from "@/store/cartStore";
 import { useUiStore } from "@/store/uiStore";
 import { categories } from "@/data/categories";
 import { dishes } from "@/data/dishes";
 
-function renderHome(stores = {}) {
+function renderHome(stores = {}, locale: Locale = "ar") {
   return renderWithProviders(<HomePage />, {
-    route: "/ar",
+    locale,
+    route: `/${locale}`,
     stores: { auth: { isLoggedIn: false, user: null }, ...stores },
   });
 }
@@ -119,5 +120,39 @@ describe("HomePage", () => {
     await user.click(screen.getByRole("button", { name: t("common.menu") }));
 
     expect(useUiStore.getState().drawerOpen).toBe(true);
+  });
+
+  it("UT-PAGE-HOME-13 finds an Arabic-named dish on the English site", async () => {
+    const { user, t } = renderHome({}, "en");
+
+    await user.type(screen.getByRole("textbox", { name: t("common.search") }), "شاورما دجاج");
+
+    expect(screen.getAllByRole("link", { name: dishes[5].name.en }).length).toBeGreaterThan(0);
+    expect(screen.queryByText(t("home.noResults"))).not.toBeInTheDocument();
+  });
+
+  it("UT-PAGE-HOME-14 finds an English-named dish on the Arabic site", async () => {
+    const { user, t } = renderHome();
+
+    await user.type(screen.getByRole("textbox", { name: t("common.search") }), "pasta");
+
+    expect(screen.getAllByRole("link", { name: dishes[8].name.ar }).length).toBeGreaterThan(0);
+  });
+
+  it("UT-PAGE-HOME-15 normalizes Arabic variants and diacritics", async () => {
+    const { user, t } = renderHome();
+
+    await user.type(screen.getByRole("textbox", { name: t("common.search") }), "طازجه");
+
+    expect(screen.getAllByRole("link", { name: dishes[3].name.ar }).length).toBeGreaterThan(0);
+  });
+
+  it("UT-PAGE-HOME-16 matches the category name in either language", async () => {
+    const { user, t } = renderHome({}, "en");
+
+    await user.type(screen.getByRole("textbox", { name: t("common.search") }), "حلويات");
+
+    expect(screen.getAllByRole("link", { name: dishes[10].name.en }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: dishes[12].name.en }).length).toBeGreaterThan(0);
   });
 });

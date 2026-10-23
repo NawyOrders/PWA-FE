@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { renderWithProviders, LOCALES } from "../../utils/render";
-import { expectNoAxeViolations, runAxe } from "../../utils/axe";
+import { expectNoAxeViolations } from "../../utils/axe";
 import { dishes } from "@/data/dishes";
+import { makeUser } from "../../factories";
 import HomePage from "@/app/[locale]/(shell)/page";
 import MenuPage from "@/app/[locale]/(shell)/menu/page";
 import FavoritesPage from "@/app/[locale]/(shell)/favorites/page";
@@ -24,6 +25,8 @@ import OfflinePage from "@/app/[locale]/offline/page";
  * hide the content of the real screens.
  */
 const screens: Array<{ name: string; route: string; render: () => React.ReactElement }> = [
+  { name: "home", route: "/ar", render: () => <HomePage /> },
+  { name: "menu", route: "/ar/menu", render: () => <MenuPage /> },
   { name: "favorites", route: "/ar/favorites", render: () => <FavoritesPage /> },
   { name: "cart", route: "/ar/cart", render: () => <CartPage /> },
   { name: "orders", route: "/ar/orders", render: () => <OrdersPage /> },
@@ -39,7 +42,7 @@ const screens: Array<{ name: string; route: string; render: () => React.ReactEle
 ];
 
 const stores = {
-  auth: { isLoggedIn: true, user: { name: "محمد" } },
+  auth: { isLoggedIn: true, user: makeUser({ name: "محمد" }) },
   cart: {
     items: [
       {
@@ -72,40 +75,4 @@ describe("axe: the screens", () => {
   }
 });
 
-/**
- * The screens that report a violation today. Each entry keeps the defect
- * visible and fails as soon as the screen is fixed.
- */
-const knownIssues: Array<{ name: string; rules: string[]; route: string; render: () => React.ReactElement }> = [
-  {
-    name: "home",
-    rules: ["image-redundant-alt"],
-    route: "/ar",
-    render: () => <HomePage />,
-  },
-  {
-    name: "menu",
-    rules: ["heading-order", "image-redundant-alt"],
-    route: "/ar/menu",
-    render: () => <MenuPage />,
-  },
-];
 
-describe("axe: the known screen defects", () => {
-  for (const issue of knownIssues) {
-    for (const [locale] of LOCALES) {
-      it(`UT-A11Y-KNOWN-SCREEN-${issue.name.toUpperCase()}-${locale.toUpperCase()} still reports ${issue.rules.join(", ")}`, async () => {
-        const { container } = renderWithProviders(issue.render(), {
-          locale,
-          route: issue.route.replace("/ar", `/${locale}`),
-          stores,
-        });
-
-        const results = await runAxe(container);
-        const reported = [...new Set(results.violations.map((violation) => violation.id))].sort();
-
-        expect(reported).toEqual([...issue.rules].sort());
-      });
-    }
-  }
-});

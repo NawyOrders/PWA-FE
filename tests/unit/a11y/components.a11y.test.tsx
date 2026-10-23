@@ -11,7 +11,6 @@ import { CircleIconButton } from "@/components/CircleIconButton";
 import { SearchPill } from "@/components/SearchPill";
 import { StarRating } from "@/components/StarRating";
 import { ImageUpload } from "@/components/ImageUpload";
-import { CategoryCircle } from "@/components/CategoryCircle";
 import { ListRow } from "@/components/ListRow";
 import { EmptyState } from "@/components/EmptyState";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -252,18 +251,6 @@ describe("axe: the shared components", () => {
  * the app is fixed, which is the signal to delete the entry.
  */
 const knownIssues: Array<{ name: string; rules: string[]; render: () => React.ReactElement }> = [
-  {
-    name: "CategoryCircle",
-    rules: ["image-redundant-alt"],
-    render: () => (
-      <CategoryCircle
-        label="برجر"
-        image="/images/categories/burger.jpg"
-        active
-        onClick={() => undefined}
-      />
-    ),
-  },
   {
     name: "Drawer",
     rules: ["aria-allowed-role"],

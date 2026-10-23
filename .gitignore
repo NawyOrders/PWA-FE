@@ -14,4 +14,22 @@ next-env.d.ts
 /ASENTS.md
 /CLAUDE.md 
 /DESIGN.md
+/TESTING.md
+/DESKTOP.md
+/BRAND.md
 
+# Test artifacts
+/coverage/
+/playwright-report/
+/test-results/
+/blob-report/
+/.playwright/
+/.stryker-tmp/
+/.stryker-output/
+/REPORT-PERFORMANCE-PHASE1.md
+/REPORT-PERFORMANCE.md
+/REPORT-TESTING-PHASE1.md
+/REPORT-TESTING-PHASE2.md
+/REPORT-TESTING-PHASE3.md
+/REPORT-TESTING-PHASE4.md
+/restaurant_app_bug_report.md

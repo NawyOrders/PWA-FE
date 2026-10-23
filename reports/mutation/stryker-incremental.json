@@ -1,0 +1,370 @@
+{
+  "files": {
+    "src/lib/format.ts": {
+      "language": "typescript",
+      "mutants": [
+        {
+          "id": "2",
+          "mutatorName": "MethodExpression",
+          "replacement": "Math.min(0, value)",
+          "status": "Survived",
+          "static": false,
+          "testsCompleted": 0,
+          "coveredBy": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 36,
+              "line": 5
+            },
+            "start": {
+              "column": 18,
+              "line": 5
+            }
+          }
+        },
+        {
+          "id": "3",
+          "mutatorName": "StringLiteral",
+          "replacement": "\"\"",
+          "status": "Survived",
+          "static": false,
+          "testsCompleted": 0,
+          "coveredBy": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 47,
+              "line": 7
+            },
+            "start": {
+              "column": 40,
+              "line": 7
+            }
+          }
+        },
+        {
+          "id": "0",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "static": false,
+          "testsCompleted": 0,
+          "coveredBy": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 13
+            },
+            "start": {
+              "column": 68,
+              "line": 4
+            }
+          }
+        },
+        {
+          "id": "1",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "Math.max(0, value) * 100",
+          "status": "Survived",
+          "static": false,
+          "testsCompleted": 0,
+          "coveredBy": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 42,
+              "line": 5
+            },
+            "start": {
+              "column": 18,
+              "line": 5
+            }
+          }
+        },
+        {
+          "id": "4",
+          "mutatorName": "ObjectLiteral",
+          "replacement": "{}",
+          "status": "Survived",
+          "static": false,
+          "testsCompleted": 0,
+          "coveredBy": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 10
+            },
+            "start": {
+              "column": 49,
+              "line": 7
+            }
+          }
+        },
+        {
+          "id": "5",
+          "mutatorName": "StringLiteral",
+          "replacement": "``",
+          "status": "Survived",
+          "static": false,
+          "testsCompleted": 0,
+          "coveredBy": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "location": {
+            "end": {
+              "column": 33,
+              "line": 12
+            },
+            "start": {
+              "column": 10,
+              "line": 12
+            }
+          }
+        }
+      ],
+      "source": "import { getDictionary } from \"./i18n\";\r\nimport type { Locale } from \"./i18n/types\";\r\n\r\nexport function formatPrice(value: number, locale: Locale): string {\r\n  const amount = Math.max(0, value) / 100;\r\n  const isWhole = Number.isInteger(amount);\r\n  const digits = new Intl.NumberFormat(\"en-US\", {\r\n    minimumFractionDigits: isWhole ? 0 : 2,\r\n    maximumFractionDigits: isWhole ? 0 : 2,\r\n  }).format(amount);\r\n  const { currency } = getDictionary(locale).common;\r\n  return `${digits} ${currency}`;\r\n}\r\n"
+    }
+  },
+  "schemaVersion": "1.0",
+  "thresholds": {
+    "high": 85,
+    "low": 70,
+    "break": 65
+  },
+  "testFiles": {
+    "src/lib/format.property.test.ts": {
+      "tests": [
+        {
+          "id": "0",
+          "name": "property: formatPrice UT-PRICE-P1 never throws for a non-negative amount"
+        },
+        {
+          "id": "1",
+          "name": "property: formatPrice UT-PRICE-P2 writes the amount with Latin digits only"
+        },
+        {
+          "id": "2",
+          "name": "property: formatPrice UT-PRICE-P3 parses the output back to the original value in pounds"
+        },
+        {
+          "id": "3",
+          "name": "property: formatPrice UT-PRICE-P4 never renders a negative amount"
+        }
+      ],
+      "source": "import { describe, expect, it } from \"vitest\";\nimport { fc, fcOptions } from \"../../tests/utils/fc\";\nimport { formatPrice } from \"./format\";\nimport { locales } from \"./i18n\";\n\nconst LATIN_DIGITS = /^[0-9,]+(\\.[0-9]{1,2})?$/;\nconst ARABIC_INDIC = /[\\u0660-\\u0669\\u06F0-\\u06F9]/;\n\ndescribe(\"property: formatPrice\", () => {\n  it(\"UT-PRICE-P1 never throws for a non-negative amount\", () => {\n    fc.assert(\n      fc.property(\n        fc.integer({ min: 0, max: 1_000_000_000 }),\n        fc.constantFrom(...locales),\n        (value, locale) => {\n          expect(() => formatPrice(value, locale)).not.toThrow();\n        },\n      ),\n      fcOptions,\n    );\n  });\n\n  it(\"UT-PRICE-P2 writes the amount with Latin digits only\", () => {\n    fc.assert(\n      fc.property(\n        fc.integer({ min: 0, max: 1_000_000_000 }),\n        fc.constantFrom(...locales),\n        (value, locale) => {\n          const output = formatPrice(value, locale);\n          const amount = output.slice(0, output.indexOf(\" \"));\n\n          expect(amount).toMatch(LATIN_DIGITS);\n          expect(output).not.toMatch(ARABIC_INDIC);\n        },\n      ),\n      fcOptions,\n    );\n  });\n\n  it(\"UT-PRICE-P3 parses the output back to the original value in pounds\", () => {\n    fc.assert(\n      fc.property(\n        fc.integer({ min: 0, max: 1_000_000 }).map((piasters) => piasters * 100),\n        fc.constantFrom(...locales),\n        (value, locale) => {\n          const output = formatPrice(value, locale);\n          const pounds = Number(output.slice(0, output.indexOf(\" \")).replace(/,/g, \"\"));\n\n          expect(pounds).toBe(value / 100);\n        },\n      ),\n      fcOptions,\n    );\n  });\n\n  it(\"UT-PRICE-P4 never renders a negative amount\", () => {\n    fc.assert(\n      fc.property(\n        fc.integer({ min: -1_000_000, max: 0 }),\n        fc.constantFrom(...locales),\n        (value, locale) => {\n          expect(formatPrice(value, locale)).toBe(formatPrice(0, locale));\n        },\n      ),\n      fcOptions,\n    );\n  });\n});\n"
+    },
+    "src/lib/format.test.ts": {
+      "tests": [
+        {
+          "id": "4",
+          "name": "formatPrice UT-FORMAT-01 renders a whole amount without decimals in Arabic"
+        },
+        {
+          "id": "5",
+          "name": "formatPrice UT-FORMAT-02 renders a whole amount without decimals in English"
+        },
+        {
+          "id": "6",
+          "name": "formatPrice UT-FORMAT-03 renders two decimals when the amount is not a whole pound"
+        },
+        {
+          "id": "7",
+          "name": "formatPrice UT-FORMAT-04 renders zero"
+        },
+        {
+          "id": "8",
+          "name": "formatPrice UT-FORMAT-05 clamps a negative amount to zero"
+        },
+        {
+          "id": "9",
+          "name": "formatPrice UT-FORMAT-06 always uses Latin digits in both languages"
+        },
+        {
+          "id": "10",
+          "name": "formatPrice UT-FORMAT-07 formats very large amounts without losing precision"
+        },
+        {
+          "id": "11",
+          "name": "formatPrice UT-FORMAT-08 never rounds off by one piaster"
+        }
+      ],
+      "source": "import { describe, expect, it } from \"vitest\";\nimport { formatPrice } from \"./format\";\nimport { getDictionary } from \"./i18n\";\n\nconst ar = getDictionary(\"ar\");\nconst en = getDictionary(\"en\");\n\ndescribe(\"formatPrice\", () => {\n  it(\"UT-FORMAT-01 renders a whole amount without decimals in Arabic\", () => {\n    expect(formatPrice(12000, \"ar\")).toBe(`120 ${ar.common.currency}`);\n  });\n\n  it(\"UT-FORMAT-02 renders a whole amount without decimals in English\", () => {\n    expect(formatPrice(12000, \"en\")).toBe(`120 ${en.common.currency}`);\n  });\n\n  it(\"UT-FORMAT-03 renders two decimals when the amount is not a whole pound\", () => {\n    expect(formatPrice(12050, \"ar\")).toBe(`120.50 ${ar.common.currency}`);\n    expect(formatPrice(12050, \"en\")).toBe(`120.50 ${en.common.currency}`);\n  });\n\n  it(\"UT-FORMAT-04 renders zero\", () => {\n    expect(formatPrice(0, \"ar\")).toBe(`0 ${ar.common.currency}`);\n    expect(formatPrice(0, \"en\")).toBe(`0 ${en.common.currency}`);\n  });\n\n  it(\"UT-FORMAT-05 clamps a negative amount to zero\", () => {\n    expect(formatPrice(-1, \"ar\")).toBe(`0 ${ar.common.currency}`);\n    expect(formatPrice(-999999, \"en\")).toBe(`0 ${en.common.currency}`);\n  });\n\n  it(\"UT-FORMAT-06 always uses Latin digits in both languages\", () => {\n    expect(formatPrice(12000, \"ar\")).not.toMatch(/[٠-٩]/);\n    expect(formatPrice(12000, \"en\")).not.toMatch(/[٠-٩]/);\n    expect(formatPrice(12000, \"ar\")).toMatch(/[0-9]/);\n  });\n\n  it(\"UT-FORMAT-07 formats very large amounts without losing precision\", () => {\n    expect(formatPrice(100_000_000, \"en\")).toBe(`1,000,000 ${en.common.currency}`);\n  });\n\n  it(\"UT-FORMAT-08 never rounds off by one piaster\", () => {\n    expect(formatPrice(12099, \"en\")).toBe(`120.99 ${en.common.currency}`);\n    expect(formatPrice(12001, \"en\")).toBe(`120.01 ${en.common.currency}`);\n    expect(formatPrice(1, \"en\")).toBe(`0.01 ${en.common.currency}`);\n    expect(formatPrice(99, \"en\")).toBe(`0.99 ${en.common.currency}`);\n  });\n});\n"
+    }
+  },
+  "projectRoot": "E:\\PWA.FE\\PWA-FE",
+  "config": {
+    "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+    "_comment": "Mutation testing for the pure logic and the stores (TESTING.md section 8.2). Run nightly and before a release with `npm run test:mut`, never per commit.",
+    "testRunner": "vitest",
+    "vitest": {
+      "configFile": "vitest.mutation.config.ts",
+      "dir": ".",
+      "related": true
+    },
+    "mutate": [
+      "src/lib/format.ts"
+    ],
+    "ignorePatterns": [
+      ".next",
+      "coverage",
+      "playwright-report",
+      "test-results"
+    ],
+    "reporters": [
+      "clear-text"
+    ],
+    "htmlReporter": {
+      "fileName": "reports/mutation/mutation.html"
+    },
+    "thresholds": {
+      "high": 85,
+      "low": 70,
+      "break": 65
+    },
+    "incremental": true,
+    "incrementalFile": "reports/mutation/stryker-incremental.json",
+    "concurrency": 4,
+    "timeoutMS": 20000,
+    "tempDirName": ".stryker-tmp",
+    "cleanTempDir": true,
+    "allowConsoleColors": true,
+    "checkers": [],
+    "checkerNodeArgs": [],
+    "commandRunner": {
+      "command": "npm test"
+    },
+    "coverageAnalysis": "perTest",
+    "clearTextReporter": {
+      "allowColor": true,
+      "allowEmojis": false,
+      "logTests": true,
+      "maxTestsToLog": 3,
+      "reportTests": true,
+      "reportMutants": true,
+      "reportScoreTable": true,
+      "skipFull": false
+    },
+    "dashboard": {
+      "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+      "reportType": "full"
+    },
+    "dryRunOnly": false,
+    "eventReporter": {
+      "baseDir": "reports/mutation/events"
+    },
+    "ignoreStatic": false,
+    "force": false,
+    "fileLogLevel": "off",
+    "inPlace": false,
+    "logLevel": "info",
+    "maxConcurrentTestRunners": 9007199254740991,
+    "maxTestRunnerReuse": 0,
+    "mutator": {
+      "plugins": null,
+      "excludedMutations": []
+    },
+    "plugins": [
+      "@stryker-mutator/*"
+    ],
+    "appendPlugins": [],
+    "jsonReporter": {
+      "fileName": "reports/mutation/mutation.json"
+    },
+    "disableTypeChecks": true,
+    "symlinkNodeModules": true,
+    "testRunnerNodeArgs": [],
+    "timeoutFactor": 1.5,
+    "dryRunTimeoutMinutes": 5,
+    "tsconfigFile": "tsconfig.json",
+    "warnings": true,
+    "disableBail": false,
+    "allowEmpty": false,
+    "ignorers": [],
+    "testFiles": []
+  },
+  "framework": {
+    "name": "StrykerJS",
+    "version": "10.0.0",
+    "branding": {
+      "homepageUrl": "https://stryker-mutator.io",
+      "imageUrl": "data:image/svg+xml;utf8,%3Csvg viewBox='0 0 1458 1458' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2'%3E%3Cpath fill='none' d='M0 0h1458v1458H0z'/%3E%3CclipPath id='a'%3E%3Cpath d='M0 0h1458v1458H0z'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23a)'%3E%3Cpath d='M1458 729c0 402.655-326.345 729-729 729S0 1131.655 0 729C0 326.445 326.345 0 729 0s729 326.345 729 729' fill='%23e74c3c' fill-rule='nonzero'/%3E%3Cpath d='M778.349 1456.15L576.6 1254.401l233-105 85-78.668v-64.332l-257-257-44-187-50-208 251.806-82.793L1076.6 389.401l380.14 379.15c-19.681 367.728-311.914 663.049-678.391 687.599z' fill-opacity='.3'/%3E%3Cpath d='M753.4 329.503c41.79 0 74.579 7.83 97.925 25.444 23.571 18.015 41.69 43.956 55.167 77.097l11.662 28.679 165.733-58.183-14.137-32.13c-26.688-60.655-64.896-108.61-114.191-144.011-49.329-35.423-117.458-54.302-204.859-54.302-50.78 0-95.646 7.376-134.767 21.542-40.093 14.671-74.09 34.79-102.239 60.259-28.84 26.207-50.646 57.06-65.496 92.701-14.718 35.052-22.101 72.538-22.101 112.401 0 72.536 20.667 133.294 61.165 182.704 38.624 47.255 98.346 88.037 179.861 121.291 42.257 17.475 78.715 33.125 109.227 46.994 27.193 12.361 49.294 26.124 66.157 41.751 15.309 14.186 26.497 30.584 33.63 49.258 7.721 20.214 11.16 45.69 11.16 76.402 0 28.021-4.251 51.787-13.591 71.219-8.832 18.374-20.171 33.178-34.523 44.219-14.787 11.374-31.193 19.591-49.393 24.466-19.68 5.359-39.14 7.993-58.69 7.993-29.359 0-54.387-3.407-75.182-10.747-20.112-7.013-37.144-16.144-51.259-27.486-13.618-11.009-24.971-23.766-33.744-38.279-9.64-15.8-17.272-31.924-23.032-48.408l-10.965-31.376-161.669 60.585 10.734 30.124c10.191 28.601 24.197 56.228 42.059 82.748 18.208 27.144 41.322 51.369 69.525 72.745 27.695 21.075 60.904 38.218 99.481 51.041 37.777 12.664 82.004 19.159 132.552 19.159 49.998 0 95.818-8.321 137.611-24.622 42.228-16.471 78.436-38.992 108.835-67.291 30.719-28.597 54.631-62.103 71.834-100.642 17.263-38.56 25.923-79.392 25.923-122.248 0-54.339-8.368-100.37-24.208-138.32-16.29-38.759-38.252-71.661-65.948-98.797-26.965-26.418-58.269-48.835-93.858-67.175-33.655-17.241-69.196-33.11-106.593-47.533-35.934-13.429-65.822-26.601-89.948-39.525-22.153-11.868-40.009-24.21-53.547-37.309-11.429-11.13-19.83-23.678-24.718-37.664-5.413-15.49-7.98-33.423-7.98-53.577 0-40.883 11.293-71.522 37.086-90.539 28.443-20.825 64.985-30.658 109.311-30.658z' fill='%23f1c40f' fill-rule='nonzero'/%3E%3Cpath d='M720 0h18v113h-18zM1458 738v-18h-113v18h113zM720 1345h18v113h-18zM113 738v-18H0v18h113z'/%3E%3C/g%3E%3C/svg%3E"
+    },
+    "dependencies": {
+      "typescript": "5.9.3"
+    }
+  }
+}

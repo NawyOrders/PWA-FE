@@ -40,8 +40,8 @@ export function DesktopNav() {
   };
 
   return (
-    <header className="sticky top-0 z-30 hidden border-b border-line glass-bar lg:block">
-      <div className="container-x flex h-[var(--header-h)] items-center gap-4">
+    <header className="sticky top-0 z-30 hidden h-[var(--header-h)] border-b border-line glass-bar lg:block">
+      <div className="container-x flex h-full items-center gap-4">
         <Link
           href={`/${locale}`}
           className="shrink-0 rounded-2xl transition-opacity hover:opacity-80"
@@ -56,7 +56,7 @@ export function DesktopNav() {
               key={item.key}
               href={item.href}
               className={cn(
-                "whitespace-nowrap rounded-full px-3 py-2 text-[0.9375rem] font-bold transition-colors xl:px-4",
+                "inline-flex min-h-11 items-center whitespace-nowrap rounded-full px-3 py-2 text-[0.9375rem] font-bold transition-colors xl:px-4",
                 isActive(item.href, item.exact)
                   ? "bg-primary-tint text-primary"
                   : "text-title hover:bg-surface-muted",
@@ -74,7 +74,7 @@ export function DesktopNav() {
               onClick={() => changeLocale("en")}
               aria-pressed={locale === "en"}
               className={cn(
-                "h-8 rounded-full px-3 font-latin text-[0.8125rem] font-bold transition-colors",
+                "inline-flex h-11 items-center rounded-full px-3 font-latin text-[0.8125rem] font-bold transition-colors",
                 locale === "en" ? "bg-primary text-white" : "text-muted hover:text-title",
               )}
             >
@@ -85,7 +85,7 @@ export function DesktopNav() {
               onClick={() => changeLocale("ar")}
               aria-pressed={locale === "ar"}
               className={cn(
-                "h-8 rounded-full px-3 text-[0.8125rem] font-bold transition-colors",
+                "inline-flex h-11 items-center rounded-full px-3 text-[0.8125rem] font-bold transition-colors",
                 locale === "ar" ? "bg-primary text-white" : "text-muted hover:text-title",
               )}
             >
@@ -121,3 +121,4 @@ export function DesktopNav() {
     </header>
   );
 }
+

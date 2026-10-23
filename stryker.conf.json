@@ -1,0 +1,41 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "Mutation testing for the pure logic and the stores (TESTING.md section 8.2). Run nightly and before a release with `npm run test:mut`, never per commit.",
+  "testRunner": "vitest",
+  "vitest": {
+    "configFile": "vitest.mutation.config.ts",
+    "dir": ".",
+    "related": true
+  },
+  "mutate": [
+    "src/lib/**/*.ts",
+    "src/store/**/*.ts",
+    "!src/**/*.test.ts",
+    "!src/**/*.test.tsx",
+    "!src/data/**",
+    "!src/lib/i18n/ar.ts",
+    "!src/lib/i18n/en.ts",
+    "!src/lib/**/index.ts"
+  ],
+  "ignorePatterns": [
+    ".next",
+    "coverage",
+    "playwright-report",
+    "test-results"
+  ],
+  "reporters": ["html", "clear-text", "progress"],
+  "htmlReporter": {
+    "fileName": "reports/mutation/mutation.html"
+  },
+  "thresholds": {
+    "high": 85,
+    "low": 70,
+    "break": 65
+  },
+  "incremental": true,
+  "incrementalFile": "reports/mutation/stryker-incremental.json",
+  "concurrency": 4,
+  "timeoutMS": 20000,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true
+}

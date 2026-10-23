@@ -1,6 +1,6 @@
 # AGENTS.md — Agent workflow for the Karam El Sham app
 
-For coding agents (opencode, Claude Code, others). Always read, in this order: `AGENTS.md` (this file), `CLAUDE.md` (conventions and hard rules), `DESIGN.md` (visual spec). If they conflict, `DESIGN.md` wins on visuals and `CLAUDE.md` wins on code conventions.
+For coding agents (opencode, Claude Code, others). Always read, in this order: `AGENTS.md` (this file), `CLAUDE.md` (conventions and hard rules), `DESIGN.md` (visual spec, desktop in section 13), `DESKTOP.md` (desktop audit and normalization plan) and `TESTING.md` (test plan). If they conflict, `DESIGN.md` wins on visuals (and on mobile), `DESKTOP.md` wins on desktop layout details and the migration order, and `CLAUDE.md` wins on code conventions.
 
 ## Operating principles
 
@@ -59,10 +59,20 @@ Done when: a `/dev/components` page (dev only) shows every component in AR and E
 
 **Phase 5 — PWA**: `app/manifest.ts` (name, short name, colors from tokens, `lang: "ar"`, `dir: "rtl"`), icons generated from the logo (192, 512, maskable 512 with safe padding on a solid background, apple-touch 180), hand-written `public/sw.js` (network-first navigations with `/offline.html` fallback, no caching of `/_next/static`), `RegisterSW` that registers in production only. Test with `npm run build && npm start`.
 
+**Phase 6 — Desktop design and normalization** (spec: `DESIGN.md` section 13, plan: `DESKTOP.md`)
+- Safety: commit pending work as "chore: checkpoint" and create the branch `fix/desktop-normalization`.
+- Measure first, no edits: with Playwright or DevTools collect computed values (container width and margins, header height, font sizes, paddings, radii, grid columns, horizontal overflow, what the dark strip at the bottom edge is) for every page at 1366×768, 1440×900 and 1920×1080 in Arabic and English; fill the audit table of `DESKTOP.md` section 1 for every page; run `knip`, `jscpd` and the normalization scan. Report before changing anything.
+- Foundations: one token file, the type scale, radius, z-index and shadow tokens, the layout primitives and the UI primitive family; merge duplicate components and migrate every use.
+- Pages in this order: header and footer, Home, Menu, Favorites, Orders, Cart, the focused screens (Login, Profile and its sub-screens, Help set), chat, website sections. After each page: build, lint, tests, and a desktop measurement against `DESIGN.md` 13.10.
+- Cleanup and enforcement: remove proven dead code and duplicates with `git rm`, add `scripts/check-normalization.mjs` and `npm run check:norm`, the lint rules, and a CI step if the project already uses CI.
+- Do not change copy, colors (primary stays `#E43820`), images or behavior; do not change the mobile layouts except for shared token and primitive fixes; do not hide overflow problems; fix "اهلا بك في" to "أهلا بك في" in both dictionaries; list every image that still carries a watermark.
+
 ## Acceptance criteria per screen
 
 Every screen must:
 - match `DESIGN.md` (tokens, radius, spacing, component specs);
+- on desktop (≥ 1024px) follow `DESIGN.md` section 13: 72px header inside the shared container, equal side margins (±1px), no horizontal overflow, the right template (wide, focused 480px, chat), type only from the type tokens, grids of 4 / 3 / 2 columns with cards of at least 260px, and for Home the greeting at the start edge, the search at the end edge, and the featured card's title, price and Add-to-cart button visible without scrolling at 1366×768;
+- pass `npm run check:norm` (no hardcoded colors, no arbitrary values off the allowlist, no physical direction classes, no hardcoded strings, no unused files or components);
 - work at 360, 390 and 430px, in RTL and LTR, with no horizontal scroll;
 - have a loading state (skeleton) and an empty state where relevant (empty cart, no favorites, no orders), with Arabic copy;
 - be keyboard accessible, with visible focus and labeled icon buttons;
@@ -97,6 +107,7 @@ Screen-specific checks:
 - Do not copy, rename, or convert image assets; reference them by their exact existing names.
 - Do not commit secrets, real phone numbers or real user data.
 - If a task would break a hard rule in `CLAUDE.md`, stop and explain instead of working around it.
+- Desktop and normalization: never add a one-off value to a page (a pixel width, a hex color, an arbitrary Tailwind value, a custom max-width); use a token or a primitive, and if none fits, add it to the token file or the primitive and explain why. Never scale the focused 480px screens up on desktop. Never use `overflow-x: hidden`, `100vw` or `100vh` to hide a layout problem.
 
 ## Report format (end of every phase)
 

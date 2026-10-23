@@ -33,9 +33,9 @@ function ProductCardBase({ dish, isFavorite, onAdd, onToggleFavorite }: ProductC
         className="absolute inset-0 z-0 rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       />
       <div className="pointer-events-none relative z-10 flex min-w-0 flex-1 flex-col text-start lg:p-4">
-        <h3 className="truncate text-[1rem] font-bold text-title lg:text-[1.0625rem]">
+        <h2 className="truncate text-[1rem] font-bold text-title lg:text-[1.0625rem]">
           {pick(dish.name)}
-        </h3>
+        </h2>
         <p className="mt-0.5 line-clamp-1 text-[0.8125rem] text-muted lg:line-clamp-2">
           {pick(dish.description)}
         </p>
@@ -96,7 +96,7 @@ function ProductCardBase({ dish, isFavorite, onAdd, onToggleFavorite }: ProductC
       <div className="pointer-events-none relative z-10 aspect-square w-[40%] shrink-0 overflow-hidden rounded-image bg-bg lg:order-first lg:aspect-[4/3] lg:w-full lg:rounded-none">
         <Image
           src={dishImage(dish.image, "large")}
-          alt={pick(dish.name)}
+          alt=""
           fill
           sizes="(max-width: 1023px) 40vw, 300px"
           quality={72}

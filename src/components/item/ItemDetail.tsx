@@ -56,12 +56,15 @@ export default function ItemDetail({ dish }: { dish?: Dish }) {
   const selectedSize = sizes.find((size) => size.id === selectedSizeId) ?? sizes[1];
 
   useEffect(() => {
-    if (!editKey || !hydrated || loadedEditKey === editKey) return;
-    if (!editItem) {
+    if (editKey && hydrated && !editItem) {
       router.replace(href("/cart"));
-      return;
     }
+  }, [editKey, editItem, href, hydrated, router]);
 
+  // Initialize the form from the edited cart line once per edit key. This is
+  // the "adjust state when props change" pattern: a render-time update guarded
+  // by the key, not a synchronous setState inside an effect.
+  if (editKey && hydrated && editItem && loadedEditKey !== editKey) {
     const addonPrice = (editItem.addonIds ?? []).reduce(
       (sum, addonId) => sum + (itemAddons.find((addon) => addon.id === addonId)?.price ?? 0),
       0,
@@ -78,7 +81,7 @@ export default function ItemDetail({ dish }: { dish?: Dish }) {
     setSelectedAddonIds(editItem.addonIds ?? []);
     setNote(editItem.note ?? "");
     setLoadedEditKey(editKey);
-  }, [editKey, editItem, href, hydrated, loadedEditKey, router, sizes]);
+  }
 
   const selectedAddons = useMemo(
     () => itemAddons.filter((addon) => selectedAddonIds.includes(addon.id)),

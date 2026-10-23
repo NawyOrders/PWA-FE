@@ -1,0 +1,1994 @@
+[
+  {
+    "path": "/ar",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كرم الشام",
+      "كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 14,
+    "smallTargets": [
+      "الرئيسية (154x41)",
+      "اذهب الى الشريحة 1 (27x9)",
+      "اذهب الى الشريحة 2 (9x9)",
+      "اذهب الى الشريحة 3 (9x9)",
+      "اذهب الى الشريحة 4 (9x9)",
+      "اذهب الى الشريحة 5 (9x9)",
+      "اذهب الى الشريحة 6 (9x9)",
+      "عرض الكل (82x27)",
+      "الرئيسية (60x30)",
+      "القائمة (51x30)",
+      "المفضلة (59x30)",
+      "السلة (41x30)"
+    ]
+  },
+  {
+    "path": "/ar",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كرم الشام",
+      "كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 14,
+    "smallTargets": [
+      "الرئيسية (154x41)",
+      "اذهب الى الشريحة 1 (27x9)",
+      "اذهب الى الشريحة 2 (9x9)",
+      "اذهب الى الشريحة 3 (9x9)",
+      "اذهب الى الشريحة 4 (9x9)",
+      "اذهب الى الشريحة 5 (9x9)",
+      "اذهب الى الشريحة 6 (9x9)",
+      "عرض الكل (82x27)",
+      "الرئيسية (60x30)",
+      "القائمة (51x30)",
+      "المفضلة (59x30)",
+      "السلة (41x30)"
+    ]
+  },
+  {
+    "path": "/ar",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كرم الشام",
+      "كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 14,
+    "smallTargets": [
+      "الرئيسية (154x41)",
+      "اذهب الى الشريحة 1 (27x9)",
+      "اذهب الى الشريحة 2 (9x9)",
+      "اذهب الى الشريحة 3 (9x9)",
+      "اذهب الى الشريحة 4 (9x9)",
+      "اذهب الى الشريحة 5 (9x9)",
+      "اذهب الى الشريحة 6 (9x9)",
+      "عرض الكل (82x27)",
+      "الرئيسية (60x30)",
+      "القائمة (51x30)",
+      "المفضلة (59x30)",
+      "السلة (41x30)"
+    ]
+  },
+  {
+    "path": "/ar/menu",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "قائمة الطعام"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/menu",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "قائمة الطعام"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/menu",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "قائمة الطعام"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/favorites",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المفضلة"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/favorites",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المفضلة"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/favorites",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المفضلة"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/cart",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "سلة التسوق"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/cart",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "سلة التسوق"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/cart",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "سلة التسوق"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/orders",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "طلباتي"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/orders",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "طلباتي"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/orders",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "طلباتي"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "حسابي"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "حسابي"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "حسابي"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/personal-info",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المعلومات الشخصية"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/personal-info",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المعلومات الشخصية"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/personal-info",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المعلومات الشخصية"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/addresses",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "العناوين الخاصة بك"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/addresses",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "العناوين الخاصة بك"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/addresses",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "العناوين الخاصة بك"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المساعدة والدعم"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المساعدة والدعم"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "المساعدة والدعم"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help/faq",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "الأسئلة الشائعة"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help/faq",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "الأسئلة الشائعة"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help/faq",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "الأسئلة الشائعة"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "الرئيسية (154x41)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help/feedback",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "ارسال الملاحظات"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "الرئيسية (154x41)",
+      "INPUT (1x1)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help/feedback",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "ارسال الملاحظات"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "الرئيسية (154x41)",
+      "INPUT (1x1)"
+    ]
+  },
+  {
+    "path": "/ar/profile/help/feedback",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "ارسال الملاحظات"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "الرئيسية (154x41)",
+      "INPUT (1x1)"
+    ]
+  },
+  {
+    "path": "/ar/item/crack-burger",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 66,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 1366,
+    "marginEnd": 0,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كراك برجر"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/ar/item/crack-burger",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 66,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 1440,
+    "marginEnd": 0,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كراك برجر"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/ar/item/crack-burger",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 66,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 1920,
+    "marginEnd": 0,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كراك برجر"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/ar/login",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 0,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "اهلا بك في كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "رقم الموبايل (388x26)",
+      "INPUT (23x23)"
+    ]
+  },
+  {
+    "path": "/ar/login",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 0,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "اهلا بك في كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "رقم الموبايل (388x26)",
+      "INPUT (23x23)"
+    ]
+  },
+  {
+    "path": "/ar/login",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 0,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "اهلا بك في كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "رقم الموبايل (388x26)",
+      "INPUT (23x23)"
+    ]
+  },
+  {
+    "path": "/ar/splash",
+    "width": 1366,
+    "height": 768,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 0,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 1366,
+    "marginEnd": 0,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/ar/splash",
+    "width": 1440,
+    "height": 900,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 0,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 1440,
+    "marginEnd": 0,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/ar/splash",
+    "width": 1920,
+    "height": 1080,
+    "locale": "ar",
+    "dir": "rtl",
+    "headerHeight": 0,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 1920,
+    "marginEnd": 0,
+    "horizontalOverflow": 0,
+    "h1": [
+      "كرم الشام"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/en",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Karam El Sham",
+      "Karam El Sham"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 14,
+    "smallTargets": [
+      "Home (199x41)",
+      "Go to slide 1 (27x9)",
+      "Go to slide 2 (9x9)",
+      "Go to slide 3 (9x9)",
+      "Go to slide 4 (9x9)",
+      "Go to slide 5 (9x9)",
+      "Go to slide 6 (9x9)",
+      "View all (66x27)",
+      "Home (45x30)",
+      "Menu (43x30)",
+      "Favorites (69x30)",
+      "Cart (32x30)"
+    ]
+  },
+  {
+    "path": "/en",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Karam El Sham",
+      "Karam El Sham"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 14,
+    "smallTargets": [
+      "Home (199x41)",
+      "Go to slide 1 (27x9)",
+      "Go to slide 2 (9x9)",
+      "Go to slide 3 (9x9)",
+      "Go to slide 4 (9x9)",
+      "Go to slide 5 (9x9)",
+      "Go to slide 6 (9x9)",
+      "View all (66x27)",
+      "Home (45x30)",
+      "Menu (43x30)",
+      "Favorites (69x30)",
+      "Cart (32x30)"
+    ]
+  },
+  {
+    "path": "/en",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Karam El Sham",
+      "Karam El Sham"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 14,
+    "smallTargets": [
+      "Home (199x41)",
+      "Go to slide 1 (27x9)",
+      "Go to slide 2 (9x9)",
+      "Go to slide 3 (9x9)",
+      "Go to slide 4 (9x9)",
+      "Go to slide 5 (9x9)",
+      "Go to slide 6 (9x9)",
+      "View all (66x27)",
+      "Home (45x30)",
+      "Menu (43x30)",
+      "Favorites (69x30)",
+      "Cart (32x30)"
+    ]
+  },
+  {
+    "path": "/en/menu",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Our Menu"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/menu",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Our Menu"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/menu",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Our Menu"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/favorites",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Favorites"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/favorites",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Favorites"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/favorites",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Favorites"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/cart",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Shopping Cart"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/cart",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Shopping Cart"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/cart",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Shopping Cart"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/orders",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "My Orders"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/orders",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "My Orders"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/orders",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "My Orders"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Profile"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Profile"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Profile"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/personal-info",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Personal information"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/personal-info",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Personal information"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/personal-info",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Personal information"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/addresses",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Your addresses"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/addresses",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Your addresses"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/addresses",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Your addresses"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/help",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Help and support"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/help",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Help and support"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/help",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Help and support"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/help/faq",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "FAQ"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/help/faq",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "FAQ"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/help/faq",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "FAQ"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 1,
+    "smallTargets": [
+      "Home (199x41)"
+    ]
+  },
+  {
+    "path": "/en/profile/help/feedback",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Send feedback"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "Home (199x41)",
+      "INPUT (1x1)"
+    ]
+  },
+  {
+    "path": "/en/profile/help/feedback",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Send feedback"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "Home (199x41)",
+      "INPUT (1x1)"
+    ]
+  },
+  {
+    "path": "/en/profile/help/feedback",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 72,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Send feedback"
+    ],
+    "fixedBottom": 0,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "Home (199x41)",
+      "INPUT (1x1)"
+    ]
+  },
+  {
+    "path": "/en/item/crack-burger",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 66,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 0,
+    "marginEnd": 1366,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Crack Burger"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/en/item/crack-burger",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 66,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 0,
+    "marginEnd": 1440,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Crack Burger"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/en/item/crack-burger",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 66,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 0,
+    "marginEnd": 1920,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Crack Burger"
+    ],
+    "fixedBottom": 2,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/en/login",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 0,
+    "containerWidth": 1318,
+    "containerLeft": 24,
+    "containerRight": 1342,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Welcome to Karam El Sham"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "Mobile number (397x26)",
+      "INPUT (23x23)"
+    ]
+  },
+  {
+    "path": "/en/login",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 0,
+    "containerWidth": 1392,
+    "containerLeft": 24,
+    "containerRight": 1416,
+    "marginStart": 24,
+    "marginEnd": 24,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Welcome to Karam El Sham"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "Mobile number (397x26)",
+      "INPUT (23x23)"
+    ]
+  },
+  {
+    "path": "/en/login",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 0,
+    "containerWidth": 1440,
+    "containerLeft": 240,
+    "containerRight": 1680,
+    "marginStart": 240,
+    "marginEnd": 240,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Welcome to Karam El Sham"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 2,
+    "smallTargets": [
+      "Mobile number (397x26)",
+      "INPUT (23x23)"
+    ]
+  },
+  {
+    "path": "/en/splash",
+    "width": 1366,
+    "height": 768,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 0,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 0,
+    "marginEnd": 1366,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Karam El Sham"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/en/splash",
+    "width": 1440,
+    "height": 900,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 0,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 0,
+    "marginEnd": 1440,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Karam El Sham"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  },
+  {
+    "path": "/en/splash",
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "dir": "ltr",
+    "headerHeight": 0,
+    "containerWidth": 0,
+    "containerLeft": 0,
+    "containerRight": 0,
+    "marginStart": 0,
+    "marginEnd": 1920,
+    "horizontalOverflow": 0,
+    "h1": [
+      "Karam El Sham"
+    ],
+    "fixedBottom": 1,
+    "imagesWithoutAlt": 0,
+    "touchTargetsBelow44": 0,
+    "smallTargets": []
+  }
+]

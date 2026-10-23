@@ -44,8 +44,8 @@
   --text-muted: #7a6c65;
   --border: #e6dfd8;
 
-  --brand-gold: #f7b52c;
-  --brand-brown: #5b2e14;
+  --brand-logo-gold: #f7b52c;
+  --brand-logo-brown: #5b2e14;
   --primary-soft: rgba(228, 56, 32, 0.3);
   --brand-gold-soft: rgba(247, 181, 44, 0.4);
 
@@ -59,6 +59,8 @@
   --hint-amber-text: #9a5b13;
   --tint-peach: #fdeee4;
   --star-off: #8e8e8e;
+  --coral: #ff6b4a;
+  --bubble-end: #ec4a24;
 
   --ink: #001a2b;
   --overlay: rgba(26, 18, 16, 0.45);

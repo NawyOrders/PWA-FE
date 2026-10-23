@@ -106,12 +106,18 @@ describe("LocationPicker", () => {
 
     const confirm = screen.getByRole("button", { name: t.confirmAddress });
     await waitFor(() => expect(confirm).toBeEnabled(), { timeout: 4000 });
+
+    await user.selectOptions(screen.getByLabelText(t.deliveryArea), "zamalek");
+    await waitFor(() => expect(screen.queryByText(t.deliveryFeePending)).not.toBeInTheDocument());
+
     await user.click(confirm);
 
     expect(routerMock.push).toHaveBeenCalledWith("/ar/payment");
     const stored = JSON.parse(window.sessionStorage.getItem("nawyorders-selected-address") ?? "{}");
     expect(stored.address).toBe(REVERSED);
     expect(stored.latitude).toBeCloseTo(31.2001);
+    expect(stored.zoneId).toBe("zamalek");
+    expect(stored.deliveryFee).toBe(3000);
   });
 
   it("UT-LOC-12 links back to the delivery step", () => {

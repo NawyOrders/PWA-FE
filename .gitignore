@@ -17,6 +17,8 @@ next-env.d.ts
 /TESTING.md
 /DESKTOP.md
 /BRAND.md
+/MASTER-PROGRESS.md
+/REPORT-MASTER.md
 
 # Test artifacts
 /coverage/

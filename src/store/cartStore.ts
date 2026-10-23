@@ -3,19 +3,22 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { getDish } from "@/data/dishes";
-import { DELIVERY_FEE } from "@/data/orders";
 
-export const COUPON_CODE = "WELCOME20";
-export const COUPON_DISCOUNT = 2000;
+import { COUPON_CODE, COUPON_DISCOUNT } from "@/lib/pricing";
+import type { CheckoutLineResult, ItemAvailability } from "@/lib/checkout";
+export { COUPON_CODE, COUPON_DISCOUNT };
 export type FulfillmentMethod = "delivery" | "pickup";
 
 export interface CartItem {
+  lineId?: string;
   dishId: string;
   quantity: number;
   unitPrice?: number;
   sizeId?: "small" | "medium" | "large";
   addonIds?: string[];
   note?: string;
+  availability?: ItemAvailability;
+  previousUnitPrice?: number;
 }
 
 export function getCartItemKey(item: CartItem): string {
@@ -25,10 +28,15 @@ export function getCartItemKey(item: CartItem): string {
   return `${item.dishId}:${item.unitPrice ?? basePrice}:${addonKey}:${noteKey}`;
 }
 
+export function getCartLineId(item: CartItem): string {
+  return item.lineId ?? getCartItemKey(item);
+}
+
 interface CartState {
   items: CartItem[];
   coupon: string | null;
   fulfillmentMethod: FulfillmentMethod;
+  deliveryFee: number | null;
   setFulfillmentMethod: (method: FulfillmentMethod) => void;
   add: (
     dishId: string,
@@ -43,6 +51,8 @@ interface CartState {
   clear: () => void;
   applyCoupon: (code: string) => boolean;
   removeCoupon: () => void;
+  applyValidation: (lines: CheckoutLineResult[]) => void;
+  setFulfillmentDeliveryFee: (fee: number) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -51,6 +61,7 @@ export const useCartStore = create<CartState>()(
       items: [],
       coupon: null,
       fulfillmentMethod: "delivery",
+      deliveryFee: null,
       setFulfillmentMethod: (fulfillmentMethod) => set({ fulfillmentMethod }),
       add: (dishId, quantity = 1, unitPrice, customization) =>
         set((state) => {
@@ -66,6 +77,7 @@ export const useCartStore = create<CartState>()(
             ...(addonIds.length > 0 ? { addonIds } : {}),
             ...(note ? { note } : {}),
           };
+          newItem.lineId = getCartLineId(newItem);
           const newItemKey = getCartItemKey(newItem);
           const existing = state.items.find((item) => getCartItemKey(item) === newItemKey);
           if (existing) {
@@ -88,6 +100,7 @@ export const useCartStore = create<CartState>()(
             ...item,
             addonIds: [...new Set(item.addonIds ?? [])].sort(),
             note: item.note?.trim() ?? "",
+            lineId: item.lineId ?? itemKey,
           };
           const updatedKey = getCartItemKey(normalized);
           const matching = state.items.find(
@@ -130,7 +143,7 @@ export const useCartStore = create<CartState>()(
               : item,
           ),
         })),
-      clear: () => set({ items: [], coupon: null }),
+      clear: () => set({ items: [], coupon: null, deliveryFee: null }),
       applyCoupon: (code) => {
         const normalized = code.trim().toUpperCase();
         if (normalized === COUPON_CODE) {
@@ -140,6 +153,25 @@ export const useCartStore = create<CartState>()(
         return false;
       },
       removeCoupon: () => set({ coupon: null }),
+      applyValidation: (lines) =>
+        set((state) => {
+          const lineMap = new Map(lines.map((line) => [line.lineId, line]));
+          return {
+            items: state.items.map((item) => {
+              const key = getCartLineId(item);
+              const match = lineMap.get(key) ?? lineMap.get(getCartItemKey(item));
+              if (!match) return item;
+              return {
+                ...item,
+                lineId: key,
+                unitPrice: match.unitPrice,
+                previousUnitPrice: item.unitPrice,
+                availability: match.availability,
+              };
+            }),
+          };
+        }),
+      setFulfillmentDeliveryFee: (fee) => set({ deliveryFee: fee }),
     }),
     { name: "nawy-cart", skipHydration: true },
   ),
@@ -166,8 +198,9 @@ export function getFulfillmentTotals(
   items: CartItem[],
   coupon: string | null,
   method: FulfillmentMethod,
+  deliveryFee?: number | null,
 ) {
   const { subtotal, discount } = getCartTotals(items, coupon);
-  const deliveryFee = method === "delivery" ? DELIVERY_FEE : 0;
-  return { subtotal, deliveryFee, discount, total: subtotal + deliveryFee - discount };
+  const fee = method === "delivery" ? deliveryFee ?? 0 : 0;
+  return { subtotal, deliveryFee: fee, discount, total: subtotal + fee - discount };
 }

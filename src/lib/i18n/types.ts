@@ -92,6 +92,14 @@ export interface Dictionary {
     empty: string;
     emptyHint: string;
     browse: string;
+    validating: string;
+    checkoutBlocked: string;
+    outOfStock: string;
+    inactive: string;
+    missingItem: string;
+    priceChanged: string;
+    priceUpdatedNotice: string;
+    removeUnavailable: string;
   };
   orders: {
     kicker: string;
@@ -103,6 +111,7 @@ export interface Dictionary {
     delivered: string;
     cancelled: string;
     processing: string;
+    accepted: string;
     itemsCount: string;
     empty: string;
     emptyHint: string;

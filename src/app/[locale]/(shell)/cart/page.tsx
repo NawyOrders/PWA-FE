@@ -8,9 +8,12 @@ import {
   COUPON_CODE,
   getCartCount,
   getCartItemKey,
+  getCartLineId,
   getCartTotals,
   useCartStore,
 } from "@/store/cartStore";
+import { readDeliveryQuote } from "@/lib/checkout-session";
+import { validateCheckout } from "@/lib/checkout-client";
 import { useUiStore } from "@/store/uiStore";
 import { useAuthGuard } from "@/lib/useAuthGuard";
 import { formatPrice } from "@/lib/format";
@@ -42,6 +45,9 @@ export default function CartPage() {
   const [couponInput, setCouponInput] = useState("");
   const [couponMessage, setCouponMessage] = useState<{ tone: "success" | "danger"; text: string } | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [checkoutNotice, setCheckoutNotice] = useState("");
+  const [isValidating, setIsValidating] = useState(false);
+  const applyValidation = useCartStore((state) => state.applyValidation);
 
   const count = getCartCount(items);
   const { subtotal, discount, total } = getCartTotals(items, coupon);
@@ -61,8 +67,40 @@ export default function CartPage() {
 
   const handleCheckout = () => {
     guard(() => {
-      if (items.length === 0) return;
-      router.push(`/${locale}/delivery`);
+      void (async () => {
+        if (items.length === 0 || isValidating) return;
+        setIsValidating(true);
+        setCheckoutNotice("");
+        try {
+          const quote = readDeliveryQuote();
+          const result = await validateCheckout({
+            items: items.map((item) => ({
+              lineId: getCartLineId(item),
+              dishId: item.dishId,
+              quantity: item.quantity,
+              unitPrice: item.unitPrice,
+              sizeId: item.sizeId,
+              addonIds: item.addonIds,
+              note: item.note,
+            })),
+            coupon,
+            fulfillmentMethod: useCartStore.getState().fulfillmentMethod,
+            branchId: quote?.branchId,
+            requireDeliveryQuote: false,
+          });
+          applyValidation(result.lines);
+          if (result.ok) {
+            router.push(`/${locale}/delivery`);
+            return;
+          }
+          const priceOnly = result.issues.every((issue) => issue.code === "PRICE_CHANGED");
+          setCheckoutNotice(priceOnly ? dict.cart.priceUpdatedNotice : dict.cart.checkoutBlocked);
+        } catch {
+          setCheckoutNotice(dict.cart.checkoutBlocked);
+        } finally {
+          setIsValidating(false);
+        }
+      })();
     });
   };
 
@@ -107,6 +145,15 @@ export default function CartPage() {
                 </button>
               </div>
 
+              {checkoutNotice ? (
+                <p
+                  className="rounded-card border-[1.5px] border-danger bg-danger-bg p-3 text-[0.8125rem] font-bold text-danger"
+                  role="alert"
+                >
+                  {checkoutNotice}
+                </p>
+              ) : null}
+
               <div className="space-y-3">
                 {resolved.map(({ item, dish }) => (
                   <CartItemCard
@@ -114,6 +161,8 @@ export default function CartPage() {
                     dish={dish}
                     quantity={item.quantity}
                     unitPrice={item.unitPrice ?? dish.price}
+                    previousUnitPrice={item.previousUnitPrice}
+                    availability={item.availability}
                     addonIds={item.addonIds ?? []}
                     note={item.note ?? ""}
                     editLabel={dict.cart.editItem}

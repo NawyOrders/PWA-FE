@@ -1,7 +1,10 @@
-export type OrderStatus = "delivered" | "cancelled" | "processing";
+import type { LocalizedText } from "@/lib/i18n/types";
+
+export type OrderStatus = "accepted" | "delivered" | "cancelled" | "processing";
 
 export interface OrderItem {
   dishId: string;
+  name?: LocalizedText;
   quantity: number;
   unitPrice?: number;
   sizeId?: "small" | "medium" | "large";
@@ -17,17 +20,51 @@ export interface Order {
   items: OrderItem[];
   deliveryFee: number;
   discount?: number;
+  tax?: number;
+  fulfillmentMethod?: "delivery" | "pickup";
+  branchId?: string;
+  branchName?: LocalizedText;
+  zoneId?: string;
+  zoneName?: LocalizedText;
+  address?: string;
 }
 
-export const DELIVERY_FEE = 2000;
-
 export const orders: Order[] = [
+  {
+    id: "order-1051",
+    number: "1051",
+    status: "accepted",
+    date: "2026-10-23T18:12:00.000Z",
+    deliveryFee: 3000,
+    tax: 0,
+    fulfillmentMethod: "delivery",
+    branchId: "downtown",
+    branchName: { ar: "فرع وسط البلد", en: "Downtown Branch" },
+    zoneId: "zamalek",
+    zoneName: { ar: "الزمالك", en: "Zamalek" },
+    address: "الزمالك، شارع البرازيل، مبنى 14",
+    items: [
+      {
+        dishId: "gourmet-burger",
+        quantity: 1,
+        unitPrice: 14500,
+        addonIds: ["cheese", "pickles"],
+        note: "بدون بصل",
+      },
+      { dishId: "mixed-donuts", quantity: 2 },
+    ],
+  },
   {
     id: "order-1042",
     number: "1042",
     status: "delivered",
     date: "2026-09-28T19:30:00.000Z",
     deliveryFee: 2000,
+    fulfillmentMethod: "delivery",
+    branchId: "nakheel",
+    branchName: { ar: "فرع النخيل", en: "El Nakheel Branch" },
+    zoneId: "nakheel",
+    zoneName: { ar: "حي النخيل", en: "El Nakheel" },
     items: [
       {
         dishId: "gourmet-burger",

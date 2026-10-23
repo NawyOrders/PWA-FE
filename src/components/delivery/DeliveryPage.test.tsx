@@ -5,7 +5,6 @@ import { renderWithProviders } from "../../../tests/utils/render";
 import { routerMock } from "../../../tests/mocks/router";
 import { dictionaries } from "@/lib/i18n/dictionary";
 import { useCartStore } from "@/store/cartStore";
-import { DELIVERY_FEE } from "@/data/orders";
 import { getDish } from "@/data/dishes";
 import { formatPrice } from "@/lib/format";
 
@@ -53,7 +52,7 @@ describe("DeliveryPage", () => {
     const subtotal = (dish?.price ?? 0) * 2;
 
     expect(summary).toHaveTextContent(formatPrice(subtotal, "ar"));
-    expect(summary).toHaveTextContent(formatPrice(DELIVERY_FEE, "ar"));
+    expect(summary).toHaveTextContent(t.deliveryFeePending);
   });
 
   it("UT-DELIVERY-05 removes the delivery fee for the pickup", async () => {

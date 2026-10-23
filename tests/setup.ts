@@ -12,6 +12,8 @@ import { createElement, type ReactNode } from "react";
 import { cleanup } from "@testing-library/react";
 import { server } from "./mocks/server";
 import { setRoute } from "./mocks/router";
+import { resetCatalog } from "@/server/catalog";
+import { resetServerOrders } from "@/server/checkout";
 
 expect.extend({ toHaveNoViolations });
 
@@ -287,6 +289,8 @@ afterAll(() => {
 });
 
 beforeEach(() => {
+  resetCatalog();
+  resetServerOrders();
   // Only `Date` is faked by default: the clock is frozen at a fixed Cairo
   // time while real timers stay available for Testing Library and user-event.
   vi.useFakeTimers({ toFake: ["Date"] });

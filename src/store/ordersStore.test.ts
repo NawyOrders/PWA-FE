@@ -34,8 +34,8 @@ describe("orders store", () => {
       discount: 0,
     });
 
-    expect(order.number).toBe("1043");
-    expect(order.id).toBe("order-1043");
+    expect(order.number).toBe("1052");
+    expect(order.id).toBe("order-1052");
   });
 
   it("UT-ORDERS-04 creates a processing order", () => {

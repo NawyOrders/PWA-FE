@@ -7,6 +7,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { useI18n } from "@/lib/i18n";
+import { deliveryZones } from "@/data/branches";
+import type { DeliveryQuote } from "@/lib/checkout";
+import { requestDeliveryQuote } from "@/lib/checkout-client";
+import { saveDeliveryQuote, saveSelectedAddress } from "@/lib/checkout-session";
+import { formatPrice } from "@/lib/format";
 import {
   reverseGeocode,
   searchAddresses,
@@ -97,7 +102,12 @@ export default function LocationPicker() {
   const [error, setError] = useState("");
   const [selectedSavedAddress, setSelectedSavedAddress] = useState("home");
   const [isContinuing, setIsContinuing] = useState(false);
+  const [zoneId, setZoneId] = useState("");
+  const [quote, setQuote] = useState<DeliveryQuote | null>(null);
+  const [quoteLoading, setQuoteLoading] = useState(false);
+  const [quoteError, setQuoteError] = useState("");
   const skipReverseGeocode = useRef(false);
+  const quoteRequest = useRef(0);
 
   useEffect(() => {
     if (skipReverseGeocode.current) {
@@ -237,9 +247,35 @@ export default function LocationPicker() {
     setError(t("chooseOnMap"));
   }
 
+  async function selectDeliveryZone(nextZoneId: string) {
+    const requestId = quoteRequest.current + 1;
+    quoteRequest.current = requestId;
+    setZoneId(nextZoneId);
+    setQuote(null);
+    setQuoteError("");
+    if (!nextZoneId) return;
+
+    setQuoteLoading(true);
+    try {
+      const nextQuote = await requestDeliveryQuote(nextZoneId);
+      if (quoteRequest.current !== requestId) return;
+      setQuote(nextQuote);
+      saveDeliveryQuote(nextQuote);
+    } catch {
+      if (quoteRequest.current !== requestId) return;
+      setQuoteError(t("deliveryQuoteError"));
+    } finally {
+      if (quoteRequest.current === requestId) setQuoteLoading(false);
+    }
+  }
+
   function confirmAddress() {
     if (!address || addressLoading || isContinuing) {
       setError(t("confirmAddressError"));
+      return;
+    }
+    if (!quote) {
+      setError(t("deliveryQuoteRequired"));
       return;
     }
 
@@ -247,18 +283,15 @@ export default function LocationPicker() {
       address,
       latitude: location.lat,
       longitude: location.lng,
-      deliveryFee: 30,
+      zoneId: quote.zoneId,
+      zoneName: quote.zoneName,
+      branchId: quote.branchId,
+      branchName: quote.branchName,
+      deliveryFee: quote.fee,
     };
 
-    try {
-      window.sessionStorage.setItem(
-        "nawyorders-selected-address",
-        JSON.stringify(selectedAddress),
-      );
-    } catch {
-      // Continue to payment even when browser storage is unavailable.
-    }
-
+    saveSelectedAddress(selectedAddress);
+    saveDeliveryQuote(quote);
     setIsContinuing(true);
     router.push(href("/payment"));
   }
@@ -385,6 +418,39 @@ export default function LocationPicker() {
 
           <div className="address-sheet-content">
             <h1 id="address-title">{t("addressTitle")}</h1>
+
+            <div className="address-zone">
+              <label htmlFor="delivery-zone">{t("deliveryArea")}</label>
+              <select
+                id="delivery-zone"
+                value={zoneId}
+                onChange={(event) => void selectDeliveryZone(event.target.value)}
+                aria-describedby="delivery-zone-status"
+                aria-invalid={Boolean(quoteError)}
+              >
+                <option value="">{t("chooseDeliveryArea")}</option>
+                {deliveryZones
+                  .filter((zone) => zone.isAvailable)
+                  .map((zone) => (
+                    <option value={zone.id} key={zone.id}>
+                      {zone.name[locale]}
+                    </option>
+                  ))}
+              </select>
+              <p
+                className={`address-zone-status${quoteError ? " is-error" : ""}`}
+                id="delivery-zone-status"
+                role={quoteError ? "alert" : "status"}
+              >
+                {quoteLoading
+                  ? t("deliveryQuoteLoading")
+                  : quoteError ||
+                    (quote
+                      ? `${t("deliveryFeeConfirmed").replace("{area}", quote.zoneName[locale])} · ${formatPrice(quote.fee, locale)} · ${t("branchForArea").replace("{branch}", quote.branchName[locale])}`
+                      : t("deliveryFeePending"))}
+              </p>
+            </div>
+
             <div
               className="address-list"
               role="radiogroup"

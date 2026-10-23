@@ -10,7 +10,6 @@ import {
   useCartStore,
   type CartItem,
 } from "./cartStore";
-import { DELIVERY_FEE } from "@/data/orders";
 import { resetStores } from "../../tests/utils/stores";
 
 const STORAGE_KEY = "nawy-cart";
@@ -195,13 +194,22 @@ describe("cart store", () => {
     expect(useCartStore.getState().coupon).toBeNull();
   });
 
-  it("UT-CART-21 adds the delivery fee for the delivery method", () => {
+  it("UT-CART-21 keeps the delivery fee pending until a zone is verified", () => {
     useCartStore.getState().add("crack-burger", 1);
 
     const totals = getFulfillmentTotals(currentItems(), null, "delivery");
 
-    expect(totals.deliveryFee).toBe(DELIVERY_FEE);
-    expect(totals.total).toBe(totals.subtotal + DELIVERY_FEE);
+    expect(totals.deliveryFee).toBe(0);
+    expect(totals.total).toBe(totals.subtotal);
+  });
+
+  it("UT-CART-21b applies the verified zone delivery fee", () => {
+    useCartStore.getState().add("crack-burger", 1);
+
+    const totals = getFulfillmentTotals(currentItems(), null, "delivery", 3000);
+
+    expect(totals.deliveryFee).toBe(3000);
+    expect(totals.total).toBe(totals.subtotal + 3000);
   });
 
   it("UT-CART-22 has no delivery fee for the pickup method", () => {

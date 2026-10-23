@@ -13,6 +13,7 @@ export interface NewOrderInput {
 interface OrdersState {
   orders: Order[];
   addOrder: (input: NewOrderInput) => Order;
+  addExistingOrder: (order: Order) => void;
 }
 
 function nextNumber(existing: Order[]): string {
@@ -41,6 +42,13 @@ export const useOrdersStore = create<OrdersState>()(
         };
         set({ orders: [order, ...current] });
         return order;
+      },
+      addExistingOrder: (order) => {
+        set((state) => ({
+          orders: state.orders.some((existing) => existing.id === order.id)
+            ? state.orders
+            : [order, ...state.orders],
+        }));
       },
     }),
     { name: "nawy-orders", skipHydration: true },

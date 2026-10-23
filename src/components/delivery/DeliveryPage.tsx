@@ -9,6 +9,7 @@ import { useCartStore, getFulfillmentTotals, getCartItemKey, type FulfillmentMet
 import { getDish } from "@/data/dishes";
 import { dishImage } from "@/lib/image";
 import { formatPrice } from "@/lib/format";
+import { readDeliveryQuote } from "@/lib/checkout-session";
 
 function Icon({ name }: { name: "arrow" | "radio" | "check" }) {
   if (name === "arrow") return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
@@ -62,7 +63,9 @@ function OrderSummary({ method }: { method: FulfillmentMethod }) {
   const { locale, t } = useI18n();
   const items = useCartStore((state) => state.items);
   const coupon = useCartStore((state) => state.coupon);
-  const { subtotal, deliveryFee, discount, total } = getFulfillmentTotals(items, coupon, method);
+  const quote = readDeliveryQuote();
+  const quoteFee = method === "delivery" ? quote?.fee ?? null : 0;
+  const { subtotal, deliveryFee, discount, total } = getFulfillmentTotals(items, coupon, method, quoteFee);
   const summaryItems = items
     .map((item) => ({ item, dish: getDish(item.dishId) }))
     .filter((entry): entry is { item: typeof items[number]; dish: NonNullable<typeof entry.dish> } => Boolean(entry.dish));
@@ -78,6 +81,7 @@ function OrderSummary({ method }: { method: FulfillmentMethod }) {
           <strong className="summary-discount">{discount > 0 ? `-${formatPrice(discount, locale)}` : formatPrice(0, locale)}</strong>
         </span>
       </div>
+      {method === "delivery" && !quote ? (<p className="summary-fee-note">{t("deliveryFeePending")}</p>) : null}
       <div className="summary-divider" />
       <div className="summary-bottom">
         <div className="summary-thumbnails" aria-label={t("orderItemsCount")}>

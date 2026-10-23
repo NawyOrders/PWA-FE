@@ -8,6 +8,8 @@ import { useCartStore } from "@/store/cartStore";
 import { useOrdersStore } from "@/store/ordersStore";
 import { getDish } from "@/data/dishes";
 import { formatPrice } from "@/lib/format";
+import { getBranch, getDeliveryZone } from "@/data/branches";
+import { saveDeliveryQuote } from "@/lib/checkout-session";
 
 const t = dictionaries.ar;
 const dish = getDish("crack-burger");
@@ -16,6 +18,17 @@ function renderPayment(
   cart: Record<string, unknown> = {},
   options: Parameters<typeof renderWithProviders>[1] = {},
 ) {
+  const zone = getDeliveryZone("zamalek");
+  const branch = zone ? getBranch(zone.branchId) : undefined;
+  if (zone && branch) {
+    saveDeliveryQuote({
+      zoneId: zone.id,
+      zoneName: zone.name,
+      branchId: branch.id,
+      branchName: branch.name,
+      fee: zone.fee,
+    });
+  }
   return renderWithProviders(<PaymentPage />, {
     route: "/ar/payment",
     stores: {

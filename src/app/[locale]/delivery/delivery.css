@@ -217,6 +217,13 @@
 .summary-values .summary-discount {
   color: #16A34A;
 }
+.summary-fee-note {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
 .summary-divider {
   height: 1px;
   margin: 20px 0;

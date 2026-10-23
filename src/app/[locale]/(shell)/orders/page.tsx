@@ -76,6 +76,9 @@ export default function OrdersPage() {
           <FilterChip active={filter === "all"} onClick={() => setFilter("all")}>
             {dict.orders.filterAll}
           </FilterChip>
+          <FilterChip active={filter === "accepted"} onClick={() => setFilter("accepted")}>
+            {dict.orders.accepted}
+          </FilterChip>
           <FilterChip active={filter === "delivered"} onClick={() => setFilter("delivered")}>
             {dict.orders.filterDelivered}
           </FilterChip>
@@ -157,7 +160,7 @@ export default function OrdersPage() {
                           >
                             <div className="min-w-0 flex-1">
                               <p className="truncate text-[0.8125rem] font-semibold text-title">
-                                {item.quantity > 1 ? `${item.quantity}× ` : ""}{pick(dish.name)}
+                                {item.quantity > 1 ? `${item.quantity}\u00d7 ` : ""}{pick(dish.name)}
                               </p>
                               <ItemCustomizationDetails
                                 addonIds={item.addonIds}

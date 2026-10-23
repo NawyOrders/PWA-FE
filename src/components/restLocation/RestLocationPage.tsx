@@ -4,19 +4,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
+import { branches as restaurantBranches, type BranchId } from "@/data/branches";
+import { saveSelectedBranch } from "@/lib/checkout-session";
 
-type Branch = {
-  id: string;
-  distance: number;
-  isOpen: boolean;
+const branchDistances: Record<BranchId, number> = {
+  nakheel: 1.5,
+  downtown: 4,
+  karmouz: 7,
 };
 
-const branches: Branch[] = [
-  { id: "nakheel-1", distance: 1.5, isOpen: true },
-  { id: "nakheel-2", distance: 10, isOpen: true },
-  { id: "nakheel-3", distance: 4, isOpen: false },
-  { id: "nakheel-4", distance: 7, isOpen: false },
-];
+const branches = restaurantBranches.map((branch) => ({
+  ...branch,
+  distance: branchDistances[branch.id],
+}));
 
 function ArrowIcon() {
   return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
@@ -31,11 +31,11 @@ function BranchOption({
   selected,
   onSelect,
 }: {
-  branch: Branch;
+  branch: (typeof branches)[number];
   selected: boolean;
-  onSelect: (id: string) => void;
+  onSelect: (id: BranchId) => void;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   return (
     <button
       className={`rest-branch-option${selected ? " is-selected" : ""}${branch.isOpen ? " is-open" : " is-closed"}`}
@@ -48,12 +48,12 @@ function BranchOption({
       <span className="rest-branch-radio" aria-hidden="true">{selected && <span />}</span>
       <span className="rest-branch-copy">
         <span className="rest-branch-heading">
-            <strong>{t("branchName")}</strong>
+          <strong>{branch.name[locale]}</strong>
           <span className={`rest-branch-status${branch.isOpen ? " status-open" : " status-closed"}`}>
             {branch.isOpen ? t("openNow") : t("closed")}
           </span>
         </span>
-        <span className="rest-branch-address">{t("branchAddress")}</span>
+        <span className="rest-branch-address">{branch.address[locale]}</span>
         <span className="rest-branch-distance"><PinIcon />{branch.distance} {t("distanceUnit")}</span>
       </span>
     </button>
@@ -62,23 +62,19 @@ function BranchOption({
 
 export default function RestLocationPage() {
   const router = useRouter();
-  const { t, href } = useI18n();
-  const [selectedId, setSelectedId] = useState(branches[0].id);
+  const { t, href, locale } = useI18n();
+  const [selectedId, setSelectedId] = useState<BranchId>(branches[0].id);
   const [isContinuing, setIsContinuing] = useState(false);
   const selectedBranch = branches.find((branch) => branch.id === selectedId) ?? branches[0];
 
-  function selectBranch(id: string) {
+  function selectBranch(id: BranchId) {
     setSelectedId(id);
   }
 
   function confirmBranch() {
     if (isContinuing) return;
     setIsContinuing(true);
-    try {
-      window.sessionStorage.setItem("nawyorders-selected-branch", JSON.stringify(selectedBranch));
-    } catch {
-      // Payment remains usable when browser storage is unavailable.
-    }
+    saveSelectedBranch({ id: selectedBranch.id, name: selectedBranch.name });
     router.push(href("/payment"));
   }
 
@@ -117,7 +113,7 @@ export default function RestLocationPage() {
         <footer className="rest-location-footer">
           <div className="rest-selected-branch">
             <span>{t("selectedBranch")}</span>
-            <strong>{t("branchName")}</strong>
+            <strong>{selectedBranch.name[locale]}</strong>
           </div>
           <button
             className="rest-confirm-button"

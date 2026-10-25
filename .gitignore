@@ -19,7 +19,7 @@ next-env.d.ts
 /BRAND.md
 /MASTER-PROGRESS.md
 /REPORT-MASTER.md
-
+/ui-ux-pro-max-skill-main
 # Test artifacts
 /coverage/
 /playwright-report/
@@ -35,3 +35,4 @@ next-env.d.ts
 /REPORT-TESTING-PHASE3.md
 /REPORT-TESTING-PHASE4.md
 /restaurant_app_bug_report.md
+

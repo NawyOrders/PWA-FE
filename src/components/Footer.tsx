@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/DictionaryProvider";
 import { brand } from "@/lib/brand";
+import { InstallButton } from "@/components/pwa/InstallButton";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -51,6 +52,9 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <InstallButton variant="footer" />
+            </li>
           </ul>
         </div>
 

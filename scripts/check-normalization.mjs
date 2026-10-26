@@ -5,7 +5,6 @@ const ROOT = process.cwd();
 const SRC = join(ROOT, "src");
 
 const ALLOWLIST = new Map([
-  ["src/app/manifest.ts", ["hardcoded-color"]],
   ["src/app/[locale]/layout.tsx", ["hardcoded-color"]],
   ["src/components/address/MapView.tsx", ["hardcoded-color"]],
   ["src/components/CartSummaryBar/CartSummaryBar.tsx", ["hardcoded-color"]],

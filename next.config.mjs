@@ -24,6 +24,13 @@ const nextConfig = {
         headers: [{ key: "Cache-Control", value: "no-cache" }],
       },
       {
+        source: "/:locale(ar|en)/manifest.webmanifest",
+        headers: [
+          { key: "Content-Type", value: "application/manifest+json; charset=utf-8" },
+          { key: "Cache-Control", value: "no-cache" },
+        ],
+      },
+      {
         source: "/_next/static/:path*",
         headers: [
           { key: "Cache-Control", value: `public, max-age=${ONE_YEAR}, immutable` },

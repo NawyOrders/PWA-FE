@@ -5,9 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:sw": "node scripts/build-sw.mjs",
+    "generate:pwa-assets": "node scripts/generate-pwa-assets.mjs",
+    "prebuild": "npm run build:sw",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "typecheck:sw": "tsc -p tsconfig.sw.json --noEmit",
     "test": "cross-env TZ=Africa/Cairo VITE_CONFIG_NATIVE_IGNORE_WARNING=true vitest run",
     "test:watch": "cross-env TZ=Africa/Cairo VITE_CONFIG_NATIVE_IGNORE_WARNING=true vitest",
     "test:cov": "cross-env TZ=Africa/Cairo VITE_CONFIG_NATIVE_IGNORE_WARNING=true vitest run --coverage",
@@ -17,7 +21,7 @@
     "test:a11y": "playwright test --grep @a11y",
     "test:all": "npm run lint && npm run typecheck:all && npm run test:cov && npm run build",
     "typecheck:tests": "tsc -p tsconfig.test.json --noEmit",
-    "typecheck:all": "npm run typecheck && npm run typecheck:tests",
+    "typecheck:all": "npm run typecheck && npm run typecheck:tests && npm run typecheck:sw",
     "check:norm": "node scripts/check-normalization.mjs"
   },
   "dependencies": {
@@ -45,6 +49,7 @@
     "@vitest/coverage-v8": "^5.0.5",
     "autoprefixer": "^10.4.19",
     "cross-env": "^10.1.0",
+    "esbuild": "^0.28.2",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.4.0",
     "fast-check": "^4.10.2",

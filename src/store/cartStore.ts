@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { getDish } from "@/data/dishes";
 
+import { markAddedToCart } from "@/lib/pwa";
 import { COUPON_CODE, COUPON_DISCOUNT } from "@/lib/pricing";
 import type { CheckoutLineResult, ItemAvailability } from "@/lib/checkout";
 export { COUPON_CODE, COUPON_DISCOUNT };
@@ -63,7 +64,8 @@ export const useCartStore = create<CartState>()(
       fulfillmentMethod: "delivery",
       deliveryFee: null,
       setFulfillmentMethod: (fulfillmentMethod) => set({ fulfillmentMethod }),
-      add: (dishId, quantity = 1, unitPrice, customization) =>
+      add: (dishId, quantity = 1, unitPrice, customization) => {
+        markAddedToCart();
         set((state) => {
           const basePrice = getDish(dishId)?.price ?? 0;
           const selectedPrice = unitPrice ?? basePrice;
@@ -90,7 +92,8 @@ export const useCartStore = create<CartState>()(
             };
           }
           return { items: [...state.items, newItem] };
-        }),
+        });
+      },
       update: (itemKey, item) =>
         set((state) => {
           if (!state.items.some((current) => getCartItemKey(current) === itemKey)) {

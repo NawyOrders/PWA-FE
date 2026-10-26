@@ -39,6 +39,7 @@
   "exclude": [
     "node_modules",
     "tests",
+    "src/sw",
     "**/*.test.ts",
     "**/*.test.tsx",
     "vitest.config.ts",

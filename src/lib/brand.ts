@@ -15,8 +15,19 @@ export interface SupportContact {
   hours: SupportHours;
 }
 
+export interface BrandLogo {
+  ar: string;
+  en: string;
+  mark: string;
+  alt: LocalizedText;
+}
+
 export interface Brand {
   name: LocalizedText;
+  shortName: LocalizedText;
+  tagline: LocalizedText;
+  description: LocalizedText;
+  logo: BrandLogo;
   domain: string;
   domainBrand: string;
   domainTld: string;
@@ -32,6 +43,18 @@ export interface Brand {
 
 export const brand: Brand = {
   name: { ar: "كرم الشام", en: "Karam El Sham" },
+  shortName: { ar: "كرم الشام", en: "Karam Sham" },
+  tagline: { ar: "مأكولات شامية", en: "Shami food" },
+  description: {
+    ar: "اطلب أشهى الأكلات الشامية من كرم الشام، توصيل سريع إلى باب بيتك في القاهرة.",
+    en: "Order the finest Shami dishes from Karam El Sham, delivered fast to your door in Cairo.",
+  },
+  logo: {
+    ar: "/icons/logo.png",
+    en: "/icons/logo.png",
+    mark: "/icons/logo.png",
+    alt: { ar: "شعار كرم الشام", en: "Karam El Sham logo" },
+  },
   domain: "nawyorders.com",
   domainBrand: "nawyorders",
   domainTld: ".com",

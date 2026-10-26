@@ -7,6 +7,10 @@ import "leaflet/dist/leaflet.css";
 import "@/styles/globals.css";
 import "@/styles/motion.css";
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
+import { brand } from "@/lib/brand";
+import { ICON_VERSION } from "@/lib/pwa";
+import { manifestHref } from "@/lib/pwa-manifest";
+import { getPwaColors } from "@/lib/pwa-tokens";
 import { I18nProvider } from "@/lib/i18n/DictionaryProvider";
 import { I18nProvider as LegacyI18nProvider } from "@/lib/i18n";
 import { Splash } from "@/components/Splash";
@@ -21,32 +25,51 @@ const notoKufiArabic = localFont({
   preload: true,
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://nawyorders.com"),
-  title: "كرم الشام | Karam El Sham",
-  description: "اطلب اشهى الاكلات الشامية عبر تطبيق كرم الشام",
-  applicationName: "Karam El Sham",
-  manifest: "/manifest.webmanifest",
-  appleWebApp: {
-    capable: true,
-    title: "كرم الشام",
-    statusBarStyle: "default",
-  },
-  icons: {
-    icon: [
-      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  viewportFit: "cover",
-  themeColor: "#E43820",
-};
+  const other: Locale = locale === "ar" ? "en" : "ar";
+  return {
+    metadataBase: new URL(`https://${brand.domain}`),
+    title: `${brand.name[locale]} | ${brand.name[other]}`,
+    description: brand.description[locale],
+    applicationName: brand.name[locale],
+    manifest: manifestHref(locale),
+    appleWebApp: {
+      capable: true,
+      title: brand.shortName[locale],
+      statusBarStyle: "default",
+    },
+    icons: {
+      icon: [
+        { url: `/icons/favicon.ico?sizes=16x16,32x32,48x48`, type: "image/x-icon" },
+        { url: `/icons/icon-192.png?v=${ICON_VERSION}`, sizes: "192x192", type: "image/png" },
+        { url: `/icons/icon-512.png?v=${ICON_VERSION}`, sizes: "512x512", type: "image/png" },
+      ],
+      apple: [
+        {
+          url: `/icons/apple-touch-icon.png?v=${ICON_VERSION}`,
+          sizes: "180x180",
+          type: "image/png",
+        },
+      ],
+    },
+  };
+}
+
+export function generateViewport(): Viewport {
+  return {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
+    themeColor: getPwaColors().bg,
+  };
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

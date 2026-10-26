@@ -8,6 +8,10 @@ import { Drawer } from "@/components/Drawer";
 import { Toast } from "@/components/Toast";
 import { CartSummaryBar } from "@/components/CartSummaryBar/CartSummaryBar";
 import { OrderTrackingCard } from "@/components/OrderTrackingCard/OrderTrackingCard";
+import { PwaProvider } from "@/components/pwa/PwaProvider";
+import { InstallBanner } from "@/components/pwa/InstallBanner";
+import { UpdateToast } from "@/components/pwa/UpdateToast";
+import { OfflineBanner } from "@/components/pwa/OfflineBanner";
 
 const DrawerContent = dynamic(
   () => import("@/components/DrawerContent").then((mod) => mod.DrawerContent),
@@ -25,6 +29,8 @@ export default function ShellLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="relative flex min-h-dvh w-full flex-col bg-bg">
+      <PwaProvider />
+      <OfflineBanner />
       <DesktopNav />
       <div className="flex-1">{children}</div>
       <CartSummaryBar />
@@ -35,6 +41,8 @@ export default function ShellLayout({ children }: { children: ReactNode }) {
         </Drawer>
       ) : null}
       {loginModalOpen ? <LoginRequiredModal /> : null}
+      <InstallBanner />
+      <UpdateToast />
       <Toast />
     </div>
   );

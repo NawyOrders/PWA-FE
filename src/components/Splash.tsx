@@ -1,11 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import {
+  DEFAULT_MIN_SPLASH_MS,
+  MAX_SPLASH_MS,
+  STANDALONE_MIN_SPLASH_MS,
+  isStandalone,
+} from "@/lib/pwa";
 
 const SHOW_EVERY_LOAD = false;
 const SEEN_KEY = "splash-seen";
-const MIN_VISIBLE_MS = 700;
-const MAX_VISIBLE_MS = 3500;
+const MAX_VISIBLE_MS = MAX_SPLASH_MS;
 const EXIT_MS = 450;
 
 type Phase = "enter" | "exit" | "gone";
@@ -113,9 +118,10 @@ export function Splash({ label }: { label: string }) {
     });
 
     const mountedAt = performance.now();
+    const minVisibleMs = isStandalone() ? STANDALONE_MIN_SPLASH_MS : DEFAULT_MIN_SPLASH_MS;
 
     void Promise.allSettled([waitForLoad, waitForFonts, waitForHero]).then(() => {
-      minTimer = window.setTimeout(hide, Math.max(0, MIN_VISIBLE_MS - (performance.now() - mountedAt)));
+      minTimer = window.setTimeout(hide, Math.max(0, minVisibleMs - (performance.now() - mountedAt)));
     });
     maxTimer = window.setTimeout(hide, Math.max(0, MAX_VISIBLE_MS - performance.now()));
 

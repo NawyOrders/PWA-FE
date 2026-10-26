@@ -69,8 +69,16 @@ describe("PWA browser helpers", () => {
     expect(isIosSafari()).toBe(false);
   });
 
+  function installEvent(prompt = vi.fn(() => Promise.resolve())): BeforeInstallPromptEvent {
+    return Object.assign(new Event("beforeinstallprompt"), {
+      platforms: ["web"],
+      prompt,
+      userChoice: Promise.resolve({ outcome: "accepted" as const, platform: "web" }),
+    });
+  }
+
   it("UT-PWA-HELPERS-03 decides when install UI is available", () => {
-    const event = new Event("beforeinstallprompt") as BeforeInstallPromptEvent;
+    const event = installEvent();
 
     expect(isInstallAvailable(false, null)).toBe(false);
     expect(isInstallAvailable(true, null)).toBe(false);
@@ -80,11 +88,7 @@ describe("PWA browser helpers", () => {
 
   it("UT-PWA-HELPERS-04 prompts the install event and returns its outcome", async () => {
     const prompt = vi.fn(() => Promise.resolve());
-    const event = Object.assign(new Event("beforeinstallprompt"), {
-      prompt,
-      userChoice: Promise.resolve({ outcome: "accepted" as const, platform: "web" }),
-    });
-    Object.defineProperty(event, "prompt", { value: prompt });
+    const event = installEvent(prompt);
 
     expect(isBeforeInstallPromptEvent(event)).toBe(true);
     expect(isBeforeInstallPromptEvent(new Event("install"))).toBe(false);
@@ -119,4 +123,20 @@ describe("PWA storage helpers", () => {
 
 describe("PWA dirty form detection", () => {
   it("UT-PWA-HELPERS-07 detects typed values and ignores pristine forms", () => {
-    const container = document.createElem
+    const container = document.createElement("div");
+    const form = document.createElement("form");
+    const input = document.createElement("input");
+    form.append(input);
+    container.append(form);
+    document.body.append(container);
+
+    expect(hasDirtyForm(container)).toBe(false);
+    input.value = "typed";
+    expect(hasDirtyForm(container)).toBe(true);
+
+    input.value = "";
+    form.setAttribute("data-dirty", "true");
+    expect(hasDirtyForm(container)).toBe(true);
+    container.remove();
+  });
+});

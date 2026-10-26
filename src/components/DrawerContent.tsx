@@ -9,6 +9,7 @@ import { useLanguageStore } from "@/store/languageStore";
 import { brand } from "@/lib/brand";
 import type { Locale } from "@/lib/i18n/types";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { InstallButton } from "@/components/pwa/InstallButton";
 import {
   CartIcon,
   ClockIcon,
@@ -79,7 +80,10 @@ export function DrawerContent() {
       </nav>
 
       <div className="mt-5 border-t border-line pt-5">
-        <LanguageToggle label={dict.drawer.language} locale={locale} onChange={changeLocale} />
+        <InstallButton />
+        <div className="mt-2">
+          <LanguageToggle label={dict.drawer.language} locale={locale} onChange={changeLocale} />
+        </div>
       </div>
 
       <div className="mt-6">

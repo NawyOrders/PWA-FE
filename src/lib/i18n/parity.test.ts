@@ -142,7 +142,6 @@ describe("static scan of the dictionary usage", () => {
     // text by the PWA spec, the separators and the AM/PM markers are format
     // values, the rest are reported in REPORT-TESTING-PHASE2.md.
     const baseline = [
-      "app/manifest.ts",
       "app/[locale]/layout.tsx",
       "components/CartSummaryBar/CartSummaryBar.tsx",
       "components/DesktopNav.tsx",

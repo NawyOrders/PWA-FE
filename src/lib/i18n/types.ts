@@ -435,6 +435,19 @@ export interface Dictionary {
     follow: string;
     rights: string;
   };
+  pwa: {
+    updateAvailable: string;
+    updateNow: string;
+    updateBlocked: string;
+    dismiss: string;
+    installApp: string;
+    notNow: string;
+    iosInstall: string;
+    share: string;
+    offline: string;
+    offlineMessage: string;
+    retry: string;
+  };
   toast: {
     addedToCart: string;
     removed: string;

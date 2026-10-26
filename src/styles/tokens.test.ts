@@ -23,7 +23,6 @@ const V2X_TOKENS = [
 // surfaces that predate the token file; each one is reported in
 // REPORT-TESTING-PHASE2.md. The scan fails on any new offender.
 const HEX_BASELINE = [
-  "app/manifest.ts",
   "app/[locale]/address/address.css",
   "app/[locale]/delivery/delivery.css",
   "app/[locale]/item/item.css",
